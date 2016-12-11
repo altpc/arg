@@ -1,0 +1,39 @@
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $_id = str_replace(' ', '_', $this->getClassName());
+?>
+<?php if(!$_productCollection->count()): return; endif; ?>
+
+<div class="category-products block block-highlight <?php echo $this->getClassName() ?>">
+    <div class="block-title"><strong><span><?php echo $this->__($this->getTitle()) ?></span></strong></div>
+    <div class="block-content">
+        <?php $_iterator = 0; ?>
+        <ol class="mini-products-list" id="<?php echo $_id ?>">
+        <?php foreach ($_productCollection as $_product): ?>
+            <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+                <span class="number"><?php echo $_iterator; ?></span>
+                <?php // Product Image ?>
+                <a href="<?php echo $this->getProductUrl($_product) ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"
+                ><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(50); ?>"
+                    srcset="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(50); ?> 1x, <?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(50 * 2); ?> 2x"
+                    width="50" height="50"
+                    alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
+                /></a>
+                <?php // Product description ?>
+                <div class="product-details">
+                    <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                    <h2 class="product-name"><a href="<?php echo $this->getProductUrl($_product) ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+                    <?php echo $this->getPriceHtml($_product, true, $this->getPriceSuffix()) ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('<?php echo $_id ?>', 'none-recursive');</script>
+        <?php if ($this->getPageUrl() && (string)$this->getPageTitle()) : ?>
+            <div class="page-link">
+                <a href="<?php echo $this->getPageUrl() ?>"><?php echo $this->__($this->getPageTitle()) ?></a>
+            </div>
+        <?php endif ?>
+    </div>
+</div>

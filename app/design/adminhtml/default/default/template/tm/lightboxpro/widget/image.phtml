@@ -1,0 +1,42 @@
+<?php
+    $htmlId = $this->getElement()->getHtmlId();
+    $imageBaseUrl = Mage::getBaseUrl('media') . 'lightboxpro/';
+?>
+<script type="text/javascript">
+//<![CDATA[
+    uploadImage<?php echo $htmlId; ?> = function(el) {
+        var htmlId = '<?php echo $htmlId; ?>';
+        return SimpleIframeFileUploder.upload({
+            form: $(el).up('form'),
+            action: '<?php echo $this->getUrl('adminhtml/lightboxpro_index/upload')?>',
+            onUploading: function(){
+                $('loading-mask').setStyle({zIndex: 1005}).show();
+                $(htmlId).value = '';
+            },
+            onComplete: function() {
+                $('loading-mask').hide();
+            },
+            onSuccess: function(response) {
+                $(htmlId).value = response.path;
+                $(htmlId + '-img').src = '<?php echo $imageBaseUrl;?>' + response.path;
+            }
+        });
+    }
+//]]>
+</script>
+<tr>
+    <td class="label"><label>Image</label></td>
+    <td class="value">
+        <?php
+            $imageUrl = $value = $this->getElement()->getValue();
+            if (!empty($imageUrl)) {
+                $imageUrl = $imageBaseUrl . $imageUrl;
+            }
+        ?>
+        <div>
+            <img id="<?php echo $htmlId; ?>-img" src="<?php echo $imageUrl; ?>" style="width: 80px;height:50px;"/>
+        </div>
+        <input type="file" name="image" onchange="uploadImage<?php echo $htmlId; ?>(this)">
+        <input id="<?php echo $htmlId; ?>" name="parameters[path]" value="<?php echo $value?>" class="widget-option required-entry" type="hidden"/>
+    </td>
+</tr>

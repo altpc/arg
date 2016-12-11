@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_Easyslide>
+            <active>true</active>
+            <codePool>local</codePool>
+            <tm_link><![CDATA[http://templates-master.com/magento-easy-slider.html]]></tm_link>
+            <depends>
+                <Mage_Catalog />
+                <Mage_Cms />
+            </depends>
+        </TM_Easyslide>
+    </modules>
+</config>

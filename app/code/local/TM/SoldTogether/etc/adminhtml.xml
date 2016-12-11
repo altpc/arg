@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <translate>
+        <modules>
+            <TM_SoldTogether>
+                <files>
+                    <default>TM_SoldTogether.csv</default>
+                </files>
+            </TM_SoldTogether>
+        </modules>
+    </translate>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <soldtogether translate="title" module="soldtogether">
+                    <title>Sold Together</title>
+                    <sort_order>1910</sort_order>
+                    <children>
+                        <order translate="title">
+                            <title>Frequently Bought Together</title>
+                            <action>adminhtml/soldtogether_order/index</action>
+                            <sort_order>10</sort_order>
+                        </order>
+                        <customer translate="title">
+                            <title>Customers Who Bought This Item Also Bought</title>
+                            <action>adminhtml/soldtogether_customer/index</action>
+                            <sort_order>20</sort_order>
+                        </customer>
+                    </children>
+                </soldtogether>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <soldtogether translate="title" module="soldtogether">
+                                        <title>Bought Together Pro</title>
+                                    </soldtogether>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <soldtogether translate="title" module="soldtogether">
+                                <title>Sold Together</title>
+                                <sort_order>1910</sort_order>
+                                <children>
+                                    <order translate="title">
+                                        <title>Frequently Bought Together</title>
+                                        <sort_order>10</sort_order>
+                                    </order>
+                                    <customer translate="title">
+                                        <title>Customers Who Bought This Item Also Bought</title>
+                                        <sort_order>20</sort_order>
+                                    </customer>
+                                </children>
+                            </soldtogether>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+ </config>

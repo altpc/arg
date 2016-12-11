@@ -1,0 +1,26 @@
+<?php
+$answers = $this->getAnswers();
+$count = count($answers);
+if ($count < 1)  {
+    return;
+}
+?>
+<ul class="askit-query-answer-list">
+    <?php
+    $_iterator = 0;
+    $count = count($answers);
+    foreach($answers as $answer): ?>
+    <li<?php if( 1 == ++$_iterator && $count != 1 ):
+            ?> class="first"<?php
+        elseif($_iterator == $count):
+            ?> class="last"<?php
+        endif; ?>>
+        <?php $answerView = $this->getChild('askit_answer_view');
+        if ($answerView) {
+            echo $answerView
+                ->setAnswer($answer)
+                ->toHTML();
+        }?>
+     </li>
+    <?php endforeach;?>
+</ul>

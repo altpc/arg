@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="askit/general/enabled">
+                <type>skin_css</type>
+                <name>css/tm/askit.css</name>
+            </action>
+            <action method="addItem" ifconfig="askit/general/enabled">
+                <type>skin_js</type>
+                <name>js/tm/askit.js</name>
+            </action>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="core/template" name="askit_init">
+                <action method="setTemplate" ifconfig="askit/general/enabled">
+                    <template>tm/askit/init.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </default>
+
+    <askit_core>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <block type="askit/rss_head" name="askit.rss.head"/>
+        </reference>
+    </askit_core>
+
+    <askit_index_index>
+        <update handle="askit_core"/>
+        <reference name="content">
+            <block type="core/template" name="askit_search" template="tm/askit/search.phtml"/>
+            <block type="askit/list" name="askit" template="tm/askit/question/list.phtml">
+                <!-- <block type="core/template" name="askit_new_answer_form" template="tm/askit/answer/form.phtml"/> -->
+            </block>
+        </reference>
+    </askit_index_index>
+
+    <askit_index_product>
+        <update handle="askit_core"/>
+        <reference name="content">
+            <block type="askit/product_view" name="product.info" template="catalog/product/view.phtml">
+                <block type="catalog/product_view_media" name="product.info.media" as="media" template="catalog/product/view/media.phtml">
+                    <action method="disableGallery"/>
+                </block>
+                <block type="catalog/product_view" name="product.info.addto" as="addto" template="catalog/product/view/addto.phtml"/>
+                <block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="catalog/product/view/addtocart.phtml" />
+                <block type="catalog/product_view" name="product.tierprices" as="tierprices" template="catalog/product/view/tierprices.phtml"/>
+            </block>
+
+            <block type="askit/discussion" name="askit" template="tm/askit/question/list.phtml"/>
+        </reference>
+    </askit_index_product>
+
+    <askit_index_category>
+        <update handle="askit_core"/>
+        <reference name="content">
+            <block type="askit/discussion" name="askit" template="tm/askit/question/list.phtml"/>
+        </reference>
+    </askit_index_category>
+
+    <askit_index_page>
+        <update handle="askit_core"/>
+        <reference name="content">
+            <block type="askit/discussion" name="askit" template="tm/askit/question/list.phtml"/>
+        </reference>
+    </askit_index_page>
+
+    <askit_index_view>
+        <update handle="askit_core"/>
+        <reference name="content">
+            <block type="askit/list" name="askit" template="tm/askit/question/list.phtml"/>
+        </reference>
+    </askit_index_view>
+
+    <catalog_product_view>
+        <reference name="product.info.additional">
+            <block type="askit/discussion" name="askit" template="tm/askit/empty.phtml" before="-" >
+                <action method="setTemplate" ifconfig="askit/general/productBlockView">
+                    <template>tm/askit/question/list.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <!--
+        <reference name="product.info.tabs">
+            <action method="addTab" translate="title" module="askit" ifconfig="askit/general/enabled">
+                <alias>askit_tabbed</alias>
+                <title>Questions</title>
+                <block>askit/list</block>
+                <template>tm/askit/question/list.phtml</template>
+            </action>
+        </reference>
+        -->
+    </catalog_product_view>
+
+    <askit_index_rss>
+      <block type="askit/rss_content" output="toHtml" name="askit.rss.content"/>
+    </askit_index_rss>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="askit" ifconfig="askit/general/enabled">
+                <name>askit</name>
+                <path>askit/index/customer</path>
+                <label>My Questions</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <askit_index_customer translate="label">
+        <label>Questions</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="askit/list_customer" name="askit" template="tm/askit/question/list.phtml"/>
+        </reference>
+    </askit_index_customer>
+
+</layout>

@@ -1,0 +1,21 @@
+<div class="box mini-product-search">
+    <div class="head"><span><?php echo $this->__('Top 10 Searches') ?></span></div>
+    <?php
+    $count = sizeof($this->getTerms());
+    if($count > 0): ?>
+        <?php $i = 0; foreach ($this->getTerms() as $_term): ?>
+            <?php if ($i >= 10) break; ?>
+            <?php if ($i++ % 2 == 0): ?>
+            <ul class="grid-row">
+            <?php endif ?>
+                <li class="item"><a href="<?php echo $this->getSearchUrl($_term) ?>"><?php echo $this->htmlEscape($_term->getName()) ?></a></li>
+            <?php if($i % 2 == 0 || $i== 10 || $i == $count): ?>
+            </ul>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+    <div class="content">
+        <?php echo $this->__('There are no search terms available.'); ?>
+    </div>
+    <?php endif ?>
+</div>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <tm_argento>
+            <label>TM Argento Themes</label>
+            <sort_order>192</sort_order>
+        </tm_argento>
+    </tabs>
+    <sections>
+        <design>
+            <groups>
+                <theme>
+                    <fields>
+                        <after_default>
+                            <label>After Default</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>88</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </after_default>
+                        <after_default_ua_regexp translate="comment">
+                            <label></label>
+                            <frontend_model>adminhtml/system_config_form_field_regexceptions</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>89</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </after_default_ua_regexp>
+                    </fields>
+                </theme>
+            </groups>
+        </design>
+    </sections>
+</config>

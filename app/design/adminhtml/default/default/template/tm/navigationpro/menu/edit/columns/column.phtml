@@ -1,0 +1,298 @@
+<?php
+    $style = $this->canDisplayUseDefault() ? "background: none repeat scroll 0 0 #DEEAEA; border: 1px solid #D2E7E7 !important; padding: 10px 10px 5px 10px;" : '';
+?>
+
+<?php echo $this->getStatusExceptionsTemplate() ?>
+
+<script type="text/javascript">
+//<![CDATA[
+var columnsTemplate =
+'<div class="option-box" id="<?php echo $this->getFieldId() ?>_{{column_id}}">' +
+    '<span class="column-delete f-right"><?php echo $this->getDeleteButtonHtml() ?></span>' +
+    '<table cellspacing="0" class="form-list">' +
+        '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{column_id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{column_id}}][is_delete]" value="" />' +
+        '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{column_id}}_column_id" name="<?php echo $this->getFieldName() ?>[{{column_id}}][column_id]" value="{{db_column_id}}" />' +
+        '<tbody>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_type"><?php echo Mage::helper('adminhtml')->__('Type') ?></label></td>' +
+                '<td class="value">' +
+                    '<?php echo $this->getTypeSelectHtml() ?>' +
+                '</td>' +
+            '</tr>' +
+            '<tr class="group-store-view">' +
+                '<td colspan="2">' +
+                    '<table cellspacing="0" class="form-list" style="<?php echo $style ?>">' +
+                        '<tbody>' +
+                            '<tr>' +
+                                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_title"><?php echo Mage::helper('cms')->__('Title') ?></label></td>' +
+                                '<td class="value">' +
+                                    '<input type="text" value="{{title}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][title]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_title" class="input-text"/>' +
+                                '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_content"><?php echo Mage::helper('cms')->__('Content') ?></label></td>' +
+                                '<td class="value">' +
+                                    '<textarea name="<?php echo $this->getFieldName() ?>[{{column_id}}][content]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_content" class="textarea" style="height:15em" rows="2" cols="15">{{content}}</textarea>' +
+                                    '<button id="<?php echo $this->getFieldId() ?>_{{column_id}}_content_toggle" class="scalable btn-wysiwyg" type="button" title="<?php echo Mage::helper('catalog')->__('WYSIWYG Editor') ?>"><span><span><span><?php echo Mage::helper('catalog')->__('WYSIWYG Editor') ?></span></span></span></button>' +
+                                '</td>' +
+                            '</tr>' +
+                            <?php if ($this->canDisplayUseDefault()) : ?>
+                            '<tr class="group-store-view">' +
+                                '<td class="label"><label class="normal" for="<?php echo $this->getFieldId() ?>_{{column_id}}_content_default"><?php echo Mage::helper('adminhtml')->__('Use Default Value') ?></label></td>' +
+                                '<td class="value"><input name="<?php echo $this->getFieldName() ?>[{{column_id}}][use_default_content]" type="checkbox" value="1" onclick="toggleValueElements(this, $(this).up(\'table\'))" id="<?php echo $this->getFieldId() ?>_{{column_id}}_content_default"/></td>' +
+                            '</tr>' +
+                            <?php endif; ?>
+                        '</tbody>' +
+                    '</table>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_style"><?php echo Mage::helper('navigationpro')->__('Style') ?></label></td>' +
+                '<td class="value">' +
+                    '<?php echo $this->getStyleSelectHtml() ?>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_levels_per_dropdown"><?php echo Mage::helper('navigationpro')->__('Levels, to show per dropdown') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{levels_per_dropdown}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][levels_per_dropdown]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_levels_per_dropdown" class="input-text"/>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_width"><?php echo Mage::helper('navigationpro')->__('Width, px') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{width}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][width]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_width" class="input-text"/>' +
+                    '<p class="note"><?php echo Mage::helper('navigationpro')->__('Per column for subcategories type') ?></p>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_columns_count"><?php echo Mage::helper('navigationpro')->__('Columns Count') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{columns_count}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][columns_count]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_columns_count" class="input-text"/>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_direction"><?php echo Mage::helper('navigationpro')->__('Items Direction') ?></label></td>' + // columns count > 1 and subcats or filter
+                '<td class="value">' +
+                    '<?php echo $this->getDirectionSelectHtml() ?>' +
+                    '<p class="note"><?php echo Mage::helper('navigationpro')->__('Affects, when columns count is more than one. Otherwise, you will not see the difference') ?></p>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_sort_order"><?php echo Mage::helper('catalog')->__('Sort Order') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{sort_order}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][sort_order]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_sort_order" class="input-text"/>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_is_active"><?php echo Mage::helper('cms')->__('Status') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="hidden" value="{{is_active}}" disabled="disabled" class="is-active-hidden" />' +
+                    '<?php echo $this->getIsActiveSelectHtml() ?>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"></td>' +
+                '<td class="value">' +
+                    '<div class="grid" id="<?php echo $this->getFieldId() ?>_{{column_id}}_is_active_exceptions"></div>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label" style="display:none;"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_levels_to_load"><?php echo Mage::helper('navigationpro')->__('Levels to Load') ?></label></td>' +
+                '<td class="value" style="display:none;">' +
+                    '<input type="text" value="{{levels_to_load}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][levels_to_load]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_levels_to_load" class="input-text"/>' +
+                    '<p class="note"><?php echo Mage::helper('navigationpro')->__('Leave empty, to show all items') ?></p>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label" style="display:none;"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_max_items_count"><?php echo Mage::helper('navigationpro')->__('Max items count to show per column') ?></label></td>' +
+                '<td class="value" style="display:none;">' +
+                    '<input type="text" value="{{max_items_count}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][max_items_count]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_max_items_count" class="input-text"/>' +
+                    '<p class="note"><?php echo Mage::helper('navigationpro')->__('Leave empty, to show all items') ?></p>' +
+                '</td>' +
+            '</tr>' +
+            <?php if (!$this->getMenu()->isRoot()) : ?>
+                '<tr>' +
+                    '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_css_id"><?php echo Mage::helper('navigationpro')->__('Css Id') ?></label></td>' +
+                    '<td class="value">' +
+                        '<input type="text" value="{{css_id}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][css_id]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_css_id" class="input-text"/>' +
+                    '</td>' +
+                '</tr>' +
+            <?php endif ?>
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_css_class"><?php echo Mage::helper('navigationpro')->__('Css Class') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{css_class}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][css_class]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_css_class" class="input-text"/>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{column_id}}_css_styles"><?php echo Mage::helper('navigationpro')->__('Css Styles') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{css_styles}}" name="<?php echo $this->getFieldName() ?>[{{column_id}}][css_styles]" id="<?php echo $this->getFieldId() ?>_{{column_id}}_css_styles" class="input-text"/>' +
+                '</td>' +
+            '</tr>' +
+        '</tbody>' +
+    '</table>' +
+'</div>';
+
+var Column = {
+    div           : $('columns_container_top'),
+    templateSyntax: /(^|.|\r|\n)({{(\w+)}})/,
+    templateText  : columnsTemplate,
+    itemCount     : 1,
+    dummyData     : <?php echo Mage::helper('core')->jsonEncode($this->getDefaultColumnData()) ?>,
+    add           : function(data) {
+        data = data || this.dummyData;
+        this.template = new Template(this.templateText, this.templateSyntax);
+        if (!data.column_id) {
+            data.column_id = this.itemCount;
+            data.db_column_id = null;
+        } else {
+            data.db_column_id = data.column_id;
+            this.itemCount = Math.max(data.item_count, this.itemCount);
+        }
+        var column = Element.insert(this.div, {'top': this.template.evaluate(data)});
+
+        var exceptions = new Template(columnStatusExceptionsTable, this.templateSyntax);
+        Element.insert('column_' + data.column_id + '_is_active_exceptions', {
+            'top': exceptions.evaluate(data)
+        });
+        columnStatusException.bindAddButton(data.column_id);
+
+        this.fill(data);
+        this.bindRemoveButtons(data.column_id);
+        this.bindDependentFields(data.column_id);
+        this.initEditor(data.column_id);
+        this.itemCount++;
+    },
+    remove: function(event) {
+        var element = $(Event.findElement(event, 'div'));
+        if (element) {
+            $(element.readAttribute('id')+'_is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons: function(id) {
+        var button = $('column_' + id).down('.delete-column');
+        button && Event.observe(button, 'click', this.remove.bind(this));
+    },
+    bindDependentFields: function(id) {
+        var fieldsMapTemplate = {
+            'column_{{id}}_content': {
+                'column_{{id}}_type': 'html'           // wysiwyg only
+            },
+            'column_{{id}}_style': {
+                'column_{{id}}_type': ['subcategory', 'layered']    // subcats and filter only
+            },
+            'column_{{id}}_columns_count': {
+                'column_{{id}}_type': ['subcategory', 'layered']    // subcats and filter only
+            },
+            'column_{{id}}_levels_per_dropdown': {
+                'column_{{id}}_type': 'subcategory',          // subcats only
+                'column_{{id}}_style': 'dropdown'          // dropdown style only
+            },
+            'column_{{id}}_levels_to_load': {
+                'column_{{id}}_type': 'subcategory'           // subcats only
+            },
+            'column_{{id}}_direction': {
+                'column_{{id}}_type': ['subcategory', 'layered']    // subcats and filter only
+                                                    // && columns count > 1
+            },
+            'column_{{id}}_max_items_count': {
+                'column_{{id}}_type': ['subcategory', 'layered']    // subcats and filter only
+            },
+            'column_{{id}}_is_active_exceptions': {
+                'column_{{id}}_is_active': 1
+            }
+        };
+
+        var fieldsMap = {};
+        for (var i in fieldsMapTemplate) {
+            var dependentField = i.replace('{{id}}', id);
+            fieldsMap[dependentField] = {};
+            for (var j in fieldsMapTemplate[i]) {
+                fieldsMap[dependentField][j.replace('{{id}}', id)]
+                    = fieldsMapTemplate[i][j];
+            }
+        }
+
+        new FormElementDependenceController(fieldsMap);
+
+        // switch subcategory style, if user change style for root menu
+        var rootStyle = $('style');
+        if (rootStyle) {
+            rootStyle.observe('change', function() {
+                $$('.column-style').each(function(el) {
+                    el.setValue(rootStyle.getValue());
+                    if (document.createEvent) {
+                        var oEvent = document.createEvent("HTMLEvents");
+                        oEvent.initEvent('change', true, true);
+                        el.dispatchEvent(oEvent);
+                    } else {
+                        var oEvent = document.createEventObject();
+                        el.fireEvent('onchange', oEvent);
+                    }
+                });
+            });
+        }
+    },
+    initEditor: function(id) {
+        var id = 'column_' + id + '_content';
+        Event.observe(id + '_toggle', "click", function() {
+            catalogWysiwygEditor.open("<?php echo Mage::helper('adminhtml')->getUrl('*/*/wysiwyg') ?>", id);
+        });
+    },
+    fill: function(data) {
+        // selecteboxes
+        var i = 0,
+            element,
+            option,
+            elements = [
+                'type',
+                'style',
+                'is_active',
+                'direction'
+            ];
+
+        while ((element = elements[i++])) {
+            option = $('column_' + data.column_id + '_' + element)
+                .select('option[value=' + data[element] + ']')
+                .first();
+
+            option && option.writeAttribute('selected', 'selected');
+        }
+
+        // per-store view content
+        <?php if ($this->canDisplayUseDefault()) : ?>
+            i = 0, elements = ['content_default'];
+            while ((element = elements[i++])) {
+                element = $('column_' + data.column_id + '_' + element);
+                if (!data.db_column_id || !parseInt(data.store_id)) {
+                    element.writeAttribute('checked', 'checked');
+                } else {
+                    element.removeAttribute('checked');
+                }
+                toggleValueElements(element, element.up('table'));
+            }
+        <?php endif; ?>
+
+        // add is_active_exception rows
+        if (data.is_active_exception && data.is_active_exception.each) {
+            data.is_active_exception.each(function(value) {
+                value.column_id = data.column_id;
+                columnStatusException.add(value);
+            });
+        }
+    }
+};
+
+Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', function() { Column.add(); });
+
+<?php foreach ($this->getColumnsData() as $_column): ?>
+    Column.add(<?php echo $_column->toJson() ?>);
+<?php endforeach; ?>
+
+//]]>
+</script>

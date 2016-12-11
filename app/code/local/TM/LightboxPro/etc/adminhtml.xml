@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <lightboxpro translate="title" module="lightboxpro">
+                                        <title>Lightbox Pro</title>
+                                    </lightboxpro>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <lightboxpro translate="title" module="lightboxpro">
+                                <title>LightboxPro</title>
+                                <sort_order>840</sort_order>
+                                <children>
+                                    <index translate="title">
+                                        <title>Index</title>
+                                        <sort_order>10</sort_order>
+                                    </index>
+                                </children>
+                            </lightboxpro>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+ </config>

@@ -1,0 +1,51 @@
+<?php if (!Mage::getStoreConfig('askit/general/enabled')) return; ?>
+
+
+<div class="block block-list block-askit">
+    <div class="block-title">
+        <strong><span>
+            <?php echo Mage::helper('askit')->__('Recent questions') ?>
+        </span></strong>
+    </div>
+    <div class="block-content">
+
+        <?php
+        $_items = $this->getItems();
+        $_questions = array();
+        foreach($_items as $_item) {
+            $_questions[] = $_item;
+        }
+        $_countQuestions = count($_questions);
+        if ($_countQuestions): ?>
+        <ol id="recently-askit-items">
+             <?php
+                $helper = Mage::helper('askit');
+                foreach( $_questions as $_question):
+                        // get answers
+                        $_questionId = $_question->getId();
+                        $_answers = array();
+                        if ($_question->getAnswers()) {
+                            $_answers = $_question->getAnswers()->getItems();
+                        }
+                        $_countAnswers = count($_answers);
+                        // end answers
+                    ?>
+                <li class="item">
+                    <p class="product-name">
+                        <a href="<?php echo $helper->getQuestionViewUrl($_question->getId())?>">
+                            <?php echo //$this->helper('askit')->trim(
+                                $this->htmlEscape($_question->getText());
+                                //, 80, '...') ?>
+                        </a>
+                    </p>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        <?php else: ?>
+        <p class="askit-noquestion">
+            <?php echo $this->__('There are no product questions yet.'); ?>
+        </p>
+        <?php endif; ?>
+
+    </div>
+</div>

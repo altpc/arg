@@ -1,0 +1,50 @@
+<script type="text/javascript">
+//<![CDATA[
+function changeDiagramsPeriod(periodObj) {
+    periodParam = periodObj.value ? 'period/' + periodObj.value + '/' : '';
+<?php foreach (array('display', 'click') as $tabId): ?>
+    ajaxBlockParam = 'block/tab_<?php echo $tabId ?>/';
+    ajaxBlockUrl = '<?php echo $this->getUrl('*/*/ajaxBlock', array('_current' => true, 'block' => '', 'period' => '')) ?>' + ajaxBlockParam + periodParam;
+    new Ajax.Request(ajaxBlockUrl, {
+        parameters: {isAjax: 'true', form_key: FORM_KEY},
+        onSuccess: function(transport) {
+            tabContentElementId = 'diagram_tab_<?php echo $tabId ?>_content';
+            try {
+                if (transport.responseText.isJSON()) {
+                    var response = transport.responseText.evalJSON()
+                    if (response.error) {
+                        alert(response.message);
+                    }
+                    if(response.ajaxExpired && response.ajaxRedirect) {
+                        setLocation(response.ajaxRedirect);
+                    }
+                } else {
+                    $(tabContentElementId).update(transport.responseText);
+                }
+            }
+            catch (e) {
+                $(tabContentElementId).update(transport.responseText);
+            }
+        }
+    });
+<?php endforeach; ?>
+}
+</script>
+
+<div style="margin:20px;">
+    <p class="switcher a-right" style="padding:5px 10px;"><?php echo $this->__('Select Range') ?>:
+    <select name="period" id="order_<?php echo $this->getHtmlId() ?>_period" onchange="changeDiagramsPeriod(this);">
+        <?php foreach ($this->helper('easybanner/adminhtml_data')->getDatePeriods() as $_value=>$_label): ?>
+            <?php if(in_array($_value, array('custom'))) continue; ?>
+            <option value="<?php echo $_value ?>" <?php if($this->getRequest()->getParam('period')==$_value): ?> selected="selected"<?php endif; ?>><?php echo $_label ?></option>
+        <?php endforeach; ?>
+    </select></p><br/>
+    <?php
+    $_containerStyle = "width:{$this->getWidth()}px;height:{$this->getHeight()}px; margin:0 auto;";
+    ?>
+    <?php if($this->getCount()): ?>
+    <p style="<?php echo $_containerStyle?>"><img src="<?php echo $this->getChartUrl(false) ?>" alt="chart" title="chart" /></p>
+    <?php else: ?>
+    <p class="a-center" style="<?php echo $_containerStyle?>"><?php echo $this->__('No Data Found') ?></p>
+    <?php endif; ?>
+</div>

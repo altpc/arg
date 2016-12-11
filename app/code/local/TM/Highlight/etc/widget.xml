@@ -1,0 +1,1935 @@
+<?xml version="1.0"?>
+<widgets>
+    <highlight_attribute_date type="highlight/product_attribute_date" translate="name" module="highlight">
+        <name>Highlight: Attribute Date Filter</name>
+        <parameters>
+            <attribute_code translate="label description" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>news_from_date,news_to_date</value>
+                <label>Attribute Code</label>
+                <description><![CDATA[Example: news_from_date,news_to_date]]></description>
+                <type>text</type>
+            </attribute_code>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Date Attribute</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-attrbiute-date</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>0</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[View All »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Default page is not supported. You must add a link to custom page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_attribute_date>
+    <highlight_attribute_yesno type="highlight/product_attribute_yesno" translate="name" module="highlight">
+        <name>Highlight: Attribute Yes/No Filter</name>
+        <parameters>
+            <attribute_code translate="label description" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>featured</value>
+                <label>Attribute Code</label>
+                <description><![CDATA[Example: featured]]></description>
+                <type>text</type>
+            </attribute_code>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Yes/No Attribute</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-attrbiute-yesno</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <order translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Sort order</label>
+                <description><![CDATA[Possible values: RAND(),sku,minimal_price,position]]></description>
+                <type>text</type>
+            </order>
+            <show_page_link>
+                <visible>1</visible>
+                <value>0</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[View All »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Default page is not supported. You must add a link to custom page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_attribute_yesno>
+    <highlight_bestseller type="highlight/product_bestseller" translate="name" module="highlight">
+        <name>Highlight: Bestseller Products</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Bestsellers</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <period translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>90</value>
+                <label>Calculation period, days</label>
+                <type>text</type>
+            </period>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-bestsellers</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>1</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[See All Bestsellers »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Leave empty to use default highlight page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_bestseller>
+    <highlight_featured type="highlight/product_featured" translate="name" module="highlight">
+        <name>Highlight: Featured Product</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Featured Products</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-featured</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <order translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Sort order</label>
+                <description><![CDATA[Possible values: RAND(),sku,minimal_price,position]]></description>
+                <type>text</type>
+            </order>
+            <show_page_link>
+                <visible>1</visible>
+                <value>1</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[See All Featured Products »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Leave empty to use default highlight page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_featured>
+    <highlight_new type="highlight/product_new" translate="name" module="highlight">
+        <name>Highlight: New Products</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>New Products</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-new</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>1</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[See All New Products »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Leave empty to use default highlight page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_new>
+    <highlight_popular type="highlight/product_popular" translate="name" module="highlight">
+        <name>Highlight: Popular Products (Most Viewed)</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Popular Products</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <period translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>30</value>
+                <label>Calculation period, days</label>
+                <type>text</type>
+            </period>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-popular</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>1</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[See All Popular Products »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Leave empty to use default highlight page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_popular>
+    <highlight_random type="highlight/product_random" translate="name" module="highlight">
+        <name>Highlight: Any Products</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Highlight Products</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-any</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <order translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Sort Order</label>
+                <description><![CDATA[Possible values: RAND(),sku,minimal_price,position]]></description>
+                <type>text</type>
+            </order>
+            <show_page_link>
+                <visible>1</visible>
+                <value>0</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[View All »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Default page is not supported. You must add a link to custom page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <sku_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>SKU Filter</label>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </sku_filter>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_random>
+    <highlight_reviewed type="highlight/review_new" translate="name" module="highlight">
+        <name>Highlight: Recently Reviewed Products</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Recent Reviews</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>2</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/review/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/review/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/review/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/review/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-review</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>0</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[View All »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Default page is not supported. You must add a link to custom page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_reviewed>
+    <highlight_recently_viewed type="highlight/product_reports_viewed" translate="name" module="highlight">
+        <name>Highlight: Recently Viewed Products</name>
+        <parameters>
+            <title translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Recently Viewed</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>8</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/sidebar/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-recently</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>0</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[View All »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Default page is not supported. You must add a link to custom page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_recently_viewed>
+    <highlight_special type="highlight/product_special" translate="name" module="highlight">
+        <name>Highlight: Special Products</name>
+        <parameters>
+            <title translate="label" module="catalog">
+                <required>0</required>
+                <visible>1</visible>
+                <value>Special Products</value>
+                <label>Title</label>
+                <type>text</type>
+            </title>
+            <products_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Products to Display</label>
+                <type>text</type>
+            </products_count>
+            <column_count translate="label" module="catalog">
+                <required>1</required>
+                <visible>1</visible>
+                <value>4</value>
+                <label>Number of Columns to Display</label>
+                <type>text</type>
+            </column_count>
+            <template translate="label">
+                <required>0</required>
+                <visible>1</visible>
+                <value>tm/highlight/product/grid.phtml</value>
+                <label>Template</label>
+                <type>select</type>
+                <values>
+                    <custom translate="label"> <!-- IMPORTANT: Should be first in the list! -->
+                        <value>0</value><!-- Empty string doesn't works -->
+                        <label>Custom Template</label>
+                    </custom>
+                    <grid translate="label">
+                        <value>tm/highlight/product/grid.phtml</value>
+                        <label>Grid Template</label>
+                    </grid>
+                    <list translate="label">
+                        <value>tm/highlight/product/list.phtml</value>
+                        <label>List Template</label>
+                    </list>
+                    <sidebar_grid translate="label">
+                        <value>tm/highlight/product/sidebar/grid.phtml</value>
+                        <label>Sidebar Grid Template</label>
+                    </sidebar_grid>
+                    <sidebar_list translate="label">
+                        <value>tm/highlight/product/sidebar/list.phtml</value>
+                        <label>Sidebar List Template</label>
+                    </sidebar_list>
+                </values>
+            </template>
+            <custom_template translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <description><![CDATA[Path to the template. Example: tm/highlight/product/grid.phtml<br/>Works only when previous option is set to 'Custom Template']]></description>
+                <label>Custom Template</label>
+                <type>text</type>
+            </custom_template>
+            <class_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <value>highlight-special</value>
+                <label>Block Class Name</label>
+                <type>text</type>
+            </class_name>
+            <show_page_link>
+                <visible>1</visible>
+                <value>1</value>
+                <label><![CDATA[Show "View All" link]]></label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </show_page_link>
+            <page_title>
+                <required>1</required>
+                <visible>1</visible>
+                <value><![CDATA[See All Special Offers »]]></value>
+                <label><![CDATA["View All" link title]]></label>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_title>
+            <page_url>
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label><![CDATA["View All" link href]]></label>
+                <description><![CDATA[Leave empty to use default highlight page]]></description>
+                <type>text</type>
+                <depends>
+                    <show_page_link>
+                        <value>1</value>
+                    </show_page_link>
+                </depends>
+            </page_url>
+            <apply_filters translate="label">
+                <visible>1</visible>
+                <label>Apply Additional Filters</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </apply_filters>
+            <category_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Category Filter</label>
+                <description><![CDATA[Example: 10,15,current - Products from category 10 or 15 or active category]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </category_filter>
+            <price_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Price Filter</label>
+                <description><![CDATA[Example: 100,200 - Products with price between 100 and 200]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </price_filter>
+            <product_type_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Product Type Filter</label>
+                <description><![CDATA[Leave empty to show all product types]]></description>
+                <type>multiselect</type>
+                <source_model>highlight/system_config_source_productTypes</source_model>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </product_type_filter>
+            <stock_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Stock Status Filter</label>
+                <description><![CDATA[If you want to show "out of stock" items, you need to enable "System > Configuration > Catalog > Inventory > Display Out of Stock Products" option.]]></description>
+                <type>select</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+                <values>
+                    <no_filter translate="label">
+                        <value></value>
+                        <label>No filter</label>
+                    </no_filter>
+                    <in_stock translate="label">
+                        <value>in_stock</value>
+                        <label>In Stock</label>
+                    </in_stock>
+                    <out_of_stock translate="label">
+                        <value>out_of_stock</value>
+                        <label>Out Of Stock</label>
+                    </out_of_stock>
+                </values>
+            </stock_filter>
+            <qty_filter translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <value></value>
+                <label>Qty Filter</label>
+                <description><![CDATA[Example: 5,20 - Products with qty between 5 and 20. This filter is compatible with simple products only]]></description>
+                <type>text</type>
+                <depends>
+                    <apply_filters>
+                        <value>1</value>
+                    </apply_filters>
+                </depends>
+            </qty_filter>
+        </parameters>
+    </highlight_special>
+</widgets>

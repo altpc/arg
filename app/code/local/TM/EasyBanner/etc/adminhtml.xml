@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <easybanner translate="title" module="easybanner">
+                    <title>Easy Banner</title>
+                    <sort_order>510</sort_order>
+                    <children>
+                        <banner translate="title">
+                            <title>Manage Banners</title>
+                            <action>adminhtml/easybanner_banner/index</action>
+                            <sort_order>10</sort_order>
+                        </banner>
+                        <placeholder translate="title">
+                            <title>Manage Placeholders</title>
+                            <action>adminhtml/easybanner_placeholder/index</action>
+                            <sort_order>20</sort_order>
+                        </placeholder>
+                    </children>
+                </easybanner>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <easybanner translate="title" module="easybanner">
+                                        <title>Easy Banner Section</title>
+                                    </easybanner>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <easybanner translate="title" module="easybanner">
+                                <title>Easy Banner</title>
+                                <sort_order>510</sort_order>
+                                <children>
+                                    <banner translate="title">
+                                        <title>Manage Banners</title>
+                                        <sort_order>10</sort_order>
+                                    </banner>
+                                    <placeholder translate="title">
+                                        <title>Manage Placeholders</title>
+                                        <sort_order>20</sort_order>
+                                    </placeholder>
+                                </children>
+                            </easybanner>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

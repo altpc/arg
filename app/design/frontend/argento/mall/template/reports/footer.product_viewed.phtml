@@ -1,0 +1,21 @@
+<div class="box mini-product-viewed">
+    <div class="head">
+        <span><?php echo $this->__('Recently Viewed Products') ?></span>
+    </div>
+    <?php if (($_products = $this->getProductCollection()) && ($_collectionSize = $_products->getSize())): ?>
+    <ol id="recently-viewed-items">
+    <?php $i = 0; foreach ($_products as $_item): ?>
+        <?php if (++$i > 3) break; ?>
+        <li><a href="<?php echo $_item->getProductUrl() ?>"
+            ><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(40, 50) ?>"
+                srcset="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(40, 50) ?> 1x, <?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(40 * 2, 50 * 2) ?> 2x"
+                width="40" height="50"
+                alt="<?php echo $this->htmlEscape($_item->getSmallImageLabel()) ?>"
+            /><?php echo $this->htmlEscape($_item->getName()) ?></a></li>
+    <?php endforeach; ?>
+    </ol>
+    <script type="text/javascript">decorateList('recently-viewed-items')</script>
+    <?php else: ?>
+    <div class="content"><?php echo $this->__('You have not viewed any product yet') ?></div>
+    <?php endif; ?>
+</div>

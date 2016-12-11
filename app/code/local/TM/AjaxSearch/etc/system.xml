@@ -1,0 +1,370 @@
+<?xml version="1.0" ?>
+<config>
+    <!-- AjaxSearch -->
+    <tabs>
+        <templates_master translate="label" module="ajaxsearch">
+            <label>Templates-master</label>
+            <sort_order>195</sort_order>
+        </templates_master>
+    </tabs>
+    <sections>
+        <tm_ajaxsearch translate="label" module="ajaxsearch">
+            <label>Ajax Search</label>
+            <tab>templates_master</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>120</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="ajaxsearch">
+                    <label>General</label>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <enableleft translate="label">
+                            <label>Show in left column</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enableleft>
+                        <enableright translate="label">
+                            <label>Show in right column</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enableright>
+                        <category_filter_heading>
+                            <label>Category filter combobox</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category_filter_heading>
+                        <show_category_filter translate="label">
+                            <label>Show category filter combobox</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_category_filter>
+                        <category_level_count translate="label comment">
+                            <label>Count of category levels to show</label>
+                            <comment>Set 0, to show all levels</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <depends>
+                                <show_category_filter>1</show_category_filter>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category_level_count>
+                        <category_to_exclude>
+                            <label>Categories to hide</label>
+                            <comment>Comma separated category ids</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <depends>
+                                <show_category_filter>1</show_category_filter>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category_to_exclude>
+                        <category_to_include>
+                            <label>Categories to show</label>
+                            <comment>Comma separated category ids</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>16</sort_order>
+                            <depends>
+                                <show_category_filter>1</show_category_filter>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category_to_include>
+                        <input_field_heading translate="label">
+                            <label>Input field settings</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </input_field_heading>
+                        <searchfieldtext translate="label">
+                            <label>Default text in search field</label>
+                            <frontend_type>text</frontend_type>
+                            <!--<source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </searchfieldtext>
+                        <minchars translate="label">
+                            <label>Minimal number of chars to show suggest</label>
+                            <frontend_type>text</frontend_type>
+                            <!--<source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </minchars>
+                        <enableloader translate="label">
+                            <label>Show ajax loader icon</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enableloader>
+                        <trimmingchars translate="label">
+                            <label>Trimming symbols(chars)</label>
+                            <frontend_type>text</frontend_type>
+                            <!--<source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trimmingchars>
+                        <suggest_popup_heading translate="label">
+                            <label>Suggest popup</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </suggest_popup_heading>
+                        <width translate="label">
+                            <label>Width</label>
+                            <frontend_type>text</frontend_type>
+                            <!--<source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </width>
+                        <maxheight translate="label">
+                            <label>Height</label>
+                            <frontend_type>text</frontend_type>
+<!--                            <source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <sort_order>33</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </maxheight>
+                        <headertext translate="label">
+                            <label>Text on the top of popup</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </headertext>
+                        <footertext translate="label">
+                            <label>Text on the bottom of popup</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </footertext>
+                        <notfoundtext translate="label">
+                            <label>text when nothing not found</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notfoundtext>
+
+                        <productstoshow translate="label">
+                            <label>Number of products to show on ajax results</label>
+                            <frontend_type>text</frontend_type>
+<!--                            <source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <sort_order>66</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </productstoshow>
+
+                        <enablesuggest translate="label">
+                            <label>Show keyword suggestions in result</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>69</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablesuggest>
+
+                        <enablecatalog translate="label">
+                            <label>Show catalog categories in result</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablecatalog>
+
+                        <enablecms translate="label">
+                            <label>Show cms pages in result</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>71</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablecms>
+
+                        <enabletags translate="label">
+                            <label>Show suggested by tags in result</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>72</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabletags>
+
+                        <product_display_settings translate="label">
+                            <label>Product display settings</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_display_settings>
+
+                        <enabledescription translate="label">
+                            <label>Show short description</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabledescription>
+
+                        <descriptionchars translate="label">
+                            <label>Description length</label>
+                            <frontend_type>text</frontend_type>
+<!--                            <source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <depends>
+                                <enabledescription>1</enabledescription>
+                            </depends>
+                            <sort_order>81</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </descriptionchars>
+
+                        <enableimage translate="label">
+                            <label>Show thumbnail</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enableimage>
+
+                        <imagewidth translate="label">
+                            <label>Width</label>
+                            <frontend_type>text</frontend_type>
+<!--                            <source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <depends>
+                                <enableimage>1</enableimage>
+                            </depends>
+                            <sort_order>91</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </imagewidth>
+
+                        <imageheight translate="label">
+                            <label>Height</label>
+                            <frontend_type>text</frontend_type>
+<!--                            <source_model>adminhtml/system_config_source_yesno</source_model>-->
+                            <depends>
+                                <enableimage>1</enableimage>
+                            </depends>
+                            <sort_order>92</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </imageheight>
+
+                        <search_settings_heading translate="label">
+                            <label>Search results</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </search_settings_heading>
+
+                        <use_catalogsearch_collection translate="label">
+                            <label>Use Default Magento Search Collection (CatalogSearch) for Suggest window</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>205</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_catalogsearch_collection>
+
+                        <attributes translate="label">
+                            <label>Search by</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>TM_AjaxSearch_Adminhtml_Model_System_Config_Source_SearchAttributes</source_model>
+                            <sort_order>206</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_catalogsearch_collection>0</use_catalogsearch_collection>
+                            </depends>
+                        </attributes>
+
+                        <use_custom_collection_on_search_page translate="label">
+                            <label>Use custom collection on search controller</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>207</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <!-- <depends>
+                                <use_catalogsearch_collection>0</use_catalogsearch_collection>
+                            </depends> -->
+                        </use_custom_collection_on_search_page>
+
+                    </fields>
+                </general>
+            </groups>
+        </tm_ajaxsearch>
+    </sections>
+</config>

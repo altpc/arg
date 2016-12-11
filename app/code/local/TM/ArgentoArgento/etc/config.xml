@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_ArgentoArgento>
+            <version>2.0.1</version>
+        </TM_ArgentoArgento>
+    </modules>
+    <default>
+        <argento_argento>
+            <background>
+                <body_background-color>#fff</body_background-color>
+                <body_background-image>none</body_background-image>
+                <body_background-repeat>repeat</body_background-repeat>
+                <body_background-position>0px,0px</body_background-position>
+
+                <page_background-color>transparent</page_background-color>
+                <page_background-image>none</page_background-image>
+                <page_background-repeat>no-repeat</page_background-repeat>
+                <page_background-position>0px,0px</page_background-position>
+
+                <top-toolbar-container_background-color>#eee</top-toolbar-container_background-color>
+                <top-toolbar-container_background-image>noisy_texture.png</top-toolbar-container_background-image>
+                <top-toolbar-container_background-repeat>repeat</top-toolbar-container_background-repeat>
+                <top-toolbar-container_background-position>0px,0px</top-toolbar-container_background-position>
+
+                <header-container_background-color>transparent</header-container_background-color>
+                <header-container_background-image>none</header-container_background-image>
+                <header-container_background-repeat>no-repeat</header-container_background-repeat>
+                <header-container_background-position>0px,0px</header-container_background-position>
+
+                <navigation-container_background-color>#fff</navigation-container_background-color>
+                <navigation-container_background-image>nav_container.gif</navigation-container_background-image>
+                <navigation-container_background-repeat>no-repeat</navigation-container_background-repeat>
+                <navigation-container_background-position>50%,100%</navigation-container_background-position>
+
+                <nav_background-color>transparent</nav_background-color>
+                <nav_background-image>none</nav_background-image>
+                <nav_background-repeat>no-repeat</nav_background-repeat>
+                <nav_background-position>0px,0px</nav_background-position>
+
+                <content-container_background-color>transparent</content-container_background-color>
+                <content-container_background-image>none</content-container_background-image>
+                <content-container_background-repeat>no-repeat</content-container_background-repeat>
+                <content-container_background-position>0px,0px</content-container_background-position>
+
+                <footer-toolbar-container_background-color>#eee</footer-toolbar-container_background-color>
+                <footer-toolbar-container_background-image>noisy_texture.png</footer-toolbar-container_background-image>
+                <footer-toolbar-container_background-repeat>repeat</footer-toolbar-container_background-repeat>
+                <footer-toolbar-container_background-position>0px,0px</footer-toolbar-container_background-position>
+
+                <footer-cms-container_background-color>#fff</footer-cms-container_background-color>
+                <footer-cms-container_background-image>footer_cms_container.gif</footer-cms-container_background-image>
+                <footer-cms-container_background-repeat>repeat-x</footer-cms-container_background-repeat>
+                <footer-cms-container_background-position>0px,0px</footer-cms-container_background-position>
+
+                <footer-container_background-color>#333</footer-container_background-color>
+                <footer-container_background-image>none</footer-container_background-image>
+                <footer-container_background-repeat>repeat</footer-container_background-repeat>
+                <footer-container_background-position>0px,0px</footer-container_background-position>
+            </background>
+            <scroll_up>
+                <scroll-up-normal_background-color>#eeeeee</scroll-up-normal_background-color>
+                <scroll-up-hover_background-color>#dddddd</scroll-up-hover_background-color>
+            </scroll_up>
+            <top_navigation>
+                <top-level-link_font-family>Arial,Helvetica,sans-serif</top-level-link_font-family>
+                <top-level-link_font-size>14px</top-level-link_font-size>
+                <top-level-link_text-transform>none</top-level-link_text-transform>
+                <top-level-link_color>#272E3D</top-level-link_color>
+                <top-level-link-hover_color>#d96708</top-level-link-hover_color>
+                <top-level-link-active_color>#d96708</top-level-link-active_color>
+
+                <low-level-link_font-family>Arial,Helvetica,sans-serif</low-level-link_font-family>
+                <low-level-link_font-size>13px</low-level-link_font-size>
+                <low-level-link_text-transform>none</low-level-link_text-transform>
+                <low-level-link_background-color>transparent</low-level-link_background-color>
+                <low-level-link-hover_background-color>#eeeeee</low-level-link-hover_background-color>
+                <low-level-link-active_background-color>transparent</low-level-link-active_background-color>
+                <low-level-link_color>#000000</low-level-link_color>
+                <low-level-link-hover_color>#000000</low-level-link-hover_color>
+                <low-level-link-active_color>#d96708</low-level-link-active_color>
+            </top_navigation>
+            <tabs>
+                <tab-text_padding>9px 12px</tab-text_padding>
+                <tab-text_font-family>Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif</tab-text_font-family>
+                <tab-text_font-size>12px</tab-text_font-size>
+                <tab-text_font-weight>normal</tab-text_font-weight>
+                <tab-text_text-transform>none</tab-text_text-transform>
+                <tab-text_color>#023761</tab-text_color>
+                <tab-hover-text_color>#444444</tab-hover-text_color>
+                <tab-active-text_color>#ef6e00</tab-active-text_color>
+            </tabs>
+            <font>
+                <head_link><![CDATA[<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' />]]></head_link>
+
+                <page-title_font-family>'Source Sans Pro',sans-serif</page-title_font-family>
+                <page-title_font-size>24px</page-title_font-size>
+                <page-title_font-weight>normal</page-title_font-weight>
+                <page-title_color>#000000</page-title_color>
+
+                <block-title-text_font-family>'Source Sans Pro',sans-serif</block-title-text_font-family>
+                <block-title-text_font-size>16px</block-title-text_font-size>
+                <block-title-text_font-weight>normal</block-title-text_font-weight>
+                <block-title-text_color>#000000</block-title-text_color>
+
+                <product-name-link_font-family>'Source Sans Pro',sans-serif</product-name-link_font-family>
+                <product-name-link_font-size>15px</product-name-link_font-size>
+                <product-name-link_font-weight>normal</product-name-link_font-weight>
+                <product-name-link_color>#023761</product-name-link_color>
+                <product-name-link-hover_color>#023761</product-name-link-hover_color>
+
+                <product-collateral-block-title_font-family>'Source Sans Pro',sans-serif</product-collateral-block-title_font-family>
+                <product-collateral-block-title_font-size>18px</product-collateral-block-title_font-size>
+                <product-collateral-block-title_font-weight>normal</product-collateral-block-title_font-weight>
+                <product-collateral-block-title_color>#000000</product-collateral-block-title_color>
+            </font>
+            <css_selector>
+                <page>.header, .nav-container .navpro, .main</page>
+            </css_selector>
+        </argento_argento>
+    </default>
+</config>

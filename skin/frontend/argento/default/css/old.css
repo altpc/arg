@@ -1,0 +1,96 @@
+/** Styles for compatibility with old homepage markup
+    Can be removed after switch to Bootstrap markup */
+
+.cms-index-index .col-main .easycatalogimg { margin: 10px 0; padding: 0; }
+@media (max-width: 768px) {
+    .main { padding: 5px 6px; }
+    .footer-cms .footer-links { float: left; width: 60%; }
+    .footer-cms .footer-links li { width: 49%; margin: 0;}
+    .footer-cms .footer-contacts { float: right; width: 39%; }
+}
+@media (max-width: 979px) {
+    .footer-cms .footer-links li { width: 125px; margin-right: 10px; }
+}
+@media (max-width: 480px) {
+    .promo-home-content { margin-top: 5px; }
+    .promo-home-content .col-2 .block { width: auto; float: none; }
+}
+.footer-cms-container { padding: 0; }
+.footer-cms .footer-links li { float: left; width: 150px; margin-right: 20px; }
+.footer-cms .footer-links li.last { margin: 0; }
+.footer-cms .footer-contacts { float: right; width: 200px; }
+.callout-home-top .col-1 { width: 69.3%; /*665px;*/ }
+.callout-home-top .col-2 { width: 29.2%; /*280px;*/ }
+.callout-home-top .easybanner-banner { margin: 0 0 5px !important; }
+.callout-home-top .easyslideslider-id,
+.callout-home-top .easyslideslider-id .scroller,
+.easyslideslider-id .section { padding-bottom: 40px; }
+.callout-home-top .easyslideslider-id { margin: 0 auto; box-shadow: 0 8px 10px -10px rgba(0,0,0,0.2); }
+.callout-home-top .easyslide-description { font: normal 1.2em Verdana, Geneva, Arial, Helvetica, sans-serif; color: #7a7a7a; line-height: 20px; }
+.callout-home-top .easyslide-description-bottom { background: none; padding: 12px; }
+.callout-home-top .easyslide-controls-wrapper {}
+.callout-home-top .easyslide-controls .easyslide-num { background: #dedede; border-radius: 50%; }
+.callout-home-top .easyslide-controls .easyslide-num:hover,
+.callout-home-top .easyslide-controls .easyslide-num.active { background-color: #646464; }
+.promo-home-content { margin-top: 15px; }
+.promo-home-content .tab { padding: 5px; margin: 0; }
+.promo-home-content .col-1 { width: 62.5%; }
+.promo-home-content .col-2 { width: 36.5%; }
+.promo-home-content .products-grid .actions { display: none; }
+.promo-home-content .add-to-links { display: none; }
+.promo-home-content .page-link { padding: 15px 12px; clear: both; border-top: 1px dashed #b7d3ea; font: normal 12px Tahoma, Arial, Helvetica, sans-serif; }
+.promo-home-content .page-link a { text-decoration: none; }
+.promo-home-content .page-link a:hover { text-decoration: underline; }
+.promo-home-content .block { border: 3px solid #c9deef; }
+.promo-home-content .block .block-title { border: none; padding: 8px 8px 4px; color: #033862; background: none; text-transform: none; }
+.promo-home-content .block .block-title strong,
+.promo-home-content .block .block-title span { font-weight: normal; font-size: 16px; color: #023761; }
+.promo-home-content .block .block-content { padding-bottom: 0; }
+.promo-home-content .mini-products-list { padding: 0 !important; list-style: none !important; margin: 0; }
+.promo-home-content .mini-products-list li { border-bottom: 1px solid #c9deef; padding: 8px 0 !important; }
+.promo-home-content .mini-products-list li.odd,
+.promo-home-content .mini-products-list li.even { background: none; }
+.promo-home-content .mini-products-list li.last { border: none; }
+.promo-home-content .mini-products-list .product-image { border: none; }
+.promo-home-content .mini-products-list .product-details { margin-left: 90px; }
+.promo-home-content .block .number { float: left; font-size: 1.3em; font-weight: bold; color: #7a7a7a; margin-right: 10px; }
+.promo-home-content .block .number:after { content: '.' }
+.brands-home { border: 3px solid #e6e6e7; }
+.brands-home .block-title span { color: #ef6e00 !important; font: normal 16px Verdana, Geneva, Arial, Helvetica, sans-serif !important; }
+.brands-home .list-brands { padding: 0; list-style: none; }
+.brands-home .list-brands li { float: left; margin-right: 10px; }
+.brands-home .block-content { position: relative; padding: 10px 37px !important; background: #fff; }
+#slider-brands-container { clear: both; width: 100%; overflow: hidden; position: relative; }
+.slider-brands { width: 10000px; height: 73px; padding: 0; margin: 0 !important; overflow: hidden; clear: both; position: relative; }
+.brands-home #left:hover { background-position: -261px -37px; }
+.brands-home #right:hover { background-position: -222px -37px; }
+.brands-home #left:active { background-position: -261px -36px; }
+.brands-home #right:active { background-position: -222px -36px; }
+.brands-home #left.disabled,
+.brands-home #right.disabled { display: none; }
+@media (max-width: 979px) {
+    .callout-home-top .col-1 { width: 100%; }
+    .callout-home-top .col-2 { display: none; }
+}
+@media (max-width: 768px) {
+    .promo-home-content .col-1,
+    .promo-home-content .col-2 { width: 100%; float: none; }
+    .promo-home-content .col-2 .block { width: 48.5%; }
+    .promo-home-content .col-2 .highlight-bestsellers { float: left; }
+    .promo-home-content .col-2 .highlight-popular { float: right; }
+    .footer-cms .footer-links { float: left; width: 60%; }
+    .footer-cms .footer-links li { width: 49%; margin: 0;}
+    .footer-cms .footer-contacts { float: right; width: 39%; }
+    .callout-home-top .easyslide-controls .easyslide-num { border-radius: 2px; }
+}
+@media (max-width: 480px) {
+    .promo-home-content { margin-top: 5px; }
+    .promo-home-content .col-2 .block { width: auto; float: none; }
+    .footer-cms .footer-links { float: none; width: 100%; }
+    .footer-cms .footer-links:after { content: ''; display: table; clear: both; }
+    .footer-cms .footer-links li { width: 50%; margin: 0; }
+    .footer-cms .footer-links li:nth-child(2n+1) { clear: left; }
+    .footer-cms .footer-contacts { float: none; clear: both; width: 100%; text-align: center; }
+    .easyslide-description { display: none; }
+    .easyslide-controls-wrapper { width: 100%; right: 0; left: 0; text-align: center; }
+}

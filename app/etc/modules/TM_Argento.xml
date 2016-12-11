@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_Argento>
+            <active>true</active>
+            <codePool>local</codePool>
+        </TM_Argento>
+    </modules>
+</config>

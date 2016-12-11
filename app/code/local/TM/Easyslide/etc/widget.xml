@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+    <easyslide_widget type="easyslide/insert">
+        <name>EasySlide</name>
+        <description type="desc">Add slider to store with EasySlide</description>
+        <parameters>
+            <slider_id translate="label">
+                <label>Slider</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>TM_Easyslide_Adminhtml_Model_System_Config_Source_Slide</source_model>
+            </slider_id>
+        </parameters>
+    </easyslide_widget>
+</widgets>

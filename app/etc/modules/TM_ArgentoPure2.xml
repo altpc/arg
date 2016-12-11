@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_ArgentoPure2>
+            <active>true</active>
+            <codePool>local</codePool>
+            <tm_purchase_code>TM_ArgentoArgento</tm_purchase_code>
+            <depends>
+                <TM_Argento />
+            </depends>
+        </TM_ArgentoPure2>
+    </modules>
+</config>

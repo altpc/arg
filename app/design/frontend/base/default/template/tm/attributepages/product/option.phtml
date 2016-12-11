@@ -1,0 +1,36 @@
+<?php
+    Mage::log('You are using deprecated attributepages template. Follow the new installation instructions please');
+    Mage::helper('attributepages/product')->appendPages(
+        $this->getProduct(),
+        $this->getAttributeCode(),
+        $this->getParentPageIdentifier()
+    );
+    $options = $this->getProduct()->getAttributepages();
+
+    if (!$options || empty($options[$this->getAttributeCode()])) {
+        return;
+    }
+
+    $_option = $options[$this->getAttributeCode()];
+    $_optionTitle = $this->escapeHtml($_option->getTitle());
+    $image = $this->helper('attributepages/image')
+        ->init($_option, 'thumbnail')
+        ->resize(50, 20);
+?>
+
+<p>
+    <span class="attributepages-parent-title">
+        <?php echo $this->escapeHtml($_option->getParentPage()->getTitle()); ?>:
+    </span>
+    <?php if ($image) : ?>
+        <a href="<?php echo $_option->getUrl() ?>"
+            title="<?php echo $this->__("View other %s products", $_optionTitle) ?>"
+            class="attributepages-option-image"
+        ><img src="<?php echo $image ?>" alt="<?php echo $_optionTitle ?>" /></a>
+    <?php else: ?>
+        <a href="<?php echo $_option->getUrl() ?>"
+            title="<?php echo $this->__("View other %s products", $_optionTitle) ?>"
+            class="attributepages-option-title"
+        ><?php echo $_optionTitle ?></a>
+    <?php endif ?>
+</p>

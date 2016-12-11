@@ -1,0 +1,54 @@
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $_id = str_replace(' ', '_', $this->getClassName());
+?>
+<?php if(!$_productCollection->count()): return; endif; ?>
+
+<div class="category-products block-highlight <?php echo $this->getClassName() ?>">
+    <div class="block-title"><span><?php echo $this->__($this->getTitle()) ?></span></div>
+    <div class="block-content">
+        <?php $_iterator = 0; ?>
+        <ol class="products-list" id="<?php echo $_id ?>">
+        <?php foreach ($_productCollection as $_product): ?>
+            <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+                <?php // Product Image ?>
+                <a href="<?php echo $this->getProductUrl($_product) ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"
+                ><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(210); ?>"
+                    srcset="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(210); ?> 1x, <?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(210 * 2); ?> 2x"
+                    width="210" height="210"
+                    alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
+                /></a>
+                <?php // Product description ?>
+                <div class="product-shop">
+                    <div class="f-fix">
+                        <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                        <h2 class="product-name"><a href="<?php echo $this->getProductUrl($_product) ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+                        <?php echo $this->getPriceHtml($_product, true, $this->getPriceSuffix()) ?>
+                        <?php if($_product->isSaleable()): ?>
+                            <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                        <?php else: ?>
+                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif; ?>
+                        <div class="desc std">
+                            <span class="author"><?php echo $this->__('Review by %s', $_product->getNickname()) ?></span><br/>
+                            <?php echo nl2br($this->htmlEscape($this->getShortReviewText($_product->getDetail(), 160))) ?>
+                            <?php /*echo $this->__('(Posted on %s)', $this->formatDate($_product->getCreatedAt()), 'long')*/ ?>
+                            <a href="<?php echo $this->getReviewUrl($_product->getReviewId()) ?>" title="<?php echo $this->htmlEscape($_product->getTitle()) ?>" class="link-learn"><?php echo $this->__('Review Details') ?></a>
+                        </div>
+                        <ul class="add-to-links">
+                            <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                            <?php endif; ?>
+                            <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('<?php echo $_id ?>', 'none-recursive')</script>
+    </div>
+</div>

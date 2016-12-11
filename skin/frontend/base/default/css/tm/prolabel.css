@@ -1,0 +1,78 @@
+.prolabel-wrapper { position: relative; }
+.prolabels-content-wrapper { display: table; }
+.prolabels-content-wrapper ul.tt-wrapper { display: table; }
+.prolabels-content-wrapper ul.tt-wrapper li { display: table-cell; vertical-align: middle; }
+.prolabels-content-wrapper ul.tt-wrapper,
+.prolabels-content-wrapper ul.tt-wrapper li { margin: 0; padding: 0; list-style: none; }
+.catalog-product-view .prolabels-content-wrapper { margin: 10px 0; }
+.prolabels-mobile-content {  }
+.prolabels-mobile-wrapper { float: left; }
+.prolabel-mobile { display: table-cell; vertical-align: middle; }
+.prolabels-image-mobile { display: table; }
+.prolabel-wrapper .prolabels-image { display: table; }
+
+.productlabeltext {
+    line-height: 11px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: block;
+    letter-spacing:0.01px;
+    text-decoration: none;
+    color: #fff;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+.prolabel-wrapper a {
+    text-decoration: none;
+}
+.products-list .prolabel-wrapper {
+    float:left;
+}
+.prolabel {
+    position: absolute;
+    z-index: 10;
+}
+.prolabel td {
+    vertical-align: middle;
+    text-align: center;
+}
+.top-center {
+    top: 0;
+    left: 50%;
+}
+.middle-left {
+    left: 0;
+    top: 50%;
+}
+.middle-right {
+    right: 0;
+    top: 50%;
+}
+.bottom-center {
+    bottom: 0;
+    right: 50%;
+}
+.middle-center {
+    top: 50%;
+    right: 50%;
+}
+.top-left {
+    top: 0;
+    left: 0;
+}
+.top-right {
+    top: 0;
+    right: 0;
+}
+.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+/*IE6 fix*/
+* html .prolabel-wrapper { float: left; }
+* html .prolabel-wrapper a { position: relative; }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/easyslider/easyslider.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/nivo/nivo-slider.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/nivo/themes/default/default.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/nivo/themes/dark/dark.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/nivo/themes/light/light.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/nivo/themes/bar/bar.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addJs">
+                <name>tm/lib/nivo/jquery.nivo.slider.js</name>
+                <params>defer</params>
+            </action>
+            <action method="addJs">
+                <name>tm/lib/easyslider/easyslider.js</name>
+                <params>defer</params>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/tm/easyslide.js</name>
+                <params>defer</params>
+            </action>
+        </reference>
+    </default>
+</layout>

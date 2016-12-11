@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <askit translate="title" module="askit">
+                    <title>Askit Questions</title>
+                    <sort_order>150</sort_order>
+                    <action>adminhtml/askIt_index</action>
+                </askit>
+            </children>
+        </templates_master>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <askit translate="title" module="askit">
+                                        <title>Askit Section</title>
+                                    </askit>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <askit translate="title" module="askit">
+                                <title>Askit Questions</title>
+                                <sort_order>150</sort_order>
+                                <action>adminhtml/askIt_index</action>
+                            </askit>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+    <layout>
+        <updates>
+            <askit>
+                <file>askit.xml</file>
+            </askit>
+        </updates>
+    </layout>
+</config>

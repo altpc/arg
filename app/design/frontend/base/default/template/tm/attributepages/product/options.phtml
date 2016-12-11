@@ -1,0 +1,48 @@
+<?php
+    $_options = $this->getOptions();
+    if (!count($_options)) {
+        return;
+    }
+    $_imageHelper = $this->getImageHelper();
+?>
+
+<ul class="list-attributepages <?php echo $this->getCssClass() ?>"<?php echo $this->getCssStyle() ? ' style="' . $this->getCssStyle() . '"' : '' ?>>
+<?php foreach ($_options as $_option) : ?>
+    <?php
+        $_optionTitle = $this->escapeHtml($_option->getTitle());
+        $_image      = null;
+        $_aClassName = 'attributepages-option-title';
+        $_aInnerHtml = $_optionTitle;
+        if ($this->getUseImage($_option)) {
+            $_imageHelper = $_imageHelper->init($_option, $this->getImageType());
+            $_image       = $_imageHelper->resize($this->getWidth(), $this->getHeight());
+            $_image2x     = $_imageHelper->resize($this->getWidth() * 2, $this->getHeight() * 2);
+
+            if ($_image) {
+                $_aClassName = 'attributepages-option-image';
+                $_aInnerHtml = '<img src="' . $_image . '" srcset="' . $_image . ' 1x, ' . $_image2x . ' 2x" alt="' . $_optionTitle . '" title="' . $_optionTitle . '"/>';
+            }
+        }
+    ?>
+    <li class="attributepages-<?php echo $_option->getParentPage()->getIdentifier() . '-' . $_option->getIdentifier() ?>">
+        <span class="attributepages-parent-title">
+            <?php echo $this->escapeHtml($_option->getParentPage()->getTitle()); ?>:
+        </span>
+        <?php if ($this->getUseLink($_option)) : ?>
+            <a href="<?php echo $_option->getUrl() ?>"
+                title="<?php echo $this->__("View other %s products", $_optionTitle) ?>"
+                class="<?php echo $_aClassName ?>"
+            ><?php echo $_aInnerHtml ?></a>
+        <?php else : ?>
+            <span class="<?php echo $_aClassName ?>"><?php echo $_aInnerHtml ?></span>
+        <?php endif; ?>
+
+        <?php if ($_linkTitle = $this->getParentPageLinkTitle($_option)) : ?>
+            <a class="attributepages-parent-link"
+                href="<?php echo $_option->getParentPage()->getUrl() ?>"
+                title="<?php echo $this->__($_linkTitle) ?>"
+            ><?php echo $this->__($_linkTitle) ?></a>
+        <?php endif ?>
+    </li>
+<?php endforeach; ?>
+</ul>

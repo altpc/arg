@@ -1,0 +1,77 @@
+<?php
+    $_optionCollection = $this->getLoadedOptionCollection();
+?>
+<?php if (!$_optionCollection || !$_optionCollection->count()) : ?>
+    <p class="note-msg"><?php echo $this->__('There are no options matching the selection.') ?></p>
+<?php else: ?>
+<?php
+    $helper = Mage::helper('attributepages/optionGroup');
+    $_isImageMode    = ($this->getListingMode() == TM_Attributepages_Model_Entity::LISTING_MODE_IMAGE);
+    $_collectionSize = $_optionCollection->count();
+    $_columnCount    = $this->getColumnCount();
+    $_width          = $this->getImageWidth();
+    $_height         = $this->getImageHeight();
+    $_groupByLetter  = $this->getGroupByFirstLetter();
+?>
+<div class="attributepages-grid-wrapper attributepages-options<?php echo $_groupByLetter ? ' attributepages-options-grouped' : '' ?>">
+    <?php
+        $_previousGroup = false;
+        $_currentGroup  = true;
+    ?>
+
+    <?php if ($_groupByLetter) : ?>
+    <ul class="list-attributepages-otions-grouped">
+    <?php endif; ?>
+
+    <?php $i=0; $j=0; foreach ($_optionCollection as $_option): ?>
+        <?php
+            $j++;
+            $_optionTitle  = $this->escapeHtml($_option->getTitle());
+            $_currentGroup = $helper->getGroup($_optionTitle);
+            $_isNewGroup   = !$helper->isSameGroup($_previousGroup, $_currentGroup);
+            $_isNewLine    = ($i++%$_columnCount==0);
+        ?>
+        <?php if ($_groupByLetter && $_isNewGroup) : ?>
+            <?php if (!$_isNewLine) : $i = 1; $_isNewLine = true; ?>
+            </ul>
+            <?php endif; ?>
+
+            <?php if ($j > 1) : ?>
+            </li>
+            <?php endif; ?>
+
+            <li class="attributepages-options-group options-group-<?php echo $helper->getGroupCssClass($_currentGroup) ?>">
+            <div class="attributepages-options-group-title">
+                <?php $_anchorHref = $helper->getAnchorHref($_currentGroup); ?>
+                <a class="attributepages-options-anchor" href="#<?php echo $_anchorHref ?>" name="<?php echo $_anchorHref ?>">
+                    <span>&para;</span>
+                </a>
+                <?php echo $helper->getAnchorTitle($_currentGroup) ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($_isNewLine): ?>
+        <ul class="attributepages-grid attributepages-cols-<?php echo $_columnCount ?> <?php echo $_isImageMode ? 'mode-image' : 'mode-link' ?>">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <?php if ($_isImageMode): ?>
+                    <a href="<?php echo $_option->getUrl() ?>" title="<?php echo $_optionTitle ?>" class="option-image">
+                        <img src="<?php echo $this->helper('attributepages/image')->init($_option, 'image')->resize($_width, $_height); ?>" alt="<?php echo $_optionTitle ?>" />
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo $_option->getUrl() ?>" title="<?php echo $_optionTitle ?>" class="attributepages-title">
+                        <?php echo $_optionTitle ?>
+                    </a>
+                <?php endif; ?>
+            </li>
+        <?php if ($i%$_columnCount==0 || $j==$_collectionSize): ?>
+        </ul>
+        <?php endif ?>
+        <?php $_previousGroup = $_currentGroup; ?>
+    <?php endforeach; ?>
+
+    <?php if ($_groupByLetter) : ?>
+    </ul>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

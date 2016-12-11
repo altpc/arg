@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+       <TM_LightboxPro>
+           <version>1.2.1</version>
+       </TM_LightboxPro>
+    </modules>
+
+    <global>
+        <helpers>
+            <lightboxpro>
+                <class>TM_LightboxPro_Helper</class>
+            </lightboxpro>
+        </helpers>
+        <blocks>
+            <lightboxpro>
+                <class>TM_LightboxPro_Block</class>
+            </lightboxpro>
+        </blocks>
+        <models>
+            <lightboxpro>
+                <class>TM_LightboxPro_Model</class>
+               <!-- <resourceModel>lightboxpro_mysql4</resourceModel>-->
+            </lightboxpro>
+        </models>
+    </global>
+
+    <default>
+        <lightboxpro>
+            <general>
+                <enabled>0</enabled>
+                <outlineType>rounded-white</outlineType>
+            </general>
+            <size>
+                <popup>0x0</popup>
+                <popup_keep_frame>1</popup_keep_frame>
+                <main>256x256</main>
+                <main_keep_frame>1</main_keep_frame>
+                <thumbnail>56x56</thumbnail>
+                <thumbnail_keep_frame>1</thumbnail_keep_frame>
+                <maxWindow>512x512</maxWindow>
+            </size>
+            <gallery>
+                <inpage>0</inpage>
+                <controls_presetstyle>1</controls_presetstyle>
+                <controls_position>bottom center</controls_position>
+                <controls_opacity>0.75</controls_opacity>
+                <controls_xOffset>0</controls_xOffset>
+                <controls_yOffset>-10</controls_yOffset>
+                <controls_hideOnMouseOut>1</controls_hideOnMouseOut>
+
+                <numbers_position>0</numbers_position>
+
+                <thumbstrip_enable>1</thumbstrip_enable>
+                <thumbstrip_mode>horizontal</thumbstrip_mode>
+                <thumbstrip_position>bottom center</thumbstrip_position>
+                <thumbstrip_relative>viewport</thumbstrip_relative>
+                <behaviour_fixedControls>1</behaviour_fixedControls>
+                <behaviour_repeat>1</behaviour_repeat>
+                <behaviour_interval>5000</behaviour_interval>
+                <behaviour_autoplay>0</behaviour_autoplay>
+            </gallery>
+
+            <style>
+                <dimming_enable>0</dimming_enable>
+                <dimmingOpacity>0.5</dimmingOpacity>
+            </style>
+            <behavior>
+
+                <!-- <easing>0</easing> -->
+                <anchor>0</anchor>
+                <align>1</align>
+                <width>640</width>
+                <height>480</height>
+                <allowSizeReduction>1</allowSizeReduction>
+                <padToMinWidth>0</padToMinWidth>
+
+                <allowMultipleInstances>0</allowMultipleInstances>
+                <blockRightClick>0</blockRightClick>
+                <enableKeyListener>1</enableKeyListener>
+                <numberOfImagesToPreload>5</numberOfImagesToPreload>
+            </behavior>
+
+            <overlays>
+                <captionEval>this.a.title</captionEval>
+                <captionOverlay_position>below</captionOverlay_position>
+                <captionOverlay_relativeTo>image</captionOverlay_relativeTo>
+
+                <heading_enable>0</heading_enable>
+                <headingEval>this.thumb.title</headingEval>
+                <headingOverlay_position>above</headingOverlay_position>
+                <headingOverlay_relativeTo>image</headingOverlay_relativeTo>
+
+                <closebutton_enable>1</closebutton_enable>
+            </overlays>
+        </lightboxpro>
+    </default>
+
+    <frontend>
+        <layout>
+            <updates>
+                <lightboxpro>
+                    <file>tm/lightboxpro.xml</file>
+                </lightboxpro>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <TM_LightboxPro>
+                    <files>
+                        <default>TM_LightboxPro.csv</default>
+                    </files>
+                </TM_LightboxPro>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <TM_LightboxPro>
+                    <files>
+                        <default>TM_LightboxPro.csv</default>
+                    </files>
+                </TM_LightboxPro>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <lightboxpro>
+                    <file>tm/lightboxpro.xml</file>
+                </lightboxpro>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <tm_lightboxpro before="Mage_Adminhtml">TM_LightboxPro_Adminhtml</tm_lightboxpro>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

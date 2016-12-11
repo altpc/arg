@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="prolabels/general/enabled">
+                <type>skin_css</type>
+                <name>css/tm/prolabel.css</name>
+            </action>
+            <action method="addItem" ifconfig="prolabels/general/enabled">
+                <type>skin_css</type>
+                <name>css/tm/prolabels-tooltip.css</name>
+            </action>
+            <action method="addItem" ifconfig="prolabels/general/enabled">
+                <type>skin_js</type>
+                <name>js/tm/prolabels-tooltip.js</name>
+                <params>defer</params>
+            </action>
+        </reference>
+    </default>
+</layout>

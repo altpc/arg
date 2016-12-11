@@ -1,0 +1,149 @@
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/lib/waypoints/noframework.waypoints.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/lib/waypoints/noframework.sticky.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/lib/waypoints/inview.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/theme.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/theme.css</name></action>
+            <!-- do not move argento.head to default.xml. It adds here so custom.css load after theme css -->
+            <block type="argento/html_head" name="argento.head" template="argento/html/head.phtml"/>
+        </reference>
+        <reference name="argento.head">
+            <action method="addLink">
+                <rel>stylesheet</rel>
+                <href>//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css</href>
+            </action>
+        </reference>
+
+        <reference name="header">
+            <block type="directory/currency" name="top.currency" template="directory/switch/currency.phtml"/>
+        </reference>
+
+        <reference name="left">
+            <action method="append"><name>catalog.compare.sidebar</name></action>
+            <action method="append"><name>right.reports.product.viewed</name></action>
+        </reference>
+
+        <reference name="right">
+            <action method="unsetChild"><name>catalog.compare.sidebar</name></action>
+            <action method="unsetChild"><name>right.reports.product.viewed</name></action>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="core/text" name="sticky_header">
+                <action method="setText" ifconfig="argento_flat/layout/sticky_header"><text><![CDATA[
+<script type="text/javascript">
+/* @see theme.css (max-width: 768px): nav is vertical and could be longer than tablet screen */
+enquire.register('(min-width: 769px) and (min-height: 751px), (min-width: 1250px) and (min-height: 501px)', {
+    match: function () {
+        stickyHeader = new Waypoint.Sticky({
+            wrapper: '<div class="header-wrapper" />',
+            element: $$('.header-container')[0]
+        });
+    },
+    unmatch: function () {
+        if (typeof stickyHeader !== 'undefined') {
+            stickyHeader.destroy();
+        }
+    }
+});
+</script>
+                ]]></text></action>
+            </block>
+        </reference>
+
+        <!-- <remove name="currency"/> --> <!-- can't remove because layered navigation is linked after it -->
+        <remove name="left.newsletter"/>
+        <remove name="footer.newsletter"/>
+        <remove name="cart_sidebar"/>
+        <remove name="sale.reorder.sidebar"/>
+    </default>
+
+    <catalog_product_view>
+        <update handle="page_two_columns_right"/>
+        <reference name="right">
+            <block type="cms/block" name="product_sidebar" before="-">
+                <action method="setBlockId"><id>product_sidebar</id></action>
+            </block>
+            <reference name="catalog.product.related">
+                <action method="setTemplate"><template>catalog/product/list/related.sidebar.phtml</template></action>
+                <action method="setProductsCount"><count>10</count></action>
+            </reference>
+        </reference>
+    </catalog_product_view>
+
+    <contacts_index_index>
+        <update handle="page_two_columns_right"/>
+        <reference name="right">
+            <block type="cms/block" name="services_sidebar">
+                <action method="setBlockId"><id>services_sidebar</id></action>
+            </block>
+            <block type="testimonials/widget_list" name="sidebar.testimonials">
+                <action method="setShowBlockDesign"><flag>1</flag></action>
+                <action method="setViewTime"><time>10000</time></action>
+                <action method="setAnimDuration"><duration>1000</duration></action>
+            </block>
+        </reference>
+    </contacts_index_index>
+
+    <customer_account>
+        <reference name="left">
+            <action method="unsetChild"><name>catalog.compare.sidebar</name></action>
+        </reference>
+    </customer_account>
+
+    <review_product_list>
+        <update handle="page_one_column"/>
+    </review_product_list>
+
+    <review_product_view>
+        <update handle="page_one_column"/>
+    </review_product_view>
+
+    <tag_list_index>
+        <update handle="page_one_column"/>
+    </tag_list_index>
+
+    <short_header_footer>
+        <remove name="sticky_header"/>
+    </short_header_footer>
+
+    <!-- modules -->
+    <askit_core>
+        <update handle="page_one_column"/>
+    </askit_core>
+
+    <suggestpage_index_index>
+        <reference name="suggestpage.soldtogetherorder">
+            <action method="setProductsCount"><count>5</count></action>
+            <action method="setColumnsCount"><count>5</count></action>
+        </reference>
+        <reference name="suggestpage.soldtogethercustomer">
+            <action method="setProductsCount"><count>5</count></action>
+            <action method="setColumnsCount"><count>5</count></action>
+        </reference>
+        <reference name="smartsuggest.content.default">
+            <action method="setProductsCount"><count>5</count></action>
+            <action method="setColumnCount"><count>5</count></action>
+        </reference>
+    </suggestpage_index_index>
+
+    <checkout_cart_index>
+        <reference name="checkout.cart.crosssell">
+            <action method="setImgSize"><img_size>180</img_size></action>
+        </reference>
+    </checkout_cart_index>
+
+    <default>
+        <reference name="navigationpro.top">
+            <action method="setConstraintEl"><constraint_el><![CDATA[$$('.header')[0]]]></constraint_el></action>
+        </reference>
+        <reference name="top.search">
+            <action method="setFolded"><folded>1</folded></action>
+        </reference>
+    </default>
+</layout>

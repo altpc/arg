@@ -1,0 +1,70 @@
+<?php
+$answer = $this->getAnswer();
+if (!$answer)  {
+    return;
+}
+
+$isLoggedIn  = Mage::getSingleton('customer/session')->isLoggedIn();
+$isAllowHint = Mage::getStoreConfig('askit/general/allowedHint');
+$isShareName = Mage::getStoreConfig('askit/general/shareCustomerName');
+
+/* @var $helper Mage_Cms_Helper_Data */
+$cmsHelper = Mage::helper('cms');
+$processor = $cmsHelper->getBlockTemplateProcessor();
+// $html = $processor->filter($block->getContent());
+?>
+<div class="askit-query-answer">
+    <div class="askit-votes">
+        <div class="askit-votes-inner-wrapper">
+            <?php //if (/*$isAllowHint &&*/ -1 <= $answer->getHint()) : ?>
+            <div class="askit-votes-count">
+                <?php echo  $answer->getHint();?>
+                <div>
+                <?php echo Mage::helper('askit')->__($answer->getHint() > 1 ? 'votes' : 'vote'); ?>
+                </div>
+            </div>
+            <?php //endif; ?>
+            <?php if ($isAllowHint && $isLoggedIn && !$answer->isVoted()) :?>
+            <div class="askit-hintwrapper">
+                <!-- <p><?php echo Mage::helper('askit')->__('Was this Answer Helpful?'); ?></p> -->
+                <div><?php echo Mage::helper('askit')->__('Helpful?'); ?></div>
+                <div class="question-hints" >
+                    <div class="inc-question-hint">
+                        <a href="#" onclick="setLocation('<?php echo Mage::helper('askit')->getHintAction($answer->getId()); ?>'); return false;">
+                            <?php echo Mage::helper('askit')->__('Yes')?>
+                        </a>
+                    </div>
+                    <div class="dec-question-hint">
+                        <a href="#"  onclick="setLocation('<?php echo Mage::helper('askit')->getHintAction($answer->getId(), false); ?>'); return false;">
+                            <?php echo Mage::helper('askit')->__('No')?>
+                        </a>
+                    </div>
+                </div>
+              </div>
+            <?php endif;?>
+        </div>
+    </div>
+    <div class="askit-question-answer-text">
+        <?php echo 'A: ' . $processor->filter($answer->getText());?>
+    </div>
+</div>
+<div class="askit-question-answer-info">
+    <?php if ($isShareName):?>
+    <small>
+        <?php
+        $_customerName = $this->htmlEscape($answer->getCustomerName());
+        if (function_exists('mb_convert_case')) {
+            $_customerName = mb_convert_case($_customerName, MB_CASE_TITLE, "UTF-8");
+        }
+        $_author = '<span class="askit-author">'
+                . $_customerName
+            . '</span>';
+        $_time = $this->formatDate(
+            $answer->getCreatedTime(), Mage_Core_Model_Locale::FORMAT_TYPE_FULL
+        );
+        echo Mage::helper('askit')->__('Posted by %s on %s', $_author, $_time);
+        ?>
+
+    </small>
+    <?php endif;?>
+</div>

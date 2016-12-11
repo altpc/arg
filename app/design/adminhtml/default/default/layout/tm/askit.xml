@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_askit_index_index>
+        <reference name="content">
+            <block type="askit/adminhtml_askIt" name="askit" />
+        </reference>
+    </adminhtml_askit_index_index>
+
+    <adminhtml_askit_index_assignproducts>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_edit_tab_assign_products" name="askit.item.edit.tab.assigned.products"/>
+            <block type="adminhtml/widget_grid_serializer" name="assigned_grid_serializer">
+                <reference name="assigned_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>askit.item.edit.tab.assigned.products</grid_block_name>
+                        <data_callback>getSelectedAssignedProducts</data_callback>
+                        <hidden_input_name>assigned_products</hidden_input_name>
+                        <reload_param_name>reload_assigned_products</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_askit_index_assignproducts>
+
+    <adminhtml_askit_index_assignproductsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_edit_tab_assign_products" name="askit.item.edit.tab.assigned.products"/>
+        </block>
+    </adminhtml_askit_index_assignproductsgrid>
+
+    <adminhtml_askit_index_assignpages>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_edit_tab_assign_pages" name="askit.item.edit.tab.assigned.pages"/>
+            <block type="adminhtml/widget_grid_serializer" name="assigned_grid_serializer">
+                <reference name="assigned_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>askit.item.edit.tab.assigned.pages</grid_block_name>
+                        <data_callback>getSelectedAssigneds</data_callback>
+                        <hidden_input_name>assigned_pages</hidden_input_name>
+                        <reload_param_name>reload_assigned_pages</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_askit_index_assignpages>
+
+    <adminhtml_askit_index_assignpagesgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_edit_tab_assign_pages" name="askit.item.edit.tab.assigned.pages"/>
+        </block>
+    </adminhtml_askit_index_assignpagesgrid>
+
+    <adminhtml_askit_index_assigncats>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_edit_tab_assign_cats" name="askit.item.edit.tab.assigned.cats"/>
+            <block type="adminhtml/widget_grid_serializer" name="assigned_grid_serializer">
+                <reference name="assigned_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>askit.item.edit.tab.assigned.cats</grid_block_name>
+                        <data_callback>getSelectedAssigneds</data_callback>
+                        <hidden_input_name>assigned_cats</hidden_input_name>
+                        <reload_param_name>reload_assigned_cats</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_askit_index_assigncats>
+
+    <adminhtml_askit_index_assigncatsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_edit_tab_assign_cats" name="askit.item.edit.tab.assigned.cats"/>
+        </block>
+    </adminhtml_askit_index_assigncatsgrid>
+
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <block type="askit/adminhtml_askIt_product_additional" name="product_askit_grid" />
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <adminhtml_askit_index_questionbyproduct>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="askit/adminhtml_askIt_product_grid" name="product_askit_question"/>
+        </block>
+    </adminhtml_askit_index_questionbyproduct>
+</layout>

@@ -1,0 +1,22 @@
+<?php
+    $_collection = $this->getLoadedAttributeCollection();
+    $_collectionSize = $_collection->count();
+    $_columnCount = $this->getColumnCount();
+?>
+
+<div class="attributepages-grid-wrapper attributepages-attributes">
+    <?php $i=0; foreach ($_collection as $_page): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+        <ul class="attributepages-grid attributepages-cols-<?php echo $_columnCount ?>">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <?php $_title = $this->escapeHtml($_page->getTitle()); ?>
+                <a href="<?php echo $_page->getUrl() ?>" title="<?php echo $_title ?>" class="attributepages-title">
+                    <?php echo $_title ?>
+                </a>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        </ul>
+        <?php endif ?>
+    <?php endforeach; ?>
+</div>

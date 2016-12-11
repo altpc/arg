@@ -1,0 +1,9 @@
+<?php $product = Mage::registry('current_product'); ?>
+
+<meta property="fb:app_id" content="<?php echo Mage::getStoreConfig('facebooklb/general/appid'); ?>"/>
+<?php if ($product): ?>
+<meta property="og:title" content="<?php echo htmlspecialchars(trim($product->getName())); ?>"/>
+<?php endif; ?>
+<meta property="og:url" content="<?php echo $this->helper('core/url')->getCurrentUrl();?>"/>
+<meta property="og:type" content="product"/>
+<meta property="og:image" content="<?php echo Mage::helper('catalog/image')->init(Mage::registry('current_product'), 'small_image')->resize(200,200);?>"/>

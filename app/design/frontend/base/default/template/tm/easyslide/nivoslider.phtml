@@ -1,0 +1,23 @@
+<?php
+    $slider = $this->getSlider();
+    if (!$slides = $slider->getSlides()) {
+        return;
+    }
+?>
+<div class="slider-wrapper theme-<?php echo $slider['theme'];?>">
+    <div id="slider-<?php echo $slider['easyslide_id']; ?>" class="nivoSlider" data-config='<?php echo $this->getNivoSliderConfig()?>'>
+    <?php $i = 0; foreach ($slides as $slide): ?>
+        <?php $image_src = $this->getSlideImageUrl($slide['url']);?>
+        <a href="<?php echo $slide['target'] ?>" class="easyslide-link <?php echo $this->getSlideClassName($slide) ?>">
+            <img src="<?php echo $image_src; ?>" alt="<?php echo $this->escapeHtml($slide['image']) ?>" <?php if (!empty($slide['description'])) : ?> title="#htmlcaption<?php echo $i; ?>" <?php endif; ?> />
+        </a>
+        <?php $i++; ?>
+    <?php endforeach; ?>
+    </div>
+</div>
+
+<?php $i = 0; foreach ($slides as $slide): ?>
+    <?php if (!empty($slide['description'])) : ?>
+        <div class="nivo-html-caption" id="htmlcaption<?php echo $i; ?>"><?php echo $this->filterDescription($slide['description']) ?></div>
+    <?php endif; $i++;?>
+<?php endforeach; ?>

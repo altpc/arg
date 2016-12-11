@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+
+<div class="top-toolbar-container">
+    <div class="top-toolbar">
+        <?php echo $this->getChildHtml('store_language') ?>
+        <?php echo $this->getChildHtml('top.currency') ?>
+        <div class="quick-links">
+            <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
+            <?php echo $this->getChildHtml('topLinks') ?>
+        </div>
+    </div>
+</div>
+<div class="header-container header-short">
+    <div class="header">
+        <div class="logo-wrapper">
+            <?php $logo2x = Mage::helper('argento')->getLogo2xSrc(); ?>
+            <?php if ($this->getIsHomePage()):?>
+            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>"<?php echo $logo2x ? " srcset='{$this->getLogoSrc()} 1x, {$logo2x} 2x'" : '' ?> alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>"<?php echo $logo2x ? " srcset='{$this->getLogoSrc()} 1x, {$logo2x} 2x'" : '' ?> alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php endif?>
+        </div>
+    </div>
+    <?php echo $this->getChildHtml('topContainer'); ?>
+</div>

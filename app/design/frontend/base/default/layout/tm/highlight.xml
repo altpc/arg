@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/tm/highlight.css</name></action>
+        </reference>
+    </default>
+
+    <highlight_index_index>
+        <update handle="page_one_column"/>
+        <update handle="MAP_popup" />
+        <reference name="content">
+            <block type="core/template" name="highlight_page" template="tm/highlight/page.phtml">
+                <block type="highlight/page" name="product_list" template="catalog/product/list.phtml">
+                    <block type="core/text_list" name="product_list.name.after" as="name.after" />
+                    <block type="core/text_list" name="product_list.after" as="after" />
+                    <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                        <action method="setDefaultListPerPage"><limit>4</limit></action>
+                        <action method="setDefaultGridPerPage"><limit>10</limit></action>
+                        <action method="addPagerLimit"><mode>grid</mode><limit>10</limit></action>
+                        <action method="addPagerLimit"><mode>grid</mode><limit>20</limit></action>
+                        <action method="addPagerLimit"><mode>grid</mode><limit>30</limit></action>
+                        <action method="addPagerLimit"><mode>list</mode><limit>10</limit></action>
+                        <action method="addPagerLimit"><mode>list</mode><limit>20</limit></action>
+                        <action method="addPagerLimit"><mode>list</mode><limit>30</limit></action>
+                    </block>
+                    <action method="setColumnCount"><columns>5</columns></action> <!-- Magento cache enabled fix -->
+                    <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>5</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                    <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                </block>
+            </block>
+        </reference>
+    </highlight_index_index>
+
+    <highlight_index_index>
+        <update handle="product_list_dealtimer"/>
+        <update handle="product_list"/>
+    </highlight_index_index>
+</layout>

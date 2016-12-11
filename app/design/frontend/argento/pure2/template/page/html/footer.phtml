@@ -1,0 +1,17 @@
+<div class="footer-cms-container">
+    <div class="footer-cms">
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_social')->toHtml(); ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer')->toHtml(); ?>
+    </div>
+</div>
+<div class="footer-container">
+    <div class="footer">
+        <img class="payments" src="<?php echo $this->getSkinUrl('images/payments.png') ?>"
+            srcset="<?php echo $this->getSkinUrl('images/payments.png') ?> 1x, <?php echo $this->getSkinUrl('images/payments@2x.png') ?> 2x"
+            alt="Payment methods"/>
+        <div class="footer-links-info" >
+            <address><?php echo $this->getCopyright() ?></address>
+            <?php echo $this->getChildHtml() ?>
+        </div>
+    </div>
+</div>

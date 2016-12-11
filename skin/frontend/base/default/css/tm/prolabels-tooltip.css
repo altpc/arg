@@ -1,0 +1,59 @@
+.tt-wrapper{
+    padding: 0;
+}
+/*.tt-wrapper li{
+    float: left;
+}*/
+.tt-wrapper li a{
+    display: block;
+    margin: 0 2px;
+    outline: none;
+    position: relative;
+}
+
+.tt-wrapper li a span{
+    width: 100px;
+    height: auto;
+    line-height: 20px;
+    padding: 10px;
+    left: 50%;
+    font: bold 13px/1.35 Arial,Helvetica,sans-serif;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background: rgba(255,255,255,0.3);
+    text-indent: 0px;
+    border-radius: 5px;
+    position: absolute;
+    pointer-events: none;
+    bottom: 100%;
+    margin-bottom: 10px;
+    opacity: 0;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.tt-wrapper li a span:before,
+.tt-wrapper li a span:after{
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    margin-left: -9px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(0,0,0,0.1);
+
+}
+.tt-wrapper li a span:after {
+    bottom: -6px;
+    margin-left: -10px;
+}
+.tt-wrapper li a:hover span {
+    opacity: 0.9;
+}
+.prolabels-content-labels .tooltip-label { z-index: 11; }

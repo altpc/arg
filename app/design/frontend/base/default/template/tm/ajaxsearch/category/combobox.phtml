@@ -1,0 +1,6 @@
+<select name="cat" class="ajaxsearch-category-select" data-placeholder="<?php echo $this->__('All') ?>">
+    <option value=""><?php echo $this->__('All') ?></option>
+    <?php foreach ($this->getCategoryCollection() as $_category) : ?>
+        <option value="<?php echo $_category->getId() ?>"><?php echo $this->escapeHtml($_category->getName()) ?></option>
+    <?php endforeach; ?>
+</select>

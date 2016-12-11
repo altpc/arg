@@ -1,0 +1,9 @@
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_toolbar')->toHtml(); ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_cms')->toHtml(); ?>
+<div class="footer-container">
+    <div class="footer">
+        <?php echo $this->getChildHtml() ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_payments')->toHtml(); ?>
+        <address><?php echo $this->getCopyright() ?></address>
+    </div>
+</div>

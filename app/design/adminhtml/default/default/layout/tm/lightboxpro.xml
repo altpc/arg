@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout>
+    <tm_simple_iframe_file_uploader>
+        <reference name="head">
+            <action method="addItem">
+                <type>js</type>
+                <name>tm/lightboxpro/sifu.js</name>
+            </action>
+         </reference>
+    </tm_simple_iframe_file_uploader>
+
+    <editor>
+         <update handle="tm_simple_iframe_file_uploader"/>
+    </editor>
+
+    <adminhtml_cms_page_edit>
+         <update handle="tm_simple_iframe_file_uploader"/>
+    </adminhtml_cms_page_edit>
+
+    <adminhtml_cms_block_edit>
+        <update handle="tm_simple_iframe_file_uploader"/>
+    </adminhtml_cms_block_edit>
+</layout>

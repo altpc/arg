@@ -1,0 +1,28 @@
+<?php if (Mage::getStoreConfig('prolabels/general/enabled')) : ?>
+    <?php
+        $helper = Mage::helper('prolabels');
+        $renderedMobileLabels = '';
+        if ($helper->isMobileMode()) {
+            $renderedMobileLabels = $helper->getMobileLabels(
+                $this->getProduct(),
+                $this->getMode()
+            );
+        }
+        $contentLabels = $this->getContentLabels();
+        if ( (count($contentLabels) < 1) && !$renderedMobileLabels) {
+            return;
+        }
+    ?>
+    <?php ?>
+    <div class="prolabels-content-wrapper" data-tooltip-config='<?php
+        echo $this->getTooltipConfig();
+    ?>'>
+        <ul class="tt-wrapper prolabels-content-labels">
+            <?php echo $renderedMobileLabels;?>
+        <?php foreach ($contentLabels as $label) : ?>
+            <li><?php echo $this->renderContentLabel($label);?></li>
+        <?php endforeach; ?>
+        </ul>
+        <div class="clearer"></div>
+    </div>
+<?php endif; ?>

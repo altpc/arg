@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!-- AjaxSearch -->
+    <modules>
+        <TM_AjaxSearch>
+            <active>true</active>
+            <codePool>local</codePool>
+            <tm_link><![CDATA[http://templates-master.com/magento-extensions/magento-ajax-search.html]]></tm_link>
+        </TM_AjaxSearch>
+    </modules>
+</config>

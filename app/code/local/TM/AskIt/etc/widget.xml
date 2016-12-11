@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<widgets>
+    <askit_discussion type="askit/discussion">
+        <name>Recently Askit Discussion</name>
+        <description type="desc">Askit Discussion</description>
+        <parameters>
+            <count>
+                <label>x number of recent questions</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>10</value>
+            </count>
+        </parameters>
+    </askit_discussion>
+    <askit_recent type="askit/list_recent">
+        <name>Recently Askit Question</name>
+        <description type="desc">Recent Question</description>
+        <parameters>
+            <count>
+                <label>x number of recent questions</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>10</value>
+            </count>
+        </parameters>
+    </askit_recent>
+</widgets>

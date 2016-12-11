@@ -1,0 +1,87 @@
+<?php if (!Mage::getStoreConfig('askit/general/enabled')) return;
+
+    $question = $this->getQuestion();
+
+    $isLoggedIn  = Mage::getSingleton('customer/session')->isLoggedIn();
+    $isAllowHint = Mage::getStoreConfig('askit/general/allowedHint');
+    $isShareName = Mage::getStoreConfig('askit/general/shareCustomerName');
+    // get answers
+    $questionId = $question->getId();
+    $answers = array();
+    if ($question->getAnswers()) {
+        $answers = $question->getAnswers()->getItems();
+    }
+    // end answers
+?>
+<div class="askit-accordion-toggle">
+
+    <div class="askit-votes">
+        <?php if (/*$isAllowHint &&*/ -1 < $question->getHint()) : ?>
+            <div class="askit-votes-count">
+                <?php echo  $question->getHint();?>
+                <div>
+                <?php echo Mage::helper('askit')->__($question->getHint() > 1 ? 'votes' : 'vote'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($isAllowHint && $isLoggedIn && !$question->isVoted()) :?>
+            <div class="askit-hintwrapperinner clearer">
+                <button class="button" onclick="setLocation('<?php echo Mage::helper('askit')->getHintAction($questionId); ?>')">
+                    <span>
+                        <span>
+                            <?php echo Mage::helper('askit')->__('Vote'); ?>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        <?php endif;?>
+    </div>
+
+    <div class="askit-question-text">
+        <a href="javascript:void(0)" onclick="return false;">
+            <?php echo 'Q: ' . //$this->helper('askit')->trim(
+                $this->htmlEscape($question->getText());
+                //, 80, '...') ?>
+        </a>
+    </div>
+    <div class="askit-answers-count">
+        <?php
+        $_count = count($answers);
+        echo $_count < 1 ? Mage::helper('askit')->__('No Answers') :
+            $_count . ' <div>' . Mage::helper('askit')->__($_count > 1 ? 'Answers' : 'Answer') . '</div>'
+        ?>
+    </div>
+</div>
+
+<div class="askit-accordion-content">
+    <div class="askit-question-full">
+        <div class="askit-question-auth">
+            <?php if ($isShareName): ?>
+                <?php
+                $_customerName = $question->getCustomerName();
+                $_customerName = trim($_customerName);
+                if (empty($_customerName)) {
+                    $_customerName = $question->getEmail();
+                }
+                $_author = '<span class="askit-author">' . $this->htmlEscape($_customerName ? $_customerName  : 'unknown') . '</span>';
+                $_time = $this->formatDate($question->getCreatedTime(), Mage_Core_Model_Locale::FORMAT_TYPE_FULL);
+                $_ilink = Mage::helper('askit')->getItemViewLink($question);
+                echo Mage::helper('askit')->__('Posted by %s, %s on %s', $_author, $_time, $_ilink);
+                ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+        $answerList = $this->getChild('askit_answer_list');
+        if ($answerList) {
+            $answerList->setAnswers($answers);
+            echo $answerList->toHTML();
+        }
+
+        $newAnswerForm = $this->getChild('askit_new_answer_form');
+        if ($newAnswerForm) {
+            echo $newAnswerForm->setQuestionId($questionId)->toHTML();
+        }
+    ?>
+</div>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_SlickCarousel>
+            <version>1.0.0</version>
+        </TM_SlickCarousel>
+    </modules>
+    <global>
+        <helpers>
+            <slickcarousel>
+                <class>TM_SlickCarousel_Helper</class>
+            </slickcarousel>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+           <updates>
+               <tm_slickcarousel module="TM_SlickCarousel">
+                   <file>tm/slickcarousel.xml</file>
+               </tm_slickcarousel>
+           </updates>
+       </layout>
+    </frontend>
+    <default>
+        <tmcore>
+            <jslibs>
+                <jquery>1</jquery>
+            </jslibs>
+        </tmcore>
+    </default>
+</config>

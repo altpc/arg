@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_navigationpro_menu_index>
+        <update handle="adminhtml_navigationpro_menu_edit"/>
+    </adminhtml_navigationpro_menu_index>
+
+    <adminhtml_navigationpro_menu_edit>
+        <update handle="editor"/>
+        <reference name="left">
+            <block name="menu.tree" type="navigationpro/adminhtml_catalog_category_tree" template="tm/navigationpro/catalog/category/tree.phtml" />
+        </reference>
+        <reference name="content">
+            <block name="menu.edit" type="navigationpro/adminhtml_menu_edit" template="tm/navigationpro/menu/edit.phtml" />
+        </reference>
+        <reference name="js">
+            <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
+        </reference>
+    </adminhtml_navigationpro_menu_edit>
+</layout>

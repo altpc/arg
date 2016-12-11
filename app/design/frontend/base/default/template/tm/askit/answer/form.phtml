@@ -1,0 +1,101 @@
+<?php
+    $questionId = $this->getQuestionId();
+    if (empty($questionId)) {
+        return;
+    }
+
+    $formAction = Mage::helper('askit')->getNewAnswerFormAction($questionId);
+    if (empty($formAction)) {
+        return;
+    }
+    $isLoggedIn = Mage::getSingleton('customer/session')->isLoggedIn();
+    $isAllowedCustomerAnswer = Mage::getStoreConfig('askit/general/allowedCustomerAnswer');
+    $isAllowedGuestAnswer = Mage::getStoreConfig('askit/general/allowedGuestAnswer');
+    if (!$isAllowedGuestAnswer && !$isLoggedIn) :?>
+        <!-- <div class="action clearer askit-answergroup">
+            <span class="askit-haveyouanswer">
+                <?php echo Mage::helper('askit')->__('Have a Comment to Add? Create an Account to Reply to this Question.'); ?>
+            </span>
+        </div> -->
+    <?php
+        return;
+    endif;
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+    $customerName = 'value=""';
+    $email = 'value=""';
+    if ($isLoggedIn) {
+        $customerName = 'value="' . $customer->getName() . '" ';
+        $email = 'value="' . $customer->getEmail() . '"';
+    }
+?>
+<div class="action clearer askit-answergroup">
+	<!-- <span class="askit-haveyouanswer">
+        <?php echo Mage::helper('askit')->__('Can you answer these question?'); ?>
+    </span> -->
+    <button type="button" class="button askit-add-answer-button">
+        <span><span>
+            <?php echo  Mage::helper('askit')->__('Leave a Reply') ?>
+        </span></span>
+    </button>
+</div>
+<div style="display: none">
+    <div class="add-askit-box">
+        <form id="askit-new-answer-form<?php echo  $questionId?>" action="<?php echo $formAction; ?>"  method="POST">
+            <div class="fieldset">
+                <h4 class="legend">
+                    <?php echo Mage::helper('askit')->__('Leave a Reply') ?>
+                </h4>
+                <ul class="form-list">
+                    <li class="fields">
+                        <div class="field">
+                            <label class="required" for="answer-askitCustomer">
+                                <?php echo Mage::helper('askit')->__('Name') ?><em>*</em>
+                            </label>
+                            <div class="input-box">
+                                <input type="text" class="input-text required-entry" id="answer-askitCustomer" name="askitCustomer" <?php echo $customerName?>/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="required" for="answer-askitEmail">
+                                <?php echo Mage::helper('askit')->__('Email') ?><em>*</em>
+                            </label>
+                            <div class="input-box">
+                                <input type="email" class="input-text required-entry validate-email" name="askitEmail" id="answer-askitEmail" <?php echo $email?>/>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="wide">
+                        <label class="required" for="text">
+                            <?php echo Mage::helper('askit')->__('Your Answer') ?><em>*</em>
+                        </label>
+                        <div class="input-box">
+                            <textarea class="input-text required-entry" title="<?php echo Mage::helper('askit')->__('Your Answer') ?>" name="text" cols="5" rows="3"></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <?php echo $this->getChildHtml('askit_new_answer_form_captcha'); ?>
+                    </li>
+                </ul>
+
+                <div class="action">
+                    <button type="button" class="button right" onclick="submitAskitNewAnswerForm<?php echo  $questionId;?>()">
+                        <span><span>
+                            <?php echo Mage::helper('askit')->__('Leave a Reply') ?>
+                        </span></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript">
+            //<![CDATA[
+                var askitNewAnswerForm<?php echo  $questionId;?> = new VarienForm('askit-new-answer-form<?php echo  $questionId?>');
+                function submitAskitNewAnswerForm<?php echo  $questionId?>() {
+                    if(askitNewAnswerForm<?php echo  $questionId;?>.validator.validate()) {
+                        askitNewAnswerForm<?php echo $questionId;?>.form.submit();
+                    }
+                }
+            //]]>
+        </script>
+        <div class="clear"></div>
+    </div>
+</div>

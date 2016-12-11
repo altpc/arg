@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/tm/attributepages.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/tm/attributepages.js</name></action>
+        </reference>
+    </default>
+
+    <attributepages_attribute_page translate="label">
+        <label>Attribute Page</label>
+        <reference name="content">
+            <block type="attributepages/attribute_view" name="attributepage.attribute.view" template="tm/attributepages/attribute/view.phtml">
+                <block type="attributepages/option_list" name="children_list" template="tm/attributepages/option/list.phtml"/>
+            </block>
+        </reference>
+    </attributepages_attribute_page>
+
+    <attributepages_option_page translate="label">
+        <label>Option Page</label>
+        <reference name="content">
+            <block type="attributepages/attribute_view" name="attributepage.attribute.view" template="tm/attributepages/attribute/view.phtml" before="-">
+                <block type="core/text_list" name="attributepage.attribute.view.before_list" as="before"/>
+                <block type="core/text_list" name="attributepage.attribute.view.after_list" as="after"/>
+            </block>
+        </reference>
+    </attributepages_option_page>
+
+    <attributepages_option_page_layered>
+        <update handle="catalog_category_layered"/>
+        <reference name="content">
+            <action method="unsetChild"><name>category.products</name></action>
+        </reference>
+        <remove name="subcategories"/> <!-- EasyCatalogImages -->
+    </attributepages_option_page_layered>
+
+    <attributepages_option_page_default>
+        <update handle="catalog_category_default"/>
+        <remove name="catalog.leftnav"/>
+        <reference name="content">
+            <action method="unsetChild"><name>category.products</name></action>
+        </reference>
+        <remove name="subcategories"/> <!-- EasyCatalogImages -->
+    </attributepages_option_page_default>
+</layout>

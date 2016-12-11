@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_Argento>
+            <version>1.8.3</version>
+        </TM_Argento>
+    </modules>
+    <global>
+        <models>
+            <argento>
+                <class>TM_Argento_Model</class>
+            </argento>
+            <core>
+                <rewrite>
+                    <!-- Additional fallback rules -->
+                    <design_package>TM_Argento_Model_Core_Design_Package</design_package>
+                </rewrite>
+            </core>
+        </models>
+        <blocks>
+            <argento>
+                <class>TM_Argento_Block</class>
+            </argento>
+            <page>
+                <rewrite>
+                    <html_footer>TM_Argento_Block_Page_Html_Footer</html_footer>
+                </rewrite>
+            </page>
+        </blocks>
+        <helpers>
+            <argento>
+                <class>TM_Argento_Helper</class>
+            </argento>
+        </helpers>
+        <resources>
+            <tm_argento_setup>
+                <setup>
+                    <module>TM_Argento</module>
+                </setup>
+            </tm_argento_setup>
+        </resources>
+    </global>
+    <frontend>
+        <!-- See TM_Core_Model_Observer::addLayoutUpdate -->
+        <tm_layout>
+            <updates>
+                <argento condition="tmcore/isDesignPackageEquals" args="argento">
+                    <file>argento.xml</file>
+                </argento>
+                <argento_ee condition="argento/isArgentoAndEnterpriseUsed">
+                    <file>argento_ee.xml</file>
+                </argento_ee>
+                <argento_theme condition="tmcore/isDesignPackageEquals" args="argento">
+                    <file>theme.xml</file>
+                </argento_theme>
+                <argento_custom condition="tmcore/isDesignPackageEquals" args="argento">
+                    <!--
+                        It's safe to include non existing file:
+                        @see Mage_Core_Model_Layout_Update line 445: is_readable($filename)
+                    -->
+                    <file>custom.xml</file>
+                </argento_custom>
+            </updates>
+        </tm_layout>
+    </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <argento>
+                    <file>argento.xml</file>
+                </argento>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <TM_Argento>
+                    <files>
+                        <default>TM_Argento.csv</default>
+                    </files>
+                </TM_Argento>
+            </modules>
+        </translate>
+        <events>
+            <controller_action_postdispatch_adminhtml_system_config_save>
+                <observers>
+                    <argento>
+                        <type>model</type>
+                        <class>argento/observer</class>
+                        <method>onArgentoConfigSave</method>
+                    </argento>
+                </observers>
+            </controller_action_postdispatch_adminhtml_system_config_save>
+        </events>
+    </adminhtml>
+    <default>
+        <subscriptionchecker>
+            <ignored_sections>
+                <ajax_pro/>
+                <tm_ajaxsearch/>
+                <askit/>
+                <easybanner/>
+                <easyslide/>
+                <highlight/>
+                <lightboxpro/>
+                <navigationpro/>
+                <prolabels/>
+                <richsnippets/>
+                <tm_reviewreminder/>
+                <soldtogether/>
+            </ignored_sections>
+        </subscriptionchecker>
+        <argento>
+            <css_selector>
+                <body>body</body>
+                <page>.page</page>
+                <top-toolbar-container>.top-toolbar-container</top-toolbar-container>
+                <header-container>.header-container</header-container>
+                <navigation-container>.nav-container</navigation-container>
+                <content-container>.main-container</content-container>
+                <main-content>.main</main-content>
+                <footer-toolbar-container>.footer-toolbar-container</footer-toolbar-container>
+                <footer-cms-container>.footer-cms-container</footer-cms-container>
+                <footer-container>.footer-container</footer-container>
+
+                <scroll-up-normal>#scroll-up a</scroll-up-normal>
+                <scroll-up-hover>#scroll-up a:hover</scroll-up-hover>
+
+                <button>button.button span</button>
+                <button-hover>button.button:hover span</button-hover>
+                <button-alt>button.btn-alt span</button-alt>
+                <button-alt-hover>button.btn-alt:hover span</button-alt-hover>
+                <button-product-view>.product-view .product-shop .add-to-cart button.button span</button-product-view>
+                <button-product-view-hover>.product-view .product-shop .add-to-cart button.button:hover span</button-product-view-hover>
+
+                <block-title-text>.sidebar .block .block-title span strong, .sidebar .block .block-title span span, .sidebar .block .block-title strong, .sidebar .block .block-title span</block-title-text>
+                <block-title>.sidebar .block-title</block-title>
+                <block-content>.sidebar .block-content</block-content>
+
+                <tab>.easytabs li, .tab-container .tabs li</tab>
+                <tab-text>.easytabs li .easytabs-a, .tab-container .tabs li .block-title</tab-text>
+                <tab-hover>.easytabs li:hover, .tab-container .tabs li.over</tab-hover>
+                <tab-hover-text>.easytabs li:hover .easytabs-a, .tab-container .tabs li.over .block-title</tab-hover-text>
+                <tab-active>.easytabs li.active, .tab-container .tabs li.active</tab-active>
+                <tab-active-text>.easytabs li.active .easytabs-a, .easytabs li.active .easytabs-a:hover, .tab-container .tabs li.active .block-title</tab-active-text>
+                <tab-active-border>.easytabs li.active, .easytabs-content, .tab-container .content, .tab-container .tabs li.active</tab-active-border>
+                <tab-content>.easytabs-content</tab-content>
+
+                <page-title>h1, .h1, .page-title h1, .page-title h2</page-title>
+                <product-name-link>.products-list .product-name a, .products-grid .product-name a</product-name-link>
+                <product-name-link-hover>.products-list .product-name a:hover, .products-grid .product-name a:hover</product-name-link-hover>
+                <product-collateral-block-title>.product-view .box-collateral .h2</product-collateral-block-title>
+
+                <nav>.nav-container .navpro</nav>
+                <top-level-link>.nav-container .navpro a.level-top, .nav-container .navpro div.level-top a</top-level-link>
+                <top-level-link-hover>.nav-container .navpro a.level-top.over, .nav-container .navpro div.level-top a.over</top-level-link-hover>
+                <top-level-link-active>.nav-container .navpro .active > a.level-top, .nav-container .navpro .active > div.level-top a</top-level-link-active>
+                <low-level-link>.nav-container .navpro .nav-ul .nav-a, .nav-container .navpro .nav-ul .nav-sibling-title a</low-level-link>
+                <low-level-link-hover>.nav-container .navpro .nav-ul .nav-a.over, .nav-container .navpro .nav-ul .nav-sibling-title a.over</low-level-link-hover>
+                <low-level-link-active>.nav-container .navpro .nav-ul .active > .nav-a</low-level-link-active>
+            </css_selector>
+        </argento>
+    </default>
+</config>

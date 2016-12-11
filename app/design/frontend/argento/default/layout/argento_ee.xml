@@ -1,0 +1,104 @@
+<layout version="0.1.0">
+    <default>
+        <remove name="top.switches"/>
+        <reference name="header">
+            <block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
+        </reference>
+
+        <reference name="top.links">
+            <block type="checkout/links" name="checkout_cart_link">
+                <action method="addCartLink"></action>
+                <action method="addCheckoutLink"></action>
+            </block>
+        </reference>
+
+        <remove name="breadcrumbs.container"/>
+        <reference name="root">
+            <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+        </reference>
+    </default>
+
+    <catalog_product_view>
+        <remove name="product.tierprices"/>
+        <reference name="product.info.options.wrapper.bottom">
+            <!-- Move price block to the top -->
+            <action method="unsetChild"><alias>prices</alias></action>
+            <action method="unsetChild"><name>product.clone_prices</name></action>
+            <action method="insert">
+                <blockName>product.clone_prices</blockName>
+                <alias>prices</alias>
+            </action>
+        </reference>
+
+        <reference name="targetrule_upsell_products_tab">
+            <action method="setColumnCount"><columns>4</columns></action>
+        </reference>
+
+        <reference name="product.review.form.fields.before">
+            <block type="enterprise_reward/tooltip" name="reward.hint.review" template="reward/tooltip.phtml" after="product.info">
+                <action method="initRewardType"><type>enterprise_reward/action_review</type></action>
+                <action method="setWrapperClass"><class>reward-review</class></action>
+                <action method="setRewardMessage" translate="message" module="enterprise_reward"><message>Submit a review now and earn %s once the review is approved.</message></action>
+                <action method="setRewardQtyLimitationMessage" translate="message" module="enterprise_reward"><message>Up to %s new review(s) can be rewarded.</message></action>
+                <action method="setIsGuestNote"><value>1</value></action>
+            </block>
+        </reference>
+    </catalog_product_view>
+
+    <customer_logged_in>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="customer"><label>Log Out</label><url helper="customer/getLogoutUrl"/><title>Log Out</title><prepare/><urlParams/><position>100</position></action>
+        </reference>
+    </customer_logged_in>
+
+    <catalog_category_default>
+        <update handle="replace_currency"/>
+    </catalog_category_default>
+    <catalog_category_layered>
+        <update handle="replace_currency"/>
+    </catalog_category_layered>
+    <catalogsearch_advanced_index>
+        <update handle="replace_currency"/>
+    </catalogsearch_advanced_index>
+    <catalogsearch_result_index>
+        <update handle="replace_currency"/>
+    </catalogsearch_result_index>
+    <catalogsearch_advanced_result>
+        <update handle="replace_currency"/>
+    </catalogsearch_advanced_result>
+    <replace_currency>
+        <reference name="left">
+            <action method="unsetChild"><name>currency</name></action>
+            <block type="directory/currency" name="currency" before="catalog.leftnav" template="directory/currency.phtml"/>
+        </reference>
+    </replace_currency>
+
+    <restriction_index_stub>
+         <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/styles-ee.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/default.css</name></action>
+            <block type="argento/html_head" name="argento.head" template="argento/html/head.phtml"/>
+        </reference>
+        <remove name="footer"/>
+    </restriction_index_stub>
+
+    <PRODUCT_TYPE_bundle>
+        <remove name="bundle.summary"/>
+        <remove name="customize.button"/>
+        <remove name="bundle.product.view.options.notice"/>
+        <remove name="bundle.back.button"/>
+
+        <reference name="product.info">
+            <action method="setTemplate"><template>catalog/product/view.phtml</template></action>
+        </reference>
+        <reference name="product.info.bundle">
+            <block type="bundle/catalog_product_price" name="bundle.prices" as="bundle_prices" template="bundle/catalog/product/view/price.phtml">
+                <action method="setMAPTemplate"><tmpl>catalog/product/price_msrp_item.phtml</tmpl></action>
+            </block>
+        </reference>
+        <reference name="product.info.options.wrapper.bottom">
+            <action method="append"><block>product.info.addtocart</block></action>
+            <action method="append"><block>product.info.addto</block></action>
+        </reference>
+    </PRODUCT_TYPE_bundle>
+</layout>

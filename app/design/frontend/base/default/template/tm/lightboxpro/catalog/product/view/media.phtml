@@ -1,0 +1,82 @@
+<?php
+    $helperClassName = 'lightboxpro/image';
+    if (get_class($this) != 'Mage_Catalog_Block_Product_View_Media') {
+        $helperClassName = 'catalog/image';
+    }
+    $cssClass = '';
+    $hsConfig = Mage::helper('lightboxpro')->configAsDataString();
+    if ($hsConfig) {
+        $cssClass = Mage::helper('lightboxpro')->getHsConfigCssClassName();
+    }
+?>
+
+<?php
+    $_product = $this->getProduct();
+    $label = $this->htmlEscape($this->getImageLabel());
+    list($_popupWidth, $_popupHeight)         = explode('x', Mage::getStoreConfig('lightboxpro/size/popup'));
+    list($_mainWidth, $_mainHeight)           = explode('x', Mage::getStoreConfig('lightboxpro/size/main'));
+    list($_thumbnailWidth, $_thumbnailHeight) = explode('x', Mage::getStoreConfig('lightboxpro/size/thumbnail'));
+    $_popupKeepFrame     = Mage::getStoreConfigFlag('lightboxpro/size/popup_keep_frame');
+    $_mainKeepFrame      = Mage::getStoreConfigFlag('lightboxpro/size/main_keep_frame');
+    $_thumbnailKeepFrame = Mage::getStoreConfigFlag('lightboxpro/size/thumbnail_keep_frame');
+?>
+
+<div class="highslide-gallery <?php echo $cssClass?>" <?php echo $hsConfig;?>>
+    <?php $_prolabels = Mage::helper('core')->isModuleOutputEnabled('TM_ProLabels'); ?>
+    <?php if ($_prolabels) : ?>
+        <div class="prolabel-wrapper">
+            <?php echo Mage::helper('prolabels')->getLabel($_product, 'product'); ?>
+    <?php endif ?>
+
+    <?php
+    $_popupImage = $this->helper($helperClassName)->init($_product, 'image');
+    if ($_popupWidth) :
+        $_popupImage->keepFrame($_popupKeepFrame)->resize($_popupWidth, $_popupHeight);
+    endif;
+    ?>
+
+    <a href="<?php echo $_popupImage ?>"
+            class="highslide main-image lightbox-main-image"
+            title="<?php echo $label?>"
+            <?php echo Mage::helper('lightboxpro')->slideshowSettingsAsDataString();?>>
+        <img src="<?php echo $this->helper($helperClassName)->init($_product, 'image')->keepFrame($_mainKeepFrame)->resize($_mainWidth, $_mainHeight);?>"
+            srcset="<?php echo $this->helper($helperClassName)->init($_product, 'image')->keepFrame($_mainKeepFrame)->resize($_mainWidth, $_mainHeight);?> 1x, <?php echo $this->helper($helperClassName)->init($_product, 'image')->keepFrame($_mainKeepFrame)->resize($_mainWidth * 2, $_mainHeight * 2);?> 2x"
+            alt="<?php echo $label?>"
+        />
+    </a>
+
+    <?php if ($_prolabels) : ?>
+        </div>
+    <?php endif ?>
+
+    <?php $_images = $this->getGalleryImages();
+    if (count($_images)) : ?>
+    <div class="more-views">
+        <h2><?php echo Mage::helper('catalog')->__('More Views') ?></h2>
+        <?php foreach ($_images as $_image) :
+            $_label = $this->htmlEscape($_image->getLabel());
+            if (empty($_label)) {
+                $_label = $label;
+            }?>
+
+            <?php
+            $_popupImage = $this->helper($helperClassName)->init($_product, 'image', $_image->getFile());
+            if ($_popupWidth) :
+                $_popupImage->keepFrame($_popupKeepFrame)->resize($_popupWidth, $_popupHeight);
+            endif;
+            ?>
+
+            <a href="<?php echo $_popupImage ?>"
+                    class="highslide lightbox-image"
+                    title="<?php echo $_label?>">
+                <img src="<?php echo $this->helper($helperClassName)->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame($_thumbnailKeepFrame)->resize($_thumbnailWidth, $_thumbnailHeight);?>"
+                    srcset="<?php echo $this->helper($helperClassName)->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame($_thumbnailKeepFrame)->resize($_thumbnailWidth, $_thumbnailHeight);?> 1x, <?php echo $this->helper($helperClassName)->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame($_thumbnailKeepFrame)->resize($_thumbnailWidth * 2, $_thumbnailHeight * 2);?> 2x"
+                    alt="<?php echo $_label?>"
+                />
+            </a>
+        <?php endforeach;?>
+    </div>
+    <?php endif;?>
+</div>
+
+<?php echo $this->getChildHtml('after'); ?>

@@ -1,0 +1,70 @@
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>fontello/css/argento.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/theme.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/theme.js</name></action>
+            <!-- do not move argento.head to default.xml. It adds here so custom.css load after theme css -->
+            <block type="argento/html_head" name="argento.head" template="argento/html/head.phtml"/>
+        </reference>
+        <reference name="argento.head">
+            <action method="addLink">
+                <rel>stylesheet</rel>
+                <href>//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css</href>
+            </action>
+        </reference>
+
+        <remove name="left.newsletter"/>
+        <remove name="footer.newsletter"/>
+        <remove name="right.reports.product.viewed"/>
+        <remove name="cart_sidebar"/>
+
+        <reference name="left">
+            <action method="insert"><name>catalog.compare.sidebar</name></action>
+        </reference>
+
+        <reference name="right">
+            <action method="unsetChild"><name>catalog.compare.sidebar</name></action>
+        </reference>
+
+        <reference name="footer">
+            <action method="setCacheLifetime"><lifetime>0</lifetime></action> <!-- dynamic footer -->
+            <block type="catalogsearch/term" name="footer.seo.searchterm" template="catalogsearch/footer.terms.phtml"/>
+            <block type="highlight/product_reports_viewed" name="footer.product.viewed" template="reports/footer.product_viewed.phtml"/>
+        </reference>
+    </default>
+
+    <catalog_product_view>
+        <update handle="page_one_column"/>
+    </catalog_product_view>
+
+    <contacts_index_index>
+        <update handle="page_one_column"/>
+    </contacts_index_index>
+
+    <customer_account>
+        <reference name="left">
+            <action method="unsetChild"><name>catalog.compare.sidebar</name></action>
+        </reference>
+    </customer_account>
+
+    <review_product_list>
+        <update handle="page_one_column"/>
+    </review_product_list>
+
+    <review_product_view>
+        <update handle="page_one_column"/>
+    </review_product_view>
+
+    <tag_list_index>
+        <update handle="page_one_column"/>
+    </tag_list_index>
+
+    <!-- modules -->
+    <askit_core>
+        <update handle="page_one_column"/>
+    </askit_core>
+</layout>

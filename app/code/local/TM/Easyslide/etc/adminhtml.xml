@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <easyslide module="easyslide">
+                    <title>Easyslide</title>
+                    <sort_order>530</sort_order>
+                    <action>adminhtml/easyslide_index/index</action>
+                </easyslide>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <easyslide translate="title" module="easyslide">
+                                <title>Easyslide</title>
+                                <sort_order>530</sort_order>
+                            </easyslide>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

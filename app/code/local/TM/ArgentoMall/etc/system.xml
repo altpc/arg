@@ -1,0 +1,772 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <argento_mall translate="label" module="argento">
+            <label>Mall</label>
+            <tab>tm_argento</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>30</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <layout translate="label">
+                    <label>Layout</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <page_heading>
+                            <label>Boxed layout settings</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page_heading>
+                        <page_max-width>
+                            <label>Page width</label>
+                            <comment>Set the width to 100%, to use fluid layout</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page_max-width>
+                        <layout-container_heading>
+                            <label>Fluid layout settings</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout-container_heading>
+                        <layout-container_width>
+                            <label>Containers width</label>
+                            <comment>Set the width to 100%, when using boxed layout</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout-container_width>
+                        <layout-container_max-width>
+                            <label>Containers max-width</label>
+                            <comment>Set the max-width to none, when using boxed layout</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout-container_max-width>
+                    </fields>
+                </layout>
+                <background>
+                    <label>Background</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <body_heading>
+                            <label>Body</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </body_heading>
+                        <body_background-color>
+                            <label>Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </body_background-color>
+                        <body_background-image>
+                            <label>Image</label>
+                            <frontend_type>image</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_image</frontend_model>
+                            <backend_model>argento/system_config_backend_image</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </body_background-image>
+                        <body_background-repeat>
+                            <label>Repeat</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_backgroundRepeat</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </body_background-repeat>
+                        <body_background-position>
+                            <label>Position</label>
+                            <comment>Values should include dimension units: 50% or -20px or 5em, etc</comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_backgroundPosition</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </body_background-position>
+
+                        <header-background_heading>
+                            <label>Header background</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header-background_heading>
+                        <header-background_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header-background_background-color>
+                    </fields>
+                </background>
+                <scroll_up>
+                    <label>Scroll up element (#scroll-up a)</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <scroll-up-normal_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </scroll-up-normal_background-color>
+                        <scroll-up-hover_background-color>
+                            <label>Hover state background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </scroll-up-hover_background-color>
+                    </fields>
+                </scroll_up>
+                <top_navigation>
+                    <label>Top navigation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>22</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <top-level-link_heading>
+                            <label>Top level links</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link_heading>
+                        <top-level-link_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link_font-family>
+                        <top-level-link_font-size>
+                            <label>Font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link_font-size>
+                        <top-level-link_text-transform>
+                            <label>Text transform</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_textTransform</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link_text-transform>
+
+                        <top-level-link_color>
+                            <label>Font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link_color>
+                        <top-level-link-hover_color>
+                            <label>Hover state font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link-hover_color>
+                        <top-level-link-active_color>
+                            <label>Active state font color</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </top-level-link-active_color>
+
+                        <low-level-link_heading>
+                            <label>Links from the rest of the levels</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link_heading>
+                        <low-level-link_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link_font-family>
+                        <low-level-link_font-size>
+                            <label>Font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link_font-size>
+                        <low-level-link_text-transform>
+                            <label>Text transform</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_textTransform</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link_text-transform>
+                        <low-level-link_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link_background-color>
+                        <low-level-link-hover_background-color>
+                            <label>Hover state background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link-hover_background-color>
+                        <low-level-link-active_background-color>
+                            <label>Active state background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>260</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link-active_background-color>
+                        <low-level-link_color>
+                            <label>Font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>270</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link_color>
+                        <low-level-link-hover_color>
+                            <label>Hover state font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>280</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link-hover_color>
+                        <low-level-link-active_color>
+                            <label>Active state font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>290</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </low-level-link-active_color>
+                    </fields>
+                </top_navigation>
+                <sidebar>
+                    <label>Sidebar blocks</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <block-title-text_heading>
+                            <label>Block title font</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title-text_heading>
+                        <block-title-text_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title-text_font-family>
+                        <block-title-text_font-size>
+                            <label>Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title-text_font-size>
+                        <block-title-text_font-weight>
+                            <label>Weight</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_fontWeight</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title-text_font-weight>
+                        <block-title-text_color>
+                            <label>Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title-text_color>
+
+                        <block-title_heading>
+                            <label>Block title</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title_heading>
+                        <block-title_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>62</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title_background-color>
+                        <block-title_border-width>
+                            <label>Border width</label>
+                            <comment>Example: 0 0 1px 0 (top right bottom left)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title_border-width>
+                        <block-title_border-color>
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-title_border-color>
+
+                        <block-content_heading>
+                            <label>Block content</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-content_heading>
+                        <block-content_background>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-content_background>
+                        <block-content_border-width>
+                            <label>Border width</label>
+                            <comment>Example: 0 0 1px 0 (top right bottom left)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-content_border-width>
+                        <block-content_border-color>
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block-content_border-color>
+                    </fields>
+                </sidebar>
+                <tabs>
+                    <label>Tabs</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>32</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <tab-text_padding>
+                            <label>Padding</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-text_padding>
+                        <tab-text_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>115</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-text_font-family>
+                        <tab-text_font-size>
+                            <label>Font size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-text_font-size>
+                        <tab-text_font-weight>
+                            <label>Font weight</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_fontWeight</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-text_font-weight>
+                        <tab-text_text-transform>
+                            <label>Text transform</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_textTransform</source_model>
+                            <sort_order>135</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-text_text-transform>
+                        <tab-text_color>
+                            <label>Font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-text_color>
+                        <tab_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>155</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab_background-color>
+
+                        <tab-hover_heading>
+                            <label>Hover state</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-hover_heading>
+                        <tab-hover-text_color>
+                            <label>Font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-hover-text_color>
+                        <tab-hover_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>195</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-hover_background-color>
+
+                        <tab-active_heading>
+                            <label>Active state</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-active_heading>
+                        <tab-active-text_color>
+                            <label>Font color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>270</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-active-text_color>
+                        <tab-active_background-color>
+                            <label>Background color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>280</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-active_background-color>
+                        <tab-content_border-top-color>
+                            <label>Border color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>290</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab-content_border-top-color>
+                    </fields>
+                </tabs>
+                <font translate="label">
+                    <label>Fonts</label>
+                    <comment><![CDATA[Looking for <a href='http://www.google.com/fonts/' target='_blank'>google fonts</a> integration? Use the Head links option below. <a href='https://developers.google.com/fonts/docs/getting_started#Overview' target='_blank'>Getting Started Guide</a>]]></comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <head_link>
+                            <label>Head links</label>
+                            <comment><![CDATA[Please note, that protocol name (http) could be removed, to work with secure pages. Example:<br/> &lt;link <strong>href='//fonts.googleapis.com/css?family=Source+Sans+Pro'</strong> rel='stylesheet' type='text/css'/&gt;]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </head_link>
+                        <page-title_heading>
+                            <label>Page title</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page-title_heading>
+                        <page-title_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page-title_font-family>
+                        <page-title_font-size>
+                            <label>Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page-title_font-size>
+                        <page-title_font-weight>
+                            <label>Weight</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_fontWeight</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page-title_font-weight>
+                        <page-title_color>
+                            <label>Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </page-title_color>
+
+                        <product-name-link_heading>
+                            <label>Product name link in listing</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-name-link_heading>
+                        <product-name-link_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-name-link_font-family>
+                        <product-name-link_font-size>
+                            <label>Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-name-link_font-size>
+                        <product-name-link_font-weight>
+                            <label>Weight</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_fontWeight</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-name-link_font-weight>
+                        <product-name-link_color>
+                            <label>Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-name-link_color>
+                        <product-name-link-hover_color>
+                            <label>Hover state color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>241</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-name-link-hover_color>
+
+                        <product-collateral-block-title_heading>
+                            <label>Product collateral block title</label>
+                            <frontend_model>argento/adminhtml_system_config_form_field_cssSelectorHeading</frontend_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-collateral-block-title_heading>
+                        <product-collateral-block-title_font-family>
+                            <label>Font-family</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>310</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-collateral-block-title_font-family>
+                        <product-collateral-block-title_font-size>
+                            <label>Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>320</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-collateral-block-title_font-size>
+                        <product-collateral-block-title_font-weight>
+                            <label>Weight</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>argento/system_config_source_fontWeight</source_model>
+                            <sort_order>330</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-collateral-block-title_font-weight>
+                        <product-collateral-block-title_color>
+                            <label>Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>argento/adminhtml_system_config_form_field_color</frontend_model>
+                            <sort_order>340</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product-collateral-block-title_color>
+                    </fields>
+                </font>
+                <head translate="label">
+                    <label>Additional css and head includes</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <link>
+                            <label>Additional head links</label>
+                            <comment><![CDATA[Example:<br/> &lt;link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'/&gt;]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </link>
+                        <css translate="label">
+                            <label>Css styles</label>
+                            <comment>You can put css code inside textarea, or create custom.css file in skin folder of active argento theme</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </css>
+                    </fields>
+                </head>
+            </groups>
+        </argento_mall>
+    </sections>
+</config>

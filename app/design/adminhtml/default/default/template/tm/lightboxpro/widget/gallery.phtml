@@ -1,0 +1,126 @@
+<?php
+    $htmlId = $this->getElement()->getHtmlId();
+    $imageBaseUrl = Mage::getBaseUrl('media') . 'lightboxpro/';
+
+    $value = $this->getElement()->getValue();
+    $value = empty($value) ? '[]' : urldecode($value);
+?>
+<script type="text/javascript">
+//<![CDATA[
+
+    g<?php echo $htmlId; ?> = (function (data) {
+        var _data = data;
+
+        function urlencode (str) {
+        // (c): http://phpjs.org/functions/urlencode
+            str = (str + '').toString();
+            return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').
+                replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+        }
+
+        return {
+            getRawData: function () {
+                return _data;
+            },
+            getData: function () {
+                if ('undefined' === typeof(_data.toJSON)) {
+                   return urlencode(JSON.stringify(_data));
+                }
+                return urlencode(_data.toJSON());//.replace(/"/g, '\\"')
+            },
+            add: function(src) {
+                _data.push({src: src, caption: ''});
+                return this;
+            },
+            find: function(src) {
+                var result;
+                _data.each(function(_item) {
+                    if (src == _item.src) {
+                        result = _item;
+                    }
+                });
+                return result;
+            },
+            remove: function(src) {
+                var result = [];
+                _data.each(function(_item) {
+                    if (src == _item.src) {
+                        return;
+                    }
+                    result.push(_item);
+                });
+                _data = result;
+                return this;
+            }
+        }
+    })(<?php echo $value;?>);
+
+
+    onchangeCaptionGalleryImage<?php echo $htmlId; ?> = function(el, src) {
+        var gallery = g<?php echo $htmlId; ?>;
+        gallery.find(src).caption = $(el).value;
+        $('<?php echo $htmlId; ?>').value = gallery.getData();
+    }
+
+    removeGalleryImage<?php echo $htmlId; ?> = function(el, src) {
+        var gallery = g<?php echo $htmlId; ?>;
+        $(el).up().remove();
+        $('<?php echo $htmlId; ?>').value = gallery.remove(src).getData();
+        return false;
+    };
+
+    uploadGalleryImage<?php echo $htmlId; ?> = function(el) {
+
+        return SimpleIframeFileUploder.upload({
+            form: $(el).up('form'),
+            action: '<?php echo $this->getUrl('adminhtml/lightboxpro_index/upload')?>',
+            onUploading: function() {
+                $('loading-mask').setStyle({zIndex: 1005}).show();
+            },
+            onComplete: function() {
+                $('loading-mask').hide();
+            },
+            onSuccess: function(response) {
+                var htmlId = '<?php echo $htmlId; ?>',
+                gallery = g<?php echo $htmlId; ?>;
+                $(htmlId).value = gallery.add(response.path).getData();
+
+                var template = new Template(
+                    '<div style="float: left; position: relative; display: block; min-height: 130px;  width: 100px; margin-right: 15px; margin-bottom: 15px;">'  +
+                        '<img src="<?php echo $imageBaseUrl;?>#{src}" style="width: 100px;float: left;"/>' +
+                        '<button style="padding: 0; margin: 0; position: absolute; right: 0; top: 0;" onclick="removeGalleryImage<?php echo $htmlId; ?>(this, \'#{src}\')" class="scalable delete" type="button" >'+
+                            '<span style="padding-left: 13px;">&nbsp;</span>' +
+                        '</button>' +
+                        '<input style="position:absolute; bottom:0; left:0; width: 100px; clear:left;" onchange="onchangeCaptionGalleryImage<?php echo $htmlId; ?>(this, \'#{src}\')" value="" type="text"/>' +
+                    '</div>');
+
+                template = template.evaluate({src: response.path});
+                $(htmlId + '-gallery').insert({bottom: template});
+            }
+        });
+    }
+
+ //]]>
+</script>
+<tr>
+    <td class="label"><label>Gallery</label></td>
+    <td class="value">
+        <div id="<?php echo $htmlId; ?>-gallery">
+            <?php
+
+            foreach (Zend_Json::decode($value) as $_item) : ?>
+            <div style="float: left; position: relative; display: block; min-height: 130px;  width:100px; margin-right: 15px; margin-bottom: 15px;">
+                <img src="<?php echo $imageBaseUrl . $_item['src']; ?>" style="width: 100px;float:left;"/>
+                <button style="padding: 0; margin: 0; position: absolute; right: 0; top: 0;" onclick="removeGalleryImage<?php echo $htmlId; ?>(this, '<?php echo $_item['src']; ?>')" class="scalable delete" type="button" >
+                    <span style="padding-left: 13px;">&nbsp;</span>
+                </button>
+                <input style="position:absolute; bottom:0; left:0; width: 100px; clear:left;" onchange="onchangeCaptionGalleryImage<?php echo $htmlId; ?>(this, '<?php echo $_item['src'];?>')" value="<?php echo isset($_item['caption']) ? $_item['caption'] : $_item['src']?>" type="text"/>
+            </div>
+            <?php  endforeach;?>
+
+        </div>
+        <br clear="all"/>
+        <input type="file" name="image" onchange="uploadGalleryImage<?php echo $htmlId; ?>(this)">
+        <input id="<?php echo $htmlId; ?>" name="parameters[data]" value='<?php echo $value?>' class="widget-option required-entry" type="hidden"/>
+    </td>
+</tr>

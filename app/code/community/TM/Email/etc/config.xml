@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_Email>
+            <version>1.1.4</version>
+        </TM_Email>
+    </modules>
+
+    <global>
+        <helpers>
+            <tm_email>
+                <class>TM_Email_Helper</class>
+            </tm_email>
+        </helpers>
+
+        <models>
+            <tm_email>
+                <class>TM_Email_Model</class>
+                <resourceModel>tm_email_resource</resourceModel>
+            </tm_email>
+            <tm_email_resource>
+                <class>TM_Email_Model_Resource</class>
+                <entities>
+                    <gateway_storage>
+                        <table>tm_email_gateway_storage</table>
+                    </gateway_storage>
+                    <gateway_transport>
+                        <table>tm_email_gateway_transport</table>
+                    </gateway_transport>
+                    <queue_queue>
+                        <table>tm_email_queue_queue</table>
+                    </queue_queue>
+                    <queue_message>
+                        <table>tm_email_queue_message</table>
+                    </queue_message>
+                </entities>
+            </tm_email_resource>
+
+            <core>
+                <rewrite>
+                    <email_template>TM_Email_Model_Template</email_template>
+                </rewrite>
+            </core>
+
+        </models>
+
+        <resources>
+            <!--  -->
+            <tm_email_setup>
+                <setup>
+                    <module>TM_Email</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </tm_email_setup>
+            <!-- -->
+            <tm_email_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </tm_email_write>
+
+            <tm_email_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </tm_email_read>
+        </resources>
+
+        <blocks>
+            <tm_email>
+                <class>TM_Email_Block</class>
+            </tm_email>
+        </blocks>
+
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <tm_email before="Mage_Adminhtml">TM_Email_Adminhtml</tm_email>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <tm_email>
+                    <file>tm/email.xml</file>
+                </tm_email>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <TM_Email>
+                    <files>
+                        <default>TM_Email.csv</default>
+                    </files>
+                </TM_Email>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <crontab>
+        <jobs>
+            <tm_email_send_letter>
+                <schedule>
+                    <cron_expr>*/2 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>tm_email/observer::scheduledSend</model>
+                </run>
+            </tm_email_send_letter>
+        </jobs>
+    </crontab>
+
+    <default>
+        <subscriptionchecker>
+            <ignored_sections>
+                <tm_email/>
+            </ignored_sections>
+        </subscriptionchecker>
+    </default>
+</config>

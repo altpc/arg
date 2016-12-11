@@ -1,0 +1,44 @@
+<?php $isModeVisible = $this->getMenu()->getRootMenuId(); ?>
+
+<?php if ($isModeVisible) : ?>
+    <table cellspacing="0" class="form-list" style="margin: -5px 0 10px 10px">
+    <tbody>
+        <tr>
+            <td class="label">
+                <label for="columns_mode"><?php echo Mage::helper('navigationpro')->__('Mode') ?> <span class="required">*</span></label>
+            </td>
+            <td class="value"><?php echo $this->getColumnsModeSelectHtml() ?></td>
+        </tr>
+    </tbody>
+    </table>
+<?php endif; ?>
+
+<div class="entry-edit custom-options columns-options">
+    <div class="entry-edit-head">
+        <h4><?php echo Mage::helper('navigationpro')->__('Columns') ?></h4>
+        <div class="right"><?php echo $this->getAddButtonHtml() ?></div>
+    </div>
+
+    <div id="columns_container" class="box">
+        <div id="columns_container_top"></div>
+        <?php echo $this->getColumnsHtml() ?>
+    </div>
+</div>
+
+<?php if ($isModeVisible) : ?>
+    <script type="text/javascript">
+    $('columns_mode').observe('change', function(e) {
+        syncColumnMode();
+    });
+
+    syncColumnMode = function() {
+        var columnsDiv = $$('.columns-options').first();
+        if ('custom' === $('columns_mode').getValue()) {
+            columnsDiv.show();
+        } else {
+            columnsDiv.hide();
+        }
+    };
+    syncColumnMode();
+    </script>
+<?php endif; ?>

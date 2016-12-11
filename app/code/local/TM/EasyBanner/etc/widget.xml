@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<widgets>
+    <easybanner_banner type="easybanner/widget_banner" translate="name" module="easybanner">
+        <name>Easybanner Banner</name>
+        <is_email_compatible>1</is_email_compatible>
+        <parameters>
+            <banner_name translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Name</label>
+                <type>label</type>
+                <helper_block>
+                    <type>easybanner/adminhtml_banner_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Banner...</open>
+                        </button>
+                    </data>
+                </helper_block>
+            </banner_name>
+        </parameters>
+    </easybanner_banner>
+
+    <easybanner_placeholder type="easybanner/widget_placeholder" translate="name" module="easybanner">
+        <name>Easybanner Placeholder</name>
+        <is_email_compatible>1</is_email_compatible>
+        <parameters>
+            <placeholder_name translate="label description">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Name</label>
+                <type>label</type>
+                <helper_block>
+                    <type>easybanner/adminhtml_placeholder_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Placeholder...</open>
+                        </button>
+                    </data>
+                </helper_block>
+            </placeholder_name>
+        </parameters>
+    </easybanner_placeholder>
+</widgets>

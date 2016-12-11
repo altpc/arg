@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <tm_reviewreminder translate="title" module="tm_reviewreminder">
+                    <title>Review Reminder</title>
+                    <sort_order>1820</sort_order>
+                    <action>adminhtml/reviewreminder_index/index</action>
+                </tm_reviewreminder>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tm_reviewreminder translate="title" module="tm_reviewreminder">
+                                        <title>TM Review Reminder Settings</title>
+                                    </tm_reviewreminder>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <tm_reviewreminder translate="title" module="tm_reviewreminder">
+                                <title>Review Reminder</title>
+                                <sort_order>1820</sort_order>
+                                <children>
+                                    <save translate="title">
+                                        <title>Save</title>
+                                        <sort_order>0</sort_order>
+                                    </save>
+                                    <status translate="title">
+                                        <title>Change Status</title>
+                                        <sort_order>10</sort_order>
+                                    </status>
+                                    <send translate="title">
+                                        <title>Send</title>
+                                        <sort_order>20</sort_order>
+                                    </send>
+                                    <delete translate="title">
+                                        <title>Delete</title>
+                                        <sort_order>30</sort_order>
+                                    </delete>
+                                </children>
+                            </tm_reviewreminder>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

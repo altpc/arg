@@ -1,0 +1,33 @@
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $_id = str_replace(' ', '_', $this->getClassName());
+    $_collectionSize = $_productCollection->count();
+    $_iterator = 0;
+?>
+<?php if (!$_collectionSize): return; endif; ?>
+
+<div class="category-products block block-highlight argento-slider <?php echo $this->getClassName() ?>">
+    <div class="block-title"><span><?php echo $this->__($this->getTitle()) ?></span></div>
+    <div class="block-content">
+        <a class="trigger trigger-left" href="#" id="left"><span class="icon-right-open"></span></a>
+        <a class="trigger trigger-right" href="#" id="right"><span class="icon-left-open"></span></a>
+        <div id="<?php echo $_id ?>-container" class="slider-wrapper">
+            <ul class="list-slider" id="<?php echo $_id ?>">
+            <?php $i=0; foreach ($_productCollection as $_product): ?>
+                <li class="item<?php if( ++$_iterator == $_collectionSize ): ?> last<?php endif; ?>">
+                    <a href="<?php echo $this->getProductUrl($_product) ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"
+                    ><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150); ?>"
+                        srcset="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150); ?> 1x, <?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150 * 2); ?> 2x"
+                        width="150" height="150"
+                        alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
+                    /></a>
+                </li>
+            <?php endforeach ?>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            new Slider("<?php echo $_id ?>-container", "left", "right", {shift: 'auto'});
+        </script>
+    </div>
+</div>

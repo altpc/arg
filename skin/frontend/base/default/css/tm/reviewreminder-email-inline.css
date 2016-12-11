@@ -1,0 +1,22 @@
+.products {
+    width: 100%;
+}
+.product-image {
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.product-links {
+    border: 1px solid #ccc;
+    vertical-align: top;
+    padding: 10px;
+}
+.review-button {
+    border-radius: 6px;
+    color: #fff;
+    background: #f3920b;
+    padding: 10px;
+    text-decoration: none;
+}
+.review-btn-container {
+    margin-top: 50px;
+}

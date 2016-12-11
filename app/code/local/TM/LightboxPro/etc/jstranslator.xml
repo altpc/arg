@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jstranslator>
+    <lightboxpro-cssDirection translate="message" module="lightboxpro">
+        <message>ltr</message>
+    </lightboxpro-cssDirection>
+    <lightboxpro-loadingText translate="message" module="lightboxpro">
+        <message>Loading...</message>
+    </lightboxpro-loadingText>
+    <lightboxpro-loadingTitle translate="message" module="lightboxpro">
+        <message>Click to cancel</message>
+    </lightboxpro-loadingTitle>
+    <lightboxpro-focusTitle translate="message" module="lightboxpro">
+        <message>Click to bring to front</message>
+    </lightboxpro-focusTitle>
+    <lightboxpro-fullExpandTitle translate="message" module="lightboxpro">
+        <message>Expand to actual size (f)</message>
+    </lightboxpro-fullExpandTitle>
+    <lightboxpro-creditsText translate="message" module="lightboxpro">
+        <message>Powered by <i>Highslide JS</i></message>
+    </lightboxpro-creditsText>
+    <lightboxpro-creditsTitle translate="message" module="lightboxpro">
+        <message>Go to the Highslide JS homepage</message>
+    </lightboxpro-creditsTitle>
+    <lightboxpro-previousText translate="message" module="lightboxpro">
+        <message>Previous</message>
+    </lightboxpro-previousText>
+    <lightboxpro-nextText translate="message" module="lightboxpro">
+        <message>Next</message>
+    </lightboxpro-nextText>
+    <lightboxpro-moveText translate="message" module="lightboxpro">
+        <message>Move</message>
+    </lightboxpro-moveText>
+    <lightboxpro-closeText translate="message" module="lightboxpro">
+        <message>Close</message>
+    </lightboxpro-closeText>
+    <lightboxpro-closeTitle translate="message" module="lightboxpro">
+        <message>Close (esc)</message>
+    </lightboxpro-closeTitle>
+    <lightboxpro-resizeTitle translate="message" module="lightboxpro">
+        <message>Resize</message>
+    </lightboxpro-resizeTitle>
+    <lightboxpro-playText translate="message" module="lightboxpro">
+        <message>Play</message>
+    </lightboxpro-playText>
+    <lightboxpro-playTitle translate="message" module="lightboxpro">
+        <message>Play slideshow (spacebar)</message>
+    </lightboxpro-playTitle>
+    <lightboxpro-pauseText translate="message" module="lightboxpro">
+        <message>Pause</message>
+    </lightboxpro-pauseText>
+    <lightboxpro-pauseTitle translate="message" module="lightboxpro">
+        <message>Pause slideshow (spacebar)</message>
+    </lightboxpro-pauseTitle>
+    <lightboxpro-previousTitle translate="message" module="lightboxpro">
+        <message>Previous (arrow left)</message>
+    </lightboxpro-previousTitle>
+    <lightboxpro-nextTitle translate="message" module="lightboxpro">
+        <message>Next (arrow right)</message>
+    </lightboxpro-nextTitle>
+    <lightboxpro-moveTitle translate="message" module="lightboxpro">
+        <message>Move</message>
+    </lightboxpro-moveTitle>
+    <lightboxpro-fullExpandText translate="message" module="lightboxpro">
+        <message>1:1</message>
+    </lightboxpro-fullExpandText>
+    <lightboxpro-number translate="message" module="lightboxpro">
+        <message>Image %1 of %2</message>
+    </lightboxpro-number>
+    <lightboxpro-restoreTitle translate="message" module="lightboxpro">
+        <message>Click to close image, click and drag to move. Use arrow keys for next and previous.</message>
+    </lightboxpro-restoreTitle>
+</jstranslator>

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_Akismet>
+            <version>1.0.0</version>
+        </TM_Akismet>
+    </modules>
+    
+    <global>
+        <models>
+            <akismet>
+                <class>TM_Akismet_Model</class>
+            </akismet>
+        </models>
+
+        <helpers>
+            <akismet>
+                <class>TM_Akismet_Helper</class>
+            </akismet>
+        </helpers>
+    </global>
+    
+    <frontend>
+        <events>
+            <controller_action_predispatch_contacts_index_post>
+                <observers>
+                    <akismet_post_contacts>
+                        <class>akismet/observer</class>
+                        <method>postContactUs</method>
+                    </akismet_post_contacts>
+                </observers>
+            </controller_action_predispatch_contacts_index_post>
+            
+            <controller_action_predispatch_review_product_post>
+                <observers>
+                    <akismet_post_product_review>
+                        <class>akismet/observer</class>
+                        <method>postProductReview</method>
+                    </akismet_post_product_review>
+                </observers>
+            </controller_action_predispatch_review_product_post>
+        </events>
+    </frontend>
+    
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <akismet translate="title" module="akismet">
+                                            <title>Akismet Section</title>
+                                        </akismet>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
+        <translate>
+            <modules>
+                <TM_Akismet>
+                    <files>
+                        <default>TM_Akismet.csv</default>
+                    </files>
+                </TM_Akismet>
+            </modules>
+        </translate>
+
+    </adminhtml>
+    
+    <default>
+        <akismet>
+            <general>
+                 <enabled>0</enabled>
+            </general>
+        </akismet>
+    </default>
+    
+</config>

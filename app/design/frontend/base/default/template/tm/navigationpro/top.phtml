@@ -1,0 +1,33 @@
+<?php
+/**
+ * Top menu for store
+ *
+ * @see TM_NavigationPro_Block_Navigation
+ */
+?>
+<?php
+    $_menu = $this->getHtml('level-top');
+    $_id   = $this->getHtmlId();
+    $_constraintEl = $this->getConstraintEl() ? $this->getConstraintEl() : "$('" . $_id . "')";
+?>
+
+<?php if ($_menu) : ?>
+<div class="nav-container">
+    <ul id="<?php echo $_id ?>" class="navpro navpro-inline <?php echo $this->getStyle() ?><?php echo $this->getIsResponsive() ? ' navpro-responsive' : '' ?> <?php echo $this->getCssClass() ?>">
+        <?php echo $_menu ?>
+    </ul>
+</div>
+
+<script type="text/javascript">
+document.observe("dom:loaded", function() {
+    navPro("<?php echo $_id ?>", {
+        show_delay: 100,
+        hide_delay: 100,
+        dropdown_side: "<?php echo $this->getDropdownSide() ?>",
+        is_responsive: <?php echo (int)$this->getIsResponsive() ?>,
+        constraint_el: <?php echo $_constraintEl ?>
+    });
+});
+new accordion('<?php echo $_id ?>');
+</script>
+<?php endif ?>

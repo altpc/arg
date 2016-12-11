@@ -1,0 +1,23 @@
+<div class="page-title category-title attributepage-title">
+    <h1><?php echo $this->escapeHtml($this->getPageTitle()) ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<?php if ($this->canShowDescription()) : ?>
+    <div class="category-description std">
+        <?php echo $this->getPageDescription() ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($this->canShowChildren()): ?>
+    <?php if ($this->getCurrentPage()->isAttributeBasedPage()) : ?>
+        <?php echo $this->getChildHtml() ?>
+    <?php else: ?>
+        <?php
+            echo $this->getChildHtml('before');
+            echo $this->getlayout()->getBlock('category.products')->getProductListHtml();
+            echo $this->getChildHtml('after');
+        ?>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,38 @@
+<?php
+    $_items = $this->getLastAddedQuoteItems();
+?>
+
+<?php if (!$_items) : ?>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php endif; ?>
+
+<div class="suggestpage-activity">
+    <?php if ($_items) : ?>
+        <div class="col-item">
+            <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+            <ol id="suggestpage-products-list" class="mini-products-list">
+                <?php foreach ($_items as $_item) : ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    <?php endif ?>
+
+    <div class="col-totals<?php echo $_items ? '' : ' col-totals-wide' ?>">
+        <div class="cartinfo">
+            <?php $_cartQty = (int) $this->getSummaryCount() ?>
+            <?php if ($_cartQty==1): ?>
+                <h3><?php echo $this->__('There is <a href="%s">1 item</a> in your cart.', $this->getUrl('checkout/cart')) ?></h3>
+            <?php else: ?>
+                <h3><?php echo $this->__('There are <a href="%s">%s items</a> in your cart.', $this->getUrl('checkout/cart'), $_cartQty) ?></h3>
+            <?php endif ?>
+            <?php echo $this->getChildHtml('checkout.cart.totals'); ?>
+            <div class="actions">
+                <button onclick="setLocation('<?php echo $this->getUrl('checkout/cart') ?>');" class="button btn-alt btn-suggest-page btn-suggest-cart" title="<?php echo $this->__('Edit Your Cart') ?>" type="button"><span><span><?php echo $this->__('Edit Your Cart') ?></span></span></button>
+                <?php if ($_cartQty && $this->isPossibleOnepageCheckout()) : ?>
+                    <button onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')" class="button btn-suggest-page btn-checkout" title="<?php echo $this->__('Checkout') ?>" type="button"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

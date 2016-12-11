@@ -1,0 +1,27 @@
+<?php
+    $gallery = Zend_Json::decode(urldecode($this->getData('data')));
+?>
+<div class="highslide-gallery <?php echo $this->getCssClass()?>" <?php echo $this->getHsConfig();?>>
+    <ul>
+        <?php
+        list($_thumbnailWidth, $_thumbnailHeight) = explode('x', Mage::getStoreConfig('lightboxpro/size/thumbnail'));
+        $first = true;
+        foreach ($gallery as $_item) :
+            $_src = $_item['src'];
+            $_href = Mage::helper('lightboxpro/image')->setImage($_src);
+            $_class = 'highslide ';
+            $_class .= $first ? 'lightbox-main-image':'lightbox-image';
+            $_caption = $_item['caption'];
+            $_dataStr = $first ? Mage::helper('lightboxpro')->slideshowSettingsAsDataString():'';
+            $first = false;
+        ?>
+        <li>
+            <a href="<?php echo $_href;?>" class="<?php echo $_class;?>"
+                title="<?php echo $_caption?>" <?php echo $_dataStr;?>>
+                <img src="<?php echo Mage::helper('lightboxpro/image')->setImage($_src)->resize($_thumbnailWidth, $_thumbnailHeight);?>"  alt=""/>
+            </a>
+        </li>
+        <?php endforeach;?>
+    </ul>
+    <div style="clear:both"></div>
+</div>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <prolabels translate="title" module="prolabels">
+                    <title>Prolabels</title>
+                    <sort_order>1610</sort_order>
+                    <children>
+                        <rules translate="title">
+                            <title>Manual Labels</title>
+                            <action>adminhtml/prolabels_rules/index</action>
+                            <sort_order>20</sort_order>
+                        </rules>
+                        <system translate="title">
+                            <title>System Labels</title>
+                            <action>adminhtml/prolabels_system/index</action>
+                            <sort_order>10</sort_order>
+                        </system>
+                    </children>
+                </prolabels>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <prolabels translate="title" module="prolabels">
+                                        <title>Prolabels Section</title>
+                                    </prolabels>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <prolabels translate="title" module="prolabels">
+                                <title>Prolabels</title>
+                                <sort_order>1610</sort_order>
+                                <children>
+                                    <rules translate="title">
+                                        <title>Manual Labels</title>
+                                        <sort_order>20</sort_order>
+                                    </rules>
+                                    <system translate="title">
+                                        <title>System Labels</title>
+                                        <action>adminhtml/prolabels_system/index</action>
+                                        <sort_order>10</sort_order>
+                                    </system>
+                                </children>
+                            </prolabels>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+ </config>

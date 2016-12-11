@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_Easyslide>
+            <version>2.4.1</version>
+        </TM_Easyslide>
+    </modules>
+
+    <global>
+        <blocks>
+            <easyslide>
+                <class>TM_Easyslide_Block</class>
+            </easyslide>
+        </blocks>
+        <helpers>
+            <easyslide>
+                <class>TM_Easyslide_Helper</class>
+            </easyslide>
+        </helpers>
+        <models>
+            <easyslide>
+                <class>TM_Easyslide_Model</class>
+                <resourceModel>easyslide_mysql4</resourceModel>
+            </easyslide>
+            <easyslide_mysql4>
+                <class>TM_Easyslide_Model_Mysql4</class>
+                <entities>
+                    <easyslide>
+                        <table>easyslide</table>
+                    </easyslide>
+                    <easyslide_slides>
+                        <table>easyslide_slides</table>
+                    </easyslide_slides>
+                </entities>
+            </easyslide_mysql4>
+        </models>
+        <resources>
+            <easyslide_setup>
+                <setup>
+                    <module>TM_Easyslide</module>
+                </setup>
+            </easyslide_setup>
+        </resources>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <easyslide module="TM_Easyslide">
+                    <file>tm/easyslide.xml</file>
+                </easyslide>
+            </updates>
+        </layout>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <easyslide after="Mage_Adminhtml">TM_Easyslide_Adminhtml</easyslide>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <TM_Easyslide>
+                    <files>
+                        <default>TM_Easyslide.csv</default>
+                    </files>
+                </TM_Easyslide>
+            </modules>
+        </translate>
+    </adminhtml>
+
+</config>

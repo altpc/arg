@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_ArgentoPure>
+            <version>1.5.6</version>
+        </TM_ArgentoPure>
+    </modules>
+    <default>
+        <argento_pure>
+            <css_selector>
+                <page>.page, .top-toolbar-container</page>
+            </css_selector>
+            <background>
+                <body_background-color>#ffffff</body_background-color>
+                <body_background-image>bg_stripes.gif</body_background-image>
+                <body_background-repeat>repeat-x</body_background-repeat>
+                <body_background-position>0px,0px</body_background-position>
+                <page_background-color>#ffffff</page_background-color>
+                <page_background-image>none</page_background-image>
+                <page_background-repeat>no-repeat</page_background-repeat>
+                <page_background-position>0px,0px</page_background-position>
+            </background>
+            <scroll_up>
+                <scroll-up-normal_background-color>#eeeeee</scroll-up-normal_background-color>
+                <scroll-up-hover_background-color>#dddddd</scroll-up-hover_background-color>
+            </scroll_up>
+            <top_navigation>
+                <nav_background-color>transparent</nav_background-color>
+                <nav_border-width>0 0 1px 0</nav_border-width>
+                <nav_border-color>#000000</nav_border-color>
+
+                <top-level-link_font-family>"Times New Roman",Times,serif</top-level-link_font-family>
+                <top-level-link_font-size>12px</top-level-link_font-size>
+                <top-level-link_text-transform>uppercase</top-level-link_text-transform>
+                <top-level-link_background-color>transparent</top-level-link_background-color>
+                <top-level-link-hover_background-color>#f1f1f1</top-level-link-hover_background-color>
+                <top-level-link-active_background-color>#000000</top-level-link-active_background-color>
+                <top-level-link_color>#272e3d</top-level-link_color>
+                <top-level-link-hover_color>#272e3d</top-level-link-hover_color>
+                <top-level-link-active_color>#ffffff</top-level-link-active_color>
+
+                <low-level-link_font-family>"Times New Roman",Times,serif</low-level-link_font-family>
+                <low-level-link_font-size>11px</low-level-link_font-size>
+                <low-level-link_text-transform>uppercase</low-level-link_text-transform>
+                <low-level-link_background-color>transparent</low-level-link_background-color>
+                <low-level-link-hover_background-color>transparent</low-level-link-hover_background-color>
+                <low-level-link-active_background-color>transparent</low-level-link-active_background-color>
+                <low-level-link_color>#595959</low-level-link_color>
+                <low-level-link-hover_color>#000000</low-level-link-hover_color>
+                <low-level-link-active_color>#000000</low-level-link-active_color>
+            </top_navigation>
+            <button>
+                <button_padding>4px 10px</button_padding>
+                <button_font-size>12px</button_font-size>
+                <button_font-weight>bold</button_font-weight>
+
+                <button_background-color>#b8374f</button_background-color>
+                <button-hover_background-color>#444444</button-hover_background-color>
+                <button_color>#ffffff</button_color>
+                <button-hover_color>#ffffff</button-hover_color>
+
+                <button-alt_background-color>#aaaaaa</button-alt_background-color>
+                <button-alt-hover_background-color>#444444</button-alt-hover_background-color>
+                <button-alt_color>#ffffff</button-alt_color>
+                <button-alt-hover_color>#ffffff</button-alt-hover_color>
+
+                <button-product-view_padding>6px 13px</button-product-view_padding>
+                <button-product-view_font-size>12px</button-product-view_font-size>
+                <button-product-view_font-weight>bold</button-product-view_font-weight>
+                <button-product-view_background-color>#b8374f</button-product-view_background-color>
+                <button-product-view-hover_background-color>#444444</button-product-view-hover_background-color>
+                <button-product-view_color>#ffffff</button-product-view_color>
+                <button-product-view-hover_color>#ffffff</button-product-view-hover_color>
+            </button>
+            <tabs>
+                <tab-text_padding>9px 12px</tab-text_padding>
+                <tab-text_font-family>"Times New Roman",Times,serif</tab-text_font-family>
+                <tab-text_font-size>12px</tab-text_font-size>
+                <tab-text_font-weight>normal</tab-text_font-weight>
+                <tab-text_text-transform>uppercase</tab-text_text-transform>
+                <tab-text_color>#747474</tab-text_color>
+                <tab_background-color>#ffffff</tab_background-color>
+                <tab_border-color>#ffffff</tab_border-color>
+
+                <tab-hover_background-color>#ffffff</tab-hover_background-color>
+                <tab-hover-text_color>#444444</tab-hover-text_color>
+                <tab-hover_border-color>#ffffff</tab-hover_border-color>
+
+                <tab-active_background-color>#f4f3f3</tab-active_background-color>
+                <tab-active-text_color>#000000</tab-active-text_color>
+                <tab-active-border_border-color>#c6c1c1</tab-active-border_border-color>
+            </tabs>
+            <font>
+                <page-title_font-family>Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif</page-title_font-family>
+                <page-title_font-size>24px</page-title_font-size>
+                <page-title_font-weight>normal</page-title_font-weight>
+                <page-title_color>#000000</page-title_color>
+
+                <block-title-text_font-family>Verdana,Geneva,Arial,Helvetica,sans-serif</block-title-text_font-family>
+                <block-title-text_font-size>14px</block-title-text_font-size>
+                <block-title-text_font-weight>normal</block-title-text_font-weight>
+                <block-title-text_color>#000000</block-title-text_color>
+
+                <product-name-link_font-family>Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif</product-name-link_font-family>
+                <product-name-link_font-size>14px</product-name-link_font-size>
+                <product-name-link_font-weight>normal</product-name-link_font-weight>
+                <product-name-link_color>#000000</product-name-link_color>
+                <product-name-link-hover_color>#000000</product-name-link-hover_color>
+
+                <product-collateral-block-title_font-family>Tahoma,Verdana,Geneva,Arial,Helvetica,sans-serif</product-collateral-block-title_font-family>
+                <product-collateral-block-title_font-size>18px</product-collateral-block-title_font-size>
+                <product-collateral-block-title_font-weight>normal</product-collateral-block-title_font-weight>
+                <product-collateral-block-title_color>#000000</product-collateral-block-title_color>
+            </font>
+        </argento_pure>
+    </default>
+</config>

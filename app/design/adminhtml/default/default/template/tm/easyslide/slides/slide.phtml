@@ -1,0 +1,125 @@
+<script type="text/javascript">
+//<![CDATA[
+var slidesTemplate = '<div class="option-box" id="slide_{{slide_id}}">'+
+            '<table id="<?php echo $this->getFieldId() ?>_{{slide_id}}" class="option-header" cellpadding="0" cellspacing="0">'+
+            '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{slide_id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][is_delete]" value="" />'+
+            '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{slide_id}}_slide_id" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][slide_id]" value="{{db_slide_id}}" />'+
+            '<thead>'+
+                '<tr>'+
+                    '<th class="opt-image"><?php echo Mage::helper('catalog')->__('Name') ?> <span class="required">*</span></th>'+
+                    '<th class="opt-url"><?php echo Mage::helper('catalog')->__('Image') ?></th>'+
+                    '<th class="opt-link"><?php echo Mage::helper('reports')->__('Link') ?> </th>'+
+                    '<th class="opt-target"><?php echo Mage::helper('easyslide')->__('Open link in') ?> </th>'+
+                    '<th class="opt-order"><?php echo Mage::helper('catalog')->__('Sort Order') ?></th>'+
+                    '<th class="opt-enabled"><?php echo Mage::helper('catalog')->__('Enabled') ?></th>'+
+                    '<th class="a-right"><?php echo $this->getDeleteButtonHtml() ?></th>'+
+                '</tr>'+
+            '</thead>'+
+            '<tr>'+
+                '<td><input type="text" class="required-entry input-text" id="<?php echo $this->getFieldId() ?>_{{slide_id}}_image" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][image]" value="{{image}}"></td>'+
+                '<td>'
+                    + '<a href="{{url}}" onclick="window.open(this.href); return false;" title="{{image}}"><img src="{{url}}" alt="{{url}}" style="width: 21px; height: 21px; float: left;"/></a>'
+                    + '<input type="file" style="width: 90%; margin-left: 3px;" id="<?php echo $this->getFieldId() ?>_{{slide_id}}_url" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][url]" value="{{url}}">'
+                    + '<br/><input type="checkbox" style="margin: 0 3px 0 25px;" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][deleteimage]" value="{{deleteimage}}"><span>Delete image</span>'
+                    +
+                '</td>'+
+                '<td><input type="text" class="input-text" id="<?php echo $this->getFieldId() ?>_{{slide_id}}_target" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][target]" value="{{target}}"></td>'+
+                '<td>' +
+                    '<input type="hidden" value="{{target_mode}}" disabled="disabled" class="target_mode-hidden" />' +
+                    '<?php echo $this->getTargetSelectHtml() ?></td>'+
+                '<td><input type="text" class="validate-zero-or-greater input-text" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][sort_order]" value="{{sort_order}}"></td>'+
+                '<td>' +
+                    '<input type="hidden" value="{{is_enabled}}" disabled="disabled" class="is-enabled-hidden" />' +
+                    '<?php echo $this->getIsEnabledSelectHtml() ?></td>'+
+                '<td>&nbsp;</td>'+
+            '</tr></table>'+
+            '<table class="option-header" cellpadding="0" cellspacing="0">'+
+            '<thead>'+
+                '<tr>'+
+                    '<th class="opt-description"><?php echo Mage::helper('cms')->__('Description') ?></th>'+
+                    '<th class="opt-description"><?php echo Mage::helper('easyslide')->__('Desc Position') ?></th>'+
+                    '<th class="opt-description"><?php echo Mage::helper('easyslide')->__('Desc Background') ?></th>'+
+                '</tr>'+
+            '</thead>'+
+            '<tr>'+
+                '<td><textarea rows="6" class="input-text" id="<?php echo $this->getFieldId() ?>_{{slide_id}}_description" name="<?php echo $this->getFieldName() ?>[{{slide_id}}][description]">{{description}}</textarea></td>'+
+                '<td class="opt-req">' +
+                '<input type="hidden" value="{{desc_pos}}" disabled="disabled" class="desc_pos-hidden" />' +
+                '<?php echo $this->getDescPositionSelectHtml() ?></td>'+
+                '<td class="opt-req">' +
+                '<input type="hidden" value="{{background}}" disabled="disabled" class="background-hidden" />' +
+                '<?php echo $this->getDescBackgroundSelectHtml() ?></td>'+
+            '</tr>'+
+            '</table>'+
+            '</div>';
+
+var Slide = {
+    div : $('slider_container_top'),
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : slidesTemplate,
+    itemCount: 1,
+    add : function(data) {
+        this.template = new Template(this.templateText, this.templateSyntax);
+        if(!data.slide_id){
+            data = {};
+            data.slide_id = this.itemCount;
+            data.db_slide_id = null;
+            data.sort_order = 50;
+            //data.is_enabled = ;
+        } else {
+            data.db_slide_id = data.slide_id;
+            this.itemCount = Math.max(data.item_count, this.itemCount);
+            //this.fill(data);
+        }
+        Element.insert(this.div, {'top':this.template.evaluate(data)});
+        this.bindRemoveButtons();
+        this.itemCount++;
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'div'));
+        if (element) {
+            $(element.readAttribute('id')+'_is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons : function(){
+        var buttons = $$('div.slider-options .delete-slide');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+    },
+    fill : function(data){
+
+    }
+}
+
+Slide.bindRemoveButtons();
+Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', Slide.add.bind(Slide));
+
+<?php foreach ($this->getSlideValues() as $_value): ?>
+    Slide.add(<?php echo $_value->toJson() ?>);
+<?php endforeach; ?>
+
+$$('.is-enabled-hidden').each(function(el){
+    el.next('select').select('option[value='+el.value+']')[0].writeAttribute('selected', 'selected');
+});
+
+$$('.target_mode-hidden').each(function(el) {
+    el.next('select').select('option[value='+el.value+']')[0].writeAttribute('selected', 'selected');
+});
+
+$$('.desc_pos-hidden').each(function(el){
+    el.next('select').select('option[value='+el.value+']')[0].writeAttribute('selected', 'selected');
+});
+
+$$('.background-hidden').each(function(el){
+    el.next('select').select('option[value='+el.value+']')[0].writeAttribute('selected', 'selected');
+});
+
+//]]>
+</script>

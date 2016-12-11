@@ -1,0 +1,185 @@
+<?php
+    $style = $this->canDisplayUseDefault() ? "background: none repeat scroll 0 0 #DEEAEA; border: 1px solid #D2E7E7 !important; padding: 10px 10px 5px 10px;" : '';
+?>
+
+<?php echo $this->getStatusExceptionsTemplate() ?>
+
+<script type="text/javascript">
+//<![CDATA[
+var siblingsTemplate =
+'<div class="option-box" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}">' +
+    '<span class="sibling-delete f-right"><?php echo $this->getDeleteButtonHtml() ?></span>' +
+    '<table cellspacing="0" class="form-list">' +
+        '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][is_delete]" value="" />' +
+        '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_sibling_id" name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][sibling_id]" value="{{db_sibling_id}}" />' +
+        '<tbody>' +
+            '<tr class="group-store-view">' +
+                '<td colspan="2">' +
+                    '<table cellspacing="0" class="form-list" style="<?php echo $style ?>">' +
+                        '<tbody>' +
+                            '<tr>' +
+                                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{sibling_id}}_content"><?php echo Mage::helper('cms')->__('Content') ?> <span class="required">*</span></label></td>' +
+                                '<td class="value">' +
+                                    '<textarea name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][content]" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_content" class="textarea required-entry" style="height:3em" rows="2" cols="15">{{content}}</textarea>' +
+                                    '<button id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_content_toggle" class="scalable btn-wysiwyg" type="button" title="<?php echo Mage::helper('catalog')->__('WYSIWYG Editor') ?>"><span><span><span><?php echo Mage::helper('catalog')->__('WYSIWYG Editor') ?></span></span></span></button>' +
+                                '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{sibling_id}}_dropdown_content"><?php echo Mage::helper('navigationpro')->__('Dropdown Content') ?></label></td>' +
+                                '<td class="value">' +
+                                    '<textarea name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][dropdown_content]" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_dropdown_content" class="textarea" style="height:12em" rows="5" cols="15">{{dropdown_content}}</textarea>' +
+                                    '<button id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_dropdown_content_toggle" class="scalable btn-wysiwyg" type="button" title="<?php echo Mage::helper('catalog')->__('WYSIWYG Editor') ?>"><span><span><span><?php echo Mage::helper('catalog')->__('WYSIWYG Editor') ?></span></span></span></button>' +
+                                '</td>' +
+                            '</tr>' +
+                            <?php if ($this->canDisplayUseDefault()) : ?>
+                            '<tr class="group-store-view">' +
+                                '<td class="label"><label class="normal" for="<?php echo $this->getFieldId() ?>_{{sibling_id}}_content_default"><?php echo Mage::helper('adminhtml')->__('Use Default Value') ?></label></td>' +
+                                '<td class="value"><input name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][use_default_content]" type="checkbox" value="1" onclick="toggleValueElements(this, $(this).up(\'table\'))" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_content_default"/></td>' +
+                            '</tr>' +
+                            <?php endif; ?>
+                        '</tbody>' +
+                    '</table>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{sibling_id}}_sort_order"><?php echo Mage::helper('catalog')->__('Sort Order') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{sort_order}}" name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][sort_order]" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_sort_order" class="input-text"/>' +
+                    '<p id="note_sort_order" class="note"><span><?php echo Mage::helper('navigationpro')->__('Use value below 0, to insert item before category') ?></span></p>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{sibling_id}}_is_active"><?php echo Mage::helper('cms')->__('Status') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="hidden" value="{{is_active}}" disabled="disabled" class="is-active-hidden" />' +
+                    '<?php echo $this->getIsActiveSelectHtml() ?>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"></td>' +
+                '<td class="value">' +
+                    '<div class="grid" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_is_active_exceptions"></div>' +
+                '</td>' +
+            '</tr>' +
+            '<tr>' +
+                '<td class="label"><label for="<?php echo $this->getFieldId() ?>_{{sibling_id}}_dropdown_styles"><?php echo Mage::helper('navigationpro')->__('Dropdown css styles') ?></label></td>' +
+                '<td class="value">' +
+                    '<input type="text" value="{{dropdown_styles}}" name="<?php echo $this->getFieldName() ?>[{{sibling_id}}][dropdown_styles]" id="<?php echo $this->getFieldId() ?>_{{sibling_id}}_dropdown_styles" class="input-text"/>' +
+                    '<p id="note_dropdown_styles" class="note"><span><?php echo Mage::helper('navigationpro')->__('Example') ?>: width: 250px;</span></p>' +
+                '</td>' +
+            '</tr>' +
+        '</tbody>' +
+    '</table>' +
+'</div>';
+
+var Sibling = {
+    div           : $('siblings_container_top'),
+    templateSyntax: /(^|.|\r|\n)({{(\w+)}})/,
+    templateText  : siblingsTemplate,
+    itemCount     : 1,
+    add           : function(data) {
+        this.template = new Template(this.templateText, this.templateSyntax);
+        if (!data || !data.sibling_id) {
+            data               = {};
+            data.sibling_id    = this.itemCount;
+            data.db_sibling_id = null;
+            data.sort_order    = 50;
+            data.content = '<a href="{{store direct_url="some/url"}}" class="nav-a"><span>Lorem</span></a>';
+            data.dropdown_styles = 'padding: 10px 10px 0; width: 330px;';
+            data.dropdown_content = '<div class="std">\n\
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut efficitur efficitur consequat.</p>\n\
+  <ul class="disc">\n\
+    <li>Lorem</li>\n\
+    <li>Ipsum</li>\n\
+  </ul>\n\
+  <p>Curabitur pellentesque maximus nulla, eget tincidunt sapien tincidunt sit amet. Nullam eu dictum risus.</p>\n\
+</div>';
+        } else {
+            data.db_sibling_id = data.sibling_id;
+            this.itemCount = Math.max(data.item_count, this.itemCount);
+        }
+        var sibling = Element.insert(this.div, {'top': this.template.evaluate(data)});
+
+        var exceptions = new Template(siblingStatusExceptionsTable, this.templateSyntax);
+        Element.insert('sibling_' + data.sibling_id + '_is_active_exceptions', {
+            'top': exceptions.evaluate(data)
+        });
+        siblingStatusException.bindAddButton(data.sibling_id);
+
+        this.fill(data);
+        this.bindRemoveButtons(data.sibling_id);
+        this.initEditor(data.sibling_id);
+        this.itemCount++;
+    },
+    remove: function(event) {
+        var element = $(Event.findElement(event, 'div'));
+        if (element) {
+            $(element.readAttribute('id')+'_is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons: function(id) {
+        var button = $('sibling_' + id).down('.delete-sibling');
+        button && Event.observe(button, 'click', this.remove.bind(this));
+    },
+    initEditor: function(id) {
+        var idContent = 'sibling_' + id + '_content';
+        Event.observe(idContent + '_toggle', "click", function() {
+            catalogWysiwygEditor.open('<?php echo Mage::helper('adminhtml')->getUrl('*/*/wysiwyg') ?>', idContent);
+        });
+        var idDropdown = 'sibling_' + id + '_dropdown_content';
+        Event.observe(idDropdown + '_toggle', "click", function() {
+            catalogWysiwygEditor.open('<?php echo Mage::helper('adminhtml')->getUrl('*/*/wysiwyg') ?>', idDropdown);
+        });
+    },
+    fill: function(data) {
+        // selecteboxes
+        var i = 0,
+            element,
+            option,
+            elements = [
+                'is_active'
+            ];
+
+        while ((element = elements[i++])) {
+            option = $('sibling_' + data.sibling_id + '_' + element)
+                .select('option[value=' + data[element] + ']')
+                .first();
+
+            option && option.writeAttribute('selected', 'selected');
+        }
+
+        // per-store view content
+        <?php if ($this->canDisplayUseDefault()) : ?>
+            i = 0, elements = ['content_default'];
+            while ((element = elements[i++])) {
+                element = $('sibling_' + data.sibling_id + '_' + element);
+                if (!data.db_sibling_id || !parseInt(data.store_id)) {
+                    element.writeAttribute('checked', 'checked');
+                } else {
+                    element.removeAttribute('checked');
+                }
+                toggleValueElements(element, element.up('table'));
+            }
+        <?php endif; ?>
+
+        // add is_active_exception rows
+        if (data.is_active_exception && data.is_active_exception.each) {
+            data.is_active_exception.each(function(value) {
+                value.sibling_id = data.sibling_id;
+                siblingStatusException.add(value);
+            });
+        }
+    }
+};
+
+Event.observe('<?php echo $this->getAddButtonId() ?>', 'click', function() { Sibling.add(); });
+
+<?php foreach ($this->getSiblingsData() as $_sibling): ?>
+    Sibling.add(<?php echo $_sibling->toJson() ?>);
+<?php endforeach; ?>
+
+//]]>
+</script>

@@ -1,0 +1,260 @@
+<div id="menu-edit-container" class="menu-content">
+    <?php echo $this->getChildHtml('form') ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+    function categoryReset(url,useAjax){
+        if(useAjax){
+            var params = {active_tab_id:false};
+            updateContent(url, params);
+        }else{
+            location.href = url;
+        }
+    }
+
+    /**
+    * Delete some category
+    * This routine get menuId explicitly, so even if currently selected tree node is out of sync
+    * with this form, we surely delete same category in the tree and at backend
+    */
+    function menuDelete(url, useAjax, menuId) {
+        if (confirm('<?php echo Mage::helper('navigationpro')->__('Are you sure you want to delete this menu?') ?>')){
+            if (useAjax){
+                tree.nodeForDelete = 'menu_' + menuId;
+                updateContent(url, {}, true);
+            } else {
+                location.href = url;
+            }
+        }
+    }
+
+    /**
+     * Update category content area
+     */
+    function updateContent(url, params, refreshTree) {
+        if (!params) {
+            params = {};
+        }
+        if (!params.form_key) {
+            params.form_key = FORM_KEY;
+        }
+
+        if (!params.active_tab_id && menu_info_tabsJsTabs.activeTab) {
+            params.active_tab_id = menu_info_tabsJsTabs.activeTab.id;
+        }
+
+        toolbarToggle.stop();
+
+       /*if(params.node_name)
+       {
+           var currentNode = tree.getNodeById(tree.currentNodeId);
+           currentNode.setText(params.node_name);
+       }*/
+
+        var categoryContainer = $('menu-edit-container');
+        var messagesContainer = $('messages');
+        var thisObj = this;
+        new Ajax.Request(url + (url.match(new RegExp('\\?')) ? '&isAjax=true' : '?isAjax=true' ), {
+            parameters:  params,
+            evalScripts: true,
+            onComplete: function () {
+                /**
+                 * This func depends on variables, that came in response, and were eval'ed in onSuccess() callback.
+                 * Since prototype's Element.update() evals javascripts in 10 msec, we should exec our func after it.
+                 */
+                setTimeout(function() {
+                    try {
+                        if (refreshTree) {
+                            thisObj.refreshTreeArea();
+                        }
+                        toolbarToggle.start();
+                    } catch (e) {
+                        alert(e.message);
+                    };
+                }, 25);
+            },
+            onSuccess: function(transport) {
+                try {
+                    if (transport.responseText.isJSON()) {
+                        var response = transport.responseText.evalJSON();
+                        var needUpdate = true;
+                        if (response.error) {
+                            alert(response.message);
+                            needUpdate = false;
+                        }
+                        if(response.ajaxExpired && response.ajaxRedirect) {
+                            setLocation(response.ajaxRedirect);
+                            needUpdate = false;
+                        }
+                        if (needUpdate){
+                            if (response.content){
+                                $(categoryContainer).update(response.content);
+                            }
+                            if (response.messages){
+                                $(messagesContainer).update(response.messages);
+                            }
+                        }
+                    } else {
+                        $(categoryContainer).update(transport.responseText);
+                    }
+                }
+                catch (e) {
+                    $(categoryContainer).update(transport.responseText);
+                }
+            }
+        });
+    }
+
+    /**
+     * Refresh tree nodes after saving or deleting a category
+     */
+    function refreshTreeArea(transport)
+    {
+        if (tree && tree.nodeForDelete) {
+            var node = tree.getNodeById(tree.nodeForDelete);
+            tree.nodeForDelete = false;
+
+            if (node) { // Check maybe tree became somehow not synced with ajax and we're trying to delete unknown node
+                node.parentNode.removeChild(node);
+                tree.currentNodeId = false;
+            }
+            return;
+        }
+
+        if (tree && window.editingMenuBreadcrumbs) {
+            if (tree.addNodeTo) {
+                var parent = tree.getNodeById(tree.addNodeTo);
+                tree.addNodeTo = false;
+
+                if (parent) { // Check maybe tree became somehow not synced with ajax and we're trying to add to unknown node
+                    var node = new Ext.tree.AsyncTreeNode(editingMenuBreadcrumbs[editingMenuBreadcrumbs.length - 1]);
+                    node.loaded = true;
+                    tree.currentNodeId = node.id;
+                    tree.currentNodePath = node.attributes.path;
+                    parent.appendChild(node);
+
+                    if (node.attributes.children) {
+                        tree.getLoader().buildCategoryTree(node, node.attributes.children); // seee tree.phtml
+                    }
+
+                    if (parent.expanded) {
+                        tree.selectCurrentNode();
+                    } else {
+                        var timer;
+                        parent.expand();
+                        var f = function(){
+                            if(parent.expanded){ // done expanding
+                                clearInterval(timer);
+                                tree.selectCurrentNode();
+                            }
+                        };
+                        timer = setInterval(f, 200);
+                    }
+                }
+            }
+
+            // update all affected categories nodes names
+            for (var i = 0; i < editingMenuBreadcrumbs.length; i++) {
+                var node = tree.getNodeByPath(editingMenuBreadcrumbs[i].path);
+                if (node) {
+                    node.setText(editingMenuBreadcrumbs[i].text);
+
+                    if (parseInt(editingMenuBreadcrumbs[i].is_active)) {
+                        var oldClass = 'no-active-category';
+                        var newClass = 'active-category';
+                    } else {
+                        var oldClass = 'active-category';
+                        var newClass = 'no-active-category';
+                    }
+
+                    Element.removeClassName(node.ui.wrap.firstChild, oldClass);
+                    Element.addClassName(node.ui.wrap.firstChild, newClass);
+                }
+            }
+            tree.selectCurrentNode();
+        }
+    }
+
+    function displayLoadingMask()
+    {
+       var loaderArea = $$('#html-body .wrapper')[0]; // Blocks all page
+        Position.clone($(loaderArea), $('loading-mask'), {offsetLeft:-2});
+        toggleSelectsUnderBlock($('loading-mask'), false);
+        Element.show('loading-mask');
+    }
+
+WysiwygWidget.Widget.prototype.initialize = function(formEl, widgetEl, widgetOptionsEl, optionsSourceUrl, widgetTargetId) {
+    $(formEl).insert({bottom: widgetTools.getDivHtml(widgetOptionsEl)});
+    this.formEl = formEl;
+    this.widgetEl = $(widgetEl);
+    this.widgetOptionsEl = $(widgetOptionsEl);
+    this.optionsUrl = optionsSourceUrl;
+    this.optionValues = new Hash({});
+    this.widgetTargetId = widgetTargetId;
+    if (typeof(tinyMCE) != "undefined" && tinyMCE.activeEditor) {
+        try {
+            this.bMark = tinyMCE.activeEditor.selection.getBookmark();
+        } catch (e) {
+            // this one is broken if wysiwyg editor is hidden
+            // Node cannot be inserted at the specified point in the hierarchy
+        }
+    }
+    Event.observe(this.widgetEl, "change", this.loadOptions.bind(this));
+    this.initOptionValues();
+};
+
+FormElementDependenceController.prototype.trackChange = function(e, idTo, valuesFrom) {
+        // define whether the target should show up
+//        var shouldShowUp = true;
+//        for (var idFrom in valuesFrom) {
+//            var from = $(idFrom);
+//            if (!from || from.value != valuesFrom[idFrom]) {
+//                shouldShowUp = false;
+//            }
+//        }
+    var shouldShowUp = true;
+    for (var idFrom in valuesFrom) {
+        var from = $(idFrom);
+        if (valuesFrom[idFrom] instanceof Array) {
+            if (!from || valuesFrom[idFrom].indexOf(from.value) == -1) {
+                shouldShowUp = false;
+            }
+        } else {
+            if (!from || from.value != valuesFrom[idFrom]) {
+                shouldShowUp = false;
+            }
+        }
+    }
+
+    // Magento < 1420 fix
+    if (!this._config) {
+        this._config = {
+            levels_up: 1
+        };
+    }
+
+    // toggle target row
+    if (shouldShowUp) {
+        var currentConfig = this._config;
+        $(idTo).up(this._config.levels_up).select('input', 'select', 'td').each(function (item) {
+            // don't touch hidden inputs (and Use Default inputs too), bc they may have custom logic
+            if ((!item.type || item.type != 'hidden') && !($(item.id+'_inherit') && $(item.id+'_inherit').checked)
+                && !(currentConfig.can_edit_price != undefined && !currentConfig.can_edit_price)) {
+                item.disabled = false;
+            }
+        });
+        $(idTo).up(this._config.levels_up).show();
+    } else {
+        $(idTo).up(this._config.levels_up).select('input', 'select', 'td').each(function (item){
+            // don't touch hidden inputs (and Use Default inputs too), bc they may have custom logic
+            if ((!item.type || item.type != 'hidden') && !($(item.id+'_inherit') && $(item.id+'_inherit').checked)) {
+                item.disabled = true;
+            }
+        });
+        $(idTo).up(this._config.levels_up).hide();
+    }
+};
+
+//]]>
+</script>

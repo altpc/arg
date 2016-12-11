@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <tm_email translate="title" module="tm_email">
+                    <title>Email</title>
+                    <sort_order>11</sort_order>
+                    <children>
+                        <email_template translate="title">
+                            <title>Transactional Emails</title>
+                            <action>adminhtml/system_email_template</action>
+                            <sort_order>10</sort_order>
+                        </email_template>
+                        <gateway translate="title">
+                            <title>Email Gateways</title>
+                            <!--<action>adminhtml/gateway/index</action>-->
+                            <sort_order>20</sort_order>
+                            <children>
+                                <queue>
+                                    <title>Storage</title>
+                                    <action>adminhtml/gateway_storage/index</action>
+                                    <sort_order>10</sort_order>
+                                </queue>
+                                <message>
+                                    <title>Transport</title>
+                                    <action>adminhtml/gateway_transport/index</action>
+                                    <sort_order>20</sort_order>
+                                </message>
+                            </children>
+                        </gateway>
+                        <queue translate="title">
+                            <title>Email Queues</title>
+                            <!--<action>adminhtml/queue_queue/index</action>-->
+                            <sort_order>30</sort_order>
+                            <children>
+                                <queue>
+                                    <title>Queues</title>
+                                    <action>adminhtml/queue_queue/index</action>
+                                    <sort_order>10</sort_order>
+                                </queue>
+                                <message>
+                                    <title>Messages</title>
+                                    <action>adminhtml/queue_message/index</action>
+                                    <sort_order>20</sort_order>
+                                </message>
+                            </children>
+                        </queue>
+                    </children>
+                </tm_email>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tm_email translate="title" module="tm_email">
+                                        <title>Email Section</title>
+                                    </tm_email>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <tm_email translate="title" module="tm_email">
+                                <title>Email</title>
+                                <sort_order>11</sort_order>
+                                <children>
+                                    <gateway translate="title">
+                                        <title>Email Gateways</title>
+                                        <sort_order>20</sort_order>
+                                    </gateway>
+                                    <queue translate="title">
+                                        <title>Email Queues</title>
+                                        <sort_order>30</sort_order>
+                                    </queue>
+                                </children>
+                            </tm_email>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

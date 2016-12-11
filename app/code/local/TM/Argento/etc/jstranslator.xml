@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<jstranslator>
+    <!-- argento.js -->
+    <description-more translate="message" module="argento">
+        <message>More</message> <!-- taken from xmlconnect -->
+    </description-more>
+    <sort translate="message" module="argento">
+        <message>Sort</message>
+    </sort>
+    <!-- end argento.js -->
+</jstranslator>

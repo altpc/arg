@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="lightboxpro/general/enabled">
+                <type>js_css</type>
+                <name>tm/lib/highslide/highslide.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addJs" ifconfig="lightboxpro/general/enabled">
+                <name>tm/lib/highslide/highslide-full.min.js</name>
+                <params>defer</params>
+            </action>
+            <action method="addItem" ifconfig="lightboxpro/general/enabled">
+                <type>skin_js</type>
+                <name>js/tm/lightboxpro.js</name>
+                <params>defer</params>
+            </action>
+        </reference>
+    </default>
+
+    <tm_lihgtboxpro_product_info_media>
+        <reference name="product.info.media">
+            <action method="setTemplate" ifconfig="lightboxpro/general/enabled">
+                <template>tm/lightboxpro/catalog/product/view/media.phtml</template>
+            </action>
+        </reference>
+    </tm_lihgtboxpro_product_info_media>
+
+    <catalog_product_view>
+        <update handle="tm_lihgtboxpro_product_info_media"/>
+    </catalog_product_view>
+
+    <review_product_list>
+        <update handle="tm_lihgtboxpro_product_info_media"/>
+    </review_product_list>
+
+    <askit_index_product>
+        <update handle="tm_lihgtboxpro_product_info_media"/>
+    </askit_index_product>
+</layout>

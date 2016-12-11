@@ -1,0 +1,136 @@
+/* reset cms page std styles */
+.std .block-highlight ul,
+.std .block-highlight ol { margin: 0; padding: 0; list-style: none; }
+.std .block-highlight .add-to-links { margin: 5px 0 0; }
+.std .block-highlight .add-to-links li { margin: 0; }
+.std .block-highlight .price-box p { margin: 0; }
+
+.block-highlight .block-title { color: #0A263C; font-size: 14px; font-weight: bold; }
+.col-main .block-highlight { margin: 0 0 0.7em; }
+.block-highlight img { max-width: 100%; height: auto; }
+.block-highlight .products-grid { position: static; background: none; }
+.block-highlight .products-grid .actions { position: static; }
+
+/* Reviews list mode */
+.highlight-review .products-list .author { font-weight: bold; }
+
+/* multicolumns mode */
+.block-highlight .products-grid li.item{
+    padding: 7px 1%;
+    margin: 0 1% 7px;
+    clear: none;
+    box-sizing: border-box;
+}
+.block-highlight .products-grid.cols-1 li.item { width: 100%; }
+.block-highlight .products-grid.cols-2 li.item { width: 48%; }
+.block-highlight .products-grid.cols-3 li.item { width: 31.3%; }
+.block-highlight .products-grid.cols-4 li.item { width: 23%; }
+.block-highlight .products-grid.cols-5 li.item { width: 18%; }
+.block-highlight .products-grid.cols-6 li.item { width: 14.6%; }
+.block-highlight .products-grid li.item:last-child { margin: 0 1% 7px; } /* rwd fix */
+
+/* Wide grid for product reviews */
+.block-highlight .grid-wide { background: none; border: none; margin: 10px auto; }
+.block-highlight .products-grid.grid-wide li.item {
+    padding: 12px 1%;
+    margin: 0 1% 7px;
+    border: 1px solid #eaeaea;
+    border-radius: 7px;
+    min-height: 100px;
+    background: #f8f8f8;
+    position: relative;
+    text-align: left;
+    box-sizing: border-box;
+}
+.block-highlight .grid-wide li.item:last-child { margin: 0 1% 7px; } /* rwd fix */
+.block-highlight .grid-wide li.item .actions { text-align: left; }
+
+.block-highlight .grid-wide.cols-1 li.item { width: 100%; min-height: 80px; margin: 0; }
+.block-highlight .grid-wide.cols-2 li.item { width: 48%; }
+.block-highlight .grid-wide.cols-3 li.item { width: 31.3%; }
+.block-highlight .grid-wide.cols-4 li.item { width: 23%; }
+.block-highlight .grid-wide.cols-3 .product-image { width: 90px; }
+.block-highlight .grid-wide.cols-3 .product-shop { margin-left: 95px; }
+.block-highlight .grid-wide.cols-4 .product-image { width: 80px; }
+.block-highlight .grid-wide.cols-4 .product-shop { margin-left: 85px; }
+
+.block-highlight .grid-wide li.last { margin: 0; }
+.block-highlight .grid-wide .product-name { font-size: 1em; }
+.block-highlight .grid-wide .desc { font-size: 0.9em; }
+.block-highlight .grid-wide .link-learn {
+    font-size: 11px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1px 8px;
+    background: #e3e3e3;
+    border-radius: 7px 0 7px 0;
+    text-decoration: none;
+    color: #777;
+}
+.block-highlight .grid-wide .link-learn:hover { background: #dadada; }
+
+.block-highlight .products-list .product-image,
+.block-highlight .grid-wide .product-image { float: left; width: 33%; height: auto; }
+.block-highlight .products-list .product-image img { width: auto; }
+.block-highlight .products-list .product-shop,
+.block-highlight .grid-wide .product-shop { margin: 0 0 0 33%; padding: 0 0 0 7px; box-sizing: border-box; }
+
+/* Prolabels fix */
+.block-highlight .products-list .prolabel-wrapper { float: left; width: 33%; height: auto; }
+.block-highlight .products-list .prolabel-wrapper .product-image { float: none; width: auto; height: auto; }
+
+/* Sidebar styles */
+.side-col .block-highlight .products-grid,
+.sidebar .block-highlight .products-grid { background: none; width: 100%; }
+.side-col .block-highlight .products-grid .product-image,
+.sidebar .block-highlight .products-grid .product-image { width: auto; height: auto; margin: 0; }
+
+/* Highlight page */
+.highlight-index-index .toolbar .sort-by { display: none; }
+
+.block-highlight .clearer { clear: both; }
+.block-highlight .page-link { padding: 7px; }
+
+.block-highlight .block-content { zoom: 1; }
+.block-highlight .block-content:after { content: '.'; display: block; clear: both; visibility: hidden; height: 0; font-size: 0; }
+
+@media (max-width: 767px) {
+    .block-highlight .grid-wide.cols-3 .product-image { width: 70px; }
+    .block-highlight .grid-wide.cols-3 .product-shop { margin-left: 75px; }
+
+    /* two columns instead of four for wide grid */
+    .block-highlight .grid-wide.cols-4 li.item { width: 48%; padding-left: 2%; padding-right: 2%; }
+    .block-highlight .grid-wide.cols-4 li.item:nth-of-type(2n+1) { clear: left; }
+
+    /* Three columns instead of six */
+    .block-highlight .products-grid.cols-6 li.item { width: 31.3%; }
+    .block-highlight .products-grid.cols-6 li.item:nth-of-type(4n) { clear: left; }
+}
+
+@media (max-width: 480px) {
+    .block-highlight .products-grid.cols-6 li.item:nth-of-type(4n) { clear: none; }
+    /* Two columns for small screen */
+    .block-highlight .products-grid li.item,
+    .block-highlight .products-grid.cols-1 li.item,
+    .block-highlight .products-grid.cols-2 li.item,
+    .block-highlight .products-grid.cols-3 li.item,
+    .block-highlight .products-grid.cols-4 li.item,
+    .block-highlight .products-grid.cols-5 li.item,
+    .block-highlight .products-grid.cols-6 li.item { width: 48%; padding-left: 2%; padding-right: 2%; }
+    .block-highlight .products-grid.cols-1 li.item,
+    .block-highlight .grid-wide li.item { width: 100% !important; margin-left: 0; margin-right: 0; }
+    .block-highlight .grid-wide li.item:last-child { margin-left: 0; margin-right: 0; }
+    /* clear: left for every third li */
+    .block-highlight .products-grid.cols-2 li.item:nth-of-type(2n+1),
+    .block-highlight .products-grid.cols-4 li.item:nth-of-type(2n+1),
+    .block-highlight .products-grid.cols-6 li.item:nth-of-type(2n+1),
+    /* clear: left for every third li inside every third .easycatalog-grid */
+    .block-highlight .products-grid.cols-3:nth-of-type(2n+1) li.item:nth-of-type(2n+1),
+    .block-highlight .products-grid.cols-5:nth-of-type(2n+1) li.item:nth-of-type(2n+1),
+    /* clear: left for every second li inside every second .easycatalog-grid */
+    .block-highlight .products-grid.cols-3:nth-of-type(2n) li.item:nth-of-type(2n),
+    .block-highlight .products-grid.cols-5:nth-of-type(2n) li.item:nth-of-type(2n) { clear: left; }
+    .block-highlight .products-grid.cols-3:after,
+    .block-highlight .products-grid.cols-5:after { content: ''; clear: none; }
+}

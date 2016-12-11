@@ -1,0 +1,6 @@
+<div class="lightbox-html <?php echo $this->getCssClass()?>" <?php echo $this->getHsConfig();?>>
+    <a href="#" title="<?php echo $this->getTitle();?>" <?php echo $this->customConfigsAsDataStr()?>><?php echo $this->getData('tooltip'); ?></a>
+    <div class="highslide-maincontent">
+        <?php echo $this->getData('content');?>
+    </div>
+</div>

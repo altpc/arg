@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_catalog_product_new>
+        <reference name="product_tabs">
+            <block type="soldtogether/adminhtml_catalog_product_edit_AdditionalTabs" name="soldtogether.tabs"/>
+        </reference>
+    </adminhtml_catalog_product_new>
+
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <block type="soldtogether/adminhtml_catalog_product_edit_AdditionalTabs" name="soldtogether.tabs"/>
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <adminhtml_soldtogether_order_related>
+        <block type="core/text_list" name="root">
+            <block type="soldtogether/adminhtml_catalog_product_edit_tab_order" name="soldtogether.product.edit.tab.order"/>
+            <block type="adminhtml/widget_grid_serializer" name="soldtogether_order_grid_serializer">
+                <reference name="soldtogether_order_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>soldtogether.product.edit.tab.order</grid_block_name>
+                        <data_callback>getSelectedRelatedProducts</data_callback>
+                        <hidden_input_name>soldtogether_order</hidden_input_name>
+                        <reload_param_name>product_related</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>soldtogether_weight</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_soldtogether_order_related>
+
+    <adminhtml_soldtogether_order_relatedgrid>
+        <block type="core/text_list" name="root">
+            <block type="soldtogether/adminhtml_catalog_product_edit_tab_order" name="soldtogether.product.edit.tab.order"/>
+        </block>
+    </adminhtml_soldtogether_order_relatedgrid>
+
+    <adminhtml_soldtogether_customer_related>
+        <block type="core/text_list" name="root">
+            <block type="soldtogether/adminhtml_catalog_product_edit_tab_customer" name="soldtogether.product.edit.tab.customer"/>
+            <block type="adminhtml/widget_grid_serializer" name="soldtogether_customer_grid_serializer">
+                <reference name="soldtogether_customer_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>soldtogether.product.edit.tab.customer</grid_block_name>
+                        <data_callback>getSelectedRelatedProducts</data_callback>
+                        <hidden_input_name>soldtogether_customer</hidden_input_name>
+                        <reload_param_name>product_related</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>soldtogether_weight</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_soldtogether_customer_related>
+
+    <adminhtml_soldtogether_customer_relatedgrid>
+        <block type="core/text_list" name="root">
+            <block type="soldtogether/adminhtml_catalog_product_edit_tab_customer" name="soldtogether.product.edit.tab.customer"/>
+        </block>
+    </adminhtml_soldtogether_customer_relatedgrid>
+
+</layout>

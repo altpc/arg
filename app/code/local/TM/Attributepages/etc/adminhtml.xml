@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <attributepages translate="title" module="attributepages">
+                    <title>Attribute Pages</title>
+                    <sort_order>160</sort_order>
+                    <children>
+                        <attributepages_page>
+                            <title>Manage Pages</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/attributepages_page/index</action>
+                        </attributepages_page>
+                        <attributepages_option>
+                            <title>Manage Options</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/attributepages_option/index</action>
+                        </attributepages_option>
+                    </children>
+                </attributepages>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <attributepages translate="title" module="attributepages">
+                                        <title>Attributepages Settings</title>
+                                    </attributepages>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <attributepages translate="title" module="attributepages">
+                                <title>Attribute Pages</title>
+                                <sort_order>160</sort_order>
+                                <children>
+                                    <attributepages_page>
+                                        <title>Manage Pages</title>
+                                        <sort_order>10</sort_order>
+                                        <children>
+                                            <save translate="title">
+                                                <title>Save</title>
+                                                <sort_order>0</sort_order>
+                                            </save>
+                                            <delete translate="title">
+                                                <title>Delete</title>
+                                                <sort_order>10</sort_order>
+                                            </delete>
+                                        </children>
+                                    </attributepages_page>
+                                    <attributepages_option>
+                                        <title>Manage Options</title>
+                                        <sort_order>20</sort_order>
+                                        <children>
+                                            <save translate="title">
+                                                <title>Save</title>
+                                                <sort_order>0</sort_order>
+                                            </save>
+                                            <delete translate="title">
+                                                <title>Delete</title>
+                                                <sort_order>10</sort_order>
+                                            </delete>
+                                        </children>
+                                    </attributepages_option>
+                                </children>
+                            </attributepages>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

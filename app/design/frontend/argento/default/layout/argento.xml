@@ -1,0 +1,501 @@
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/argento.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>chosen/chosen.css</name></action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>chosen/chosen.proto.js</name>
+                <param>defer</param>
+            </action>
+            <action method="addItem"><type>skin_js</type><name>js/event.simulate.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/headroom.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/iscroll-lite.js</name></action>
+
+            <action method="addCss"><stylesheet>photoswipe/photoswipe.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>photoswipe/simple-inheritance.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>photoswipe/code-photoswipe-1.0.11.min.js</name></action>
+
+            <action method="addItem"><type>skin_css</type><name>css/lib/animate.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/lib/wow.js</name></action>
+
+            <action method="addItem"><type>skin_js</type><name>js/lib/matchMedia.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/lib/matchMedia.addListener.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/lib/enquire.js</name></action>
+
+            <action method="addItem"><type>skin_js</type><name>js/lib/prototype.sticky-kit.js</name></action>
+
+            <action method="addItem"><type>skin_css</type><name>css/lib/bootstrap.css</name></action>
+
+            <action method="addItem"><type>skin_css</type><name>css/styles-ee.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/default.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/old.css</name></action>
+
+            <block type="core/text" name="fontawesome">
+                <action method="setText">
+                    <text>
+                        <![CDATA[
+<script type="text/javascript">new WOW().init();</script>
+]]>
+                    </text>
+                </action>
+            </block>
+        </reference>
+        <reference name="header">
+            <action method="unsetChild"><name>topCart</name></action>
+            <block type="checkout/cart_sidebar" name="headerCart" as="headerCart" template="checkout/cart/top.phtml">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>bundle</type><block>bundle/checkout_cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+            </block>
+        </reference>
+        <reference name="top.container">
+            <action method="unsetChild"><name>ajaxpro.top.container</name></action> <!-- removing ajaxpro default cart -->
+        </reference>
+        <reference name="top.links">
+            <action method="removeLinkByUrl"><url helper="customer/getAccountUrl"/></action> <!-- This url will be added with rel="nofollow" -->
+            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>10</position><liParams/><aParams>rel="nofollow"</aParams></action>
+        </reference>
+        <reference name="wishlist_link">
+            <action method="setAParams"><params>class="top-link-wishlist" rel="nofollow"</params></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="cms/block" name="cms_scroll_up">
+                <action method="setBlockId"><id>scroll_up</id></action>
+            </block>
+            <block type="core/text" name="sidebar_toggler">
+                <action method="setText"><text><![CDATA[
+<script type="text/javascript">
+new BlockToggler({
+    maxWidth: 480,
+    useEffect: false,
+    block: '.main-container .sidebar .block'
+});
+</script>
+                ]]></text></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="testimonials/widget_list" name="sidebar.testimonials">
+                <action method="setShowBlockDesign"><flag>1</flag></action>
+                <action method="setViewTime"><time>10000</time></action>
+                <action method="setAnimDuration"><duration>1000</duration></action>
+            </block>
+        </reference>
+        <remove name="left.permanent.callout"/>
+        <remove name="right.permanent.callout"/>
+        <remove name="cms_footer_links"/>
+    </default>
+
+    <print>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/mobile.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>chosen/chosen.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>chosen/chosen.proto.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/event.simulate.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/styles-ee.css</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/default.css</name></action>
+            <block type="argento/html_head" name="argento.head" template="argento/html/head.phtml"/>
+        </reference>
+    </print>
+
+    <catalog_category_default>
+        <update handle="page_two_columns_left"/>
+        <reference name="product_list">
+            <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+        </reference>
+        <update handle="argento_collapsed_category_description"/>
+        <update handle="argento_bottomnavbar_catalog"/>
+    </catalog_category_default>
+
+    <catalog_category_layered>
+        <update handle="page_two_columns_left"/>
+        <reference name="product_list">
+            <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+        </reference>
+        <update handle="argento_collapsed_category_description"/>
+        <update handle="argento_bottomnavbar_catalog"/>
+    </catalog_category_layered>
+
+    <argento_collapsed_category_description>
+        <reference name="category.products">
+            <block type="core/text" name="collapsed_category_description">
+                <action method="setText"><text><![CDATA[
+<script type="text/javascript">
+var categoryDescription = new CollapsedElement();
+categoryDescription.init('.category-description', {
+    maxHeight: 250,
+    height: 100
+});
+</script>
+                ]]></text></action>
+            </block>
+        </reference>
+    </argento_collapsed_category_description>
+
+    <argento_bottomnavbar_catalog>
+        <reference name="before_body_end">
+            <block type="core/text" name="catalog_bottomnavbar">
+                <action method="setText"><text><![CDATA[
+<script type="text/javascript">
+document.observe('bottomnavbar:init', function() {
+    BottomNavbar.add('.block-layered-nav .block-title span', '.block-layered-nav');
+    BottomNavbar.add(Translator.translate('Sort'), '.toolbar-bottom .sort-by');
+});
+</script>
+                ]]></text></action>
+            </block>
+        </reference>
+    </argento_bottomnavbar_catalog>
+
+    <catalog_product_view>
+        <reference name="product.info.additional">
+            <!-- removed to add before="-" magento 1.7.0.2 and ee and older -->
+            <action method="unsetChild"><name>info_tabs</name></action>
+            <action method="unsetChild"><name>product.info.tabs</name></action>
+            <action method="insert">
+                <blockName>product.info.tabs</blockName>
+                <alias>info_tabs</alias>
+            </action>
+        </reference>
+
+        <remove name="askit"/>
+        <reference name="product.info.tabs">
+            <action method="addTab" translate="title" module="askit" ifconfig="askit/general/enabled">
+                <alias>askit_tabbed</alias>
+                <title><![CDATA[Questions&nbsp;({{eval code="getCount()"}})]]></title>
+                <block>askit/discussion</block>
+                <template>tm/askit/question/list.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="alert.urls">
+            <block type="core/template" name="facebook_like_button" template="facebooklb/like.phtml"/>
+        </reference>
+
+        <reference name="related_tabbed">
+            <action method="setTemplate"><template>catalog/product/list/related.phtml</template></action>
+        </reference>
+
+        <reference name="product.info.upsell">
+            <action method="setColumnCount"><columns>4</columns></action>
+            <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+        </reference>
+
+        <reference name="upsell_products_tabbed">
+            <action method="setColumnCount"><columns>4</columns></action>
+            <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="core/text" name="product_photoswipe">
+                <action method="setText"><text><![CDATA[
+<script type="text/javascript">
+function initPhotoSwipe() {
+    var imageLinks = $$('.highslide-gallery a');
+    if (!imageLinks.length) {
+        return;
+    }
+
+    Code.photoSwipe(imageLinks);
+    imageLinks.each(function(el) {
+        el.onclick = function() { return false; }
+    });
+}
+if (document.viewport.getWidth() <= 480) {
+    if ($$('.lightbox-main-image').length) {
+        $$('.lightbox-main-image').each(function(el){
+            el.removeClassName('lightbox-main-image');
+        });
+    }
+    initPhotoSwipe();
+    ProductMediaManager.createZoom =
+        ProductMediaManager.createZoom.wrap(function(o, image) {
+            o(image);
+            setTimeout(initPhotoSwipe, 100); // update gallery indexes
+        });
+}
+</script>
+                ]]></text></action>
+            </block>
+        </reference>
+    </catalog_product_view>
+
+    <catalogsearch_advanced_index>
+        <update handle="page_one_column"/>
+    </catalogsearch_advanced_index>
+
+    <catalogsearch_advanced_result>
+        <update handle="page_one_column"/>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="sales"><title>Advanced Search Result</title></action>
+        </reference>
+        <reference name="search_result_list">
+            <block type="catalog/product_list_toolbar" name="product_list_toolbar_new" template="catalog/product/list/toolbar.phtml">
+                <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                <action method="setDefaultListPerPage"><limit>4</limit></action>
+                <action method="setDefaultGridPerPage"><limit>8</limit></action>
+                <action method="addPagerLimit"><mode>grid</mode><limit>8</limit></action>
+                <action method="addPagerLimit"><mode>grid</mode><limit>16</limit></action>
+                <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+                <action method="addPagerLimit"><mode>list</mode><limit>8</limit></action>
+                <action method="addPagerLimit"><mode>list</mode><limit>16</limit></action>
+                <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+            </block>
+            <action method="setColumnCount"><columns>4</columns></action> <!-- Magento cache enabled fix -->
+            <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+            <action method="setToolbarBlockName"><name>product_list_toolbar_new</name></action>
+        </reference>
+        <update handle="argento_bottomnavbar_catalog"/>
+    </catalogsearch_advanced_result>
+
+    <catalogsearch_result_index>
+        <update handle="page_two_columns_left"/>
+        <reference name="search_result_list">
+            <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+        </reference>
+        <update handle="argento_bottomnavbar_catalog"/>
+    </catalogsearch_result_index>
+
+    <checkout_onepage_index>
+        <update handle="short_header_footer" />
+    </checkout_onepage_index>
+
+    <cms_index_index>
+        <update handle="MAP_popup" />
+    </cms_index_index>
+
+    <customer_account>
+        <reference name="before_body_end">
+            <block type="core/text" name="customer_bottomnavbar">
+                <action method="setText"><text><![CDATA[
+<script type="text/javascript">
+document.observe('bottomnavbar:init', function() {
+    BottomNavbar.add('.block-account .block-title span', '.block-account');
+});
+</script>
+                ]]></text></action>
+            </block>
+        </reference>
+    </customer_account>
+
+    <customer_logged_out>
+        <reference name="top.links">
+            <action method="removeLinkByUrl"><url helper="customer/getLoginUrl"/></action> <!-- This url will be added with rel="nofollow" -->
+            <action method="addLink" translate="label title" module="customer"><label>Log In</label><url helper="customer/getLoginUrl"/><title>Log In</title><prepare/><urlParams/><position>100</position><liParams/><aParams>rel="nofollow"</aParams></action>
+        </reference>
+    </customer_logged_out>
+
+    <paypal_express_review>
+        <update handle="short_header_footer" />
+    </paypal_express_review>
+    <paypaluk_express_review>
+        <update handle="short_header_footer" />
+    </paypaluk_express_review>
+
+    <review_product_view>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="review"><title>Review Details</title></action>
+        </reference>
+    </review_product_view>
+
+    <short_header_footer>
+        <reference name="header">
+            <action method="setTemplate"><template>page/html/header_short.phtml</template></action>
+        </reference>
+        <reference name="footer">
+            <action method="setTemplate"><template>page/html/footer_short.phtml</template></action>
+        </reference>
+    </short_header_footer>
+
+    <empty_header>
+        <reference name="header">
+            <action method="setTemplate"><template>page/html/header_empty.phtml</template></action>
+        </reference>
+    </empty_header>
+
+    <sales_guest_form>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="sales"><title>Returns</title></action>
+        </reference>
+    </sales_guest_form>
+
+    <oauth_root_handle>
+        <update handle="short_header_footer"/>
+        <update handle="empty_header"/>
+    </oauth_root_handle>
+
+    <!-- modules -->
+    <attributepages_option_page>
+        <update handle="argento_collapsed_category_description"/>
+        <reference name="attributepage.attribute.view.before_list">
+            <action method="insert"><name>collapsed_category_description</name></action>
+        </reference>
+    </attributepages_option_page>
+
+    <firecheckout_index_index>
+        <update handle="short_header_footer" />
+    </firecheckout_index_index>
+
+    <highlight_index_index>
+        <reference name="product_list">
+            <block type="catalog/product_list_toolbar" name="product_list_toolbar_new" template="catalog/product/list/toolbar.phtml">
+                <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                <action method="setDefaultListPerPage"><limit>4</limit></action>
+                <action method="setDefaultGridPerPage"><limit>8</limit></action>
+                <action method="addPagerLimit"><mode>grid</mode><limit>8</limit></action>
+                <action method="addPagerLimit"><mode>grid</mode><limit>16</limit></action>
+                <action method="addPagerLimit"><mode>grid</mode><limit>32</limit></action>
+                <action method="addPagerLimit"><mode>list</mode><limit>8</limit></action>
+                <action method="addPagerLimit"><mode>list</mode><limit>16</limit></action>
+                <action method="addPagerLimit"><mode>list</mode><limit>32</limit></action>
+            </block>
+            <action method="setColumnCount"><columns>4</columns></action> <!-- Magento cache enabled fix -->
+            <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>4</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>3</count></action>
+            <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>3</count></action>
+            <action method="setToolbarBlockName"><name>product_list_toolbar_new</name></action>
+        </reference>
+    </highlight_index_index>
+
+    <suggestpage_index_index>
+        <reference name="suggestpage.soldtogetherorder">
+            <action method="setProductsCount"><count>4</count></action>
+            <action method="setColumnsCount"><count>4</count></action>
+        </reference>
+        <reference name="suggestpage.soldtogethercustomer">
+            <action method="setProductsCount"><count>4</count></action>
+            <action method="setColumnsCount"><count>4</count></action>
+        </reference>
+        <reference name="smartsuggest.content.default">
+            <action method="setProductsCount"><count>4</count></action>
+            <action method="setColumnCount"><count>4</count></action>
+        </reference>
+    </suggestpage_index_index>
+
+    <tm_ajaxpro_checkout_cart_add_suggestpage>
+        <reference name="suggestpage.soldtogetherorder">
+            <action method="setProductsCount"><count>3</count></action>
+            <action method="setColumnsCount"><count>3</count></action>
+        </reference>
+        <reference name="suggestpage.soldtogethercustomer">
+            <action method="setProductsCount"><count>3</count></action>
+            <action method="setColumnsCount"><count>3</count></action>
+        </reference>
+    </tm_ajaxpro_checkout_cart_add_suggestpage>
+
+    <tm_testimonials_index_new>
+        <remove name="catalog.compare.sidebar"/>
+        <remove name="left.reports.product.viewed"/>
+    </tm_testimonials_index_new>
+
+    <!-- seo -->
+    <noindex_follow>
+        <reference name="head">
+            <action method="setRobots"><meta>NOINDEX,FOLLOW</meta></action>
+        </reference>
+    </noindex_follow>
+
+    <catalog_product_compare_index>
+        <update handle="noindex_follow"/>
+    </catalog_product_compare_index>
+    <catalog_product_send>
+        <update handle="noindex_follow"/>
+    </catalog_product_send>
+    <catalogsearch_advanced_index>
+        <update handle="noindex_follow"/>
+    </catalogsearch_advanced_index>
+    <catalogsearch_advanced_result>
+        <update handle="noindex_follow"/>
+    </catalogsearch_advanced_result>
+    <catalogsearch_result_index>
+        <update handle="noindex_follow"/>
+    </catalogsearch_result_index>
+    <checkout_cart_index>
+        <update handle="noindex_follow"/>
+    </checkout_cart_index>
+    <checkout_onepage_failure>
+        <update handle="noindex_follow"/>
+    </checkout_onepage_failure>
+    <checkout_onepage_index>
+        <update handle="noindex_follow"/>
+    </checkout_onepage_index>
+    <checkout_onepage_success>
+        <update handle="noindex_follow"/>
+    </checkout_onepage_success>
+    <contacts_index_index>
+        <update handle="noindex_follow"/>
+    </contacts_index_index>
+    <customer_account>
+        <update handle="noindex_follow"/>
+    </customer_account>
+    <customer_account_forgotpassword>
+        <update handle="noindex_follow"/>
+    </customer_account_forgotpassword>
+    <customer_account_login>
+        <update handle="noindex_follow"/>
+    </customer_account_login>
+    <rss_catalog_category>
+        <update handle="noindex_follow"/>
+    </rss_catalog_category>
+    <rss_catalog_new>
+        <update handle="noindex_follow"/>
+    </rss_catalog_new>
+    <rss_catalog_notifystock>
+        <update handle="noindex_follow"/>
+    </rss_catalog_notifystock>
+    <rss_catalog_review>
+        <update handle="noindex_follow"/>
+    </rss_catalog_review>
+    <rss_catalog_salesrule>
+        <update handle="noindex_follow"/>
+    </rss_catalog_salesrule>
+    <rss_catalog_special>
+        <update handle="noindex_follow"/>
+    </rss_catalog_special>
+    <rss_catalog_tag>
+        <update handle="noindex_follow"/>
+    </rss_catalog_tag>
+    <rss_index_index>
+        <update handle="noindex_follow"/>
+    </rss_index_index>
+    <rss_index_nofeed>
+        <update handle="noindex_follow"/>
+    </rss_index_nofeed>
+    <sendfriend_product_send>
+        <update handle="noindex_follow"/>
+    </sendfriend_product_send>
+    <tag_list_index>
+        <update handle="noindex_follow"/>
+    </tag_list_index>
+    <tag_product_list>
+        <update handle="noindex_follow"/>
+    </tag_product_list>
+    <wishlist_index_index>
+        <update handle="noindex_follow"/>
+    </wishlist_index_index>
+    <wishlist_index_share>
+        <update handle="noindex_follow"/>
+    </wishlist_index_share>
+    <wishlist_shared_index>
+        <update handle="noindex_follow"/>
+    </wishlist_shared_index>
+</layout>

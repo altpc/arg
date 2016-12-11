@@ -1,0 +1,88 @@
+<script type="text/javascript">
+//<![CDATA[
+<?php echo $this->getFieldId() . 'StatusExceptionsTable' ?> = '<table class="border-off" cellpadding="0" cellspacing="0">'+
+        '<thead>'+
+        '<tr class="headings">'+
+            '<th class="type-title"><?php echo Mage::helper('catalog')->__('Matched Expression') ?> <span class="required">*</span></th>'+
+            '<th class="type-type"><?php echo Mage::helper('catalog')->__('Status') ?></th>' +
+            '<th class="type-butt last">&nbsp;</th>'+
+        '</tr>'+
+        '</thead>'+
+        '<tbody id="<?php echo $this->getFieldId() ?>_status_exception_row_{{<?php echo $this->getIdKey() ?>}}">'+
+        '</tbody>'+
+        '<tfoot>'+
+        '<tr>'+
+        '<td colspan="100" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>'+
+        '</tr>'+
+        '</tfoot>'+
+    '</table>';
+
+<?php echo $this->getFieldId() . 'StatusExceptionRow' ?> = '<tr id="<?php echo $this->getFieldId() ?>_{{<?php echo $this->getIdKey() ?>}}_status_exception_{{exception_id}}">'+
+        '<td>'+
+        '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{<?php echo $this->getIdKey() ?>}}_status_exception_{{exception_id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{<?php echo $this->getIdKey() ?>}}][is_active_exception][{{exception_id}}][is_delete]" value="">'+
+        '<input type="text" class="required-entry input-text select-type-expression" id="<?php echo $this->getFieldId() ?>_{{<?php echo $this->getIdKey() ?>}}_status_exception_{{exception_id}}_expression" name="<?php echo $this->getFieldName() ?>[{{<?php echo $this->getIdKey() ?>}}][is_active_exception][{{exception_id}}][expression]" value="{{expression}}"></td>'+
+        '<td><?php echo $this->getIsActiveSelectHtml() ?></td>' +
+        '<td class="last"><span title="Delete row"><?php echo $this->getDeleteButtonHtml() ?></span></td>'+
+    '</tr>';
+
+<?php echo $this->getFieldId() . 'StatusException' ?> = {
+    fieldId: "<?php echo $this->getFieldId() ?>",
+    idKey: "<?php echo $this->getIdKey() ?>",
+    div: "status_exception_row",
+    itemCount: 0,
+    templateSyntax: /(^|.|\r|\n)({{(\w+)}})/,
+    templateText: <?php echo $this->getFieldId() . 'StatusExceptionRow' ?>,
+    add: function(data) {
+        this.template = new Template(this.templateText, this.templateSyntax);
+
+        if (data.target || data.srcElement) { // data is Event (work in IE and Firefox)
+            element = $(Event.findElement(data, 'button'));
+            data = {};
+            data[this.idKey] = element.readAttribute('id').sub(this.fieldId + '_add_status_exception_row_button_', '');
+        }
+        data.exception_id = this.itemCount;
+
+        Element.insert($(this.fieldId + '_' + this.div + '_' + data[this.idKey]), {
+            'bottom': this.template.evaluate(data)
+        });
+
+        $A($(this.fieldId +'_'+data[this.idKey]+'_is_active_exception_'+data.exception_id+'_is_active').options).each(function(option) {
+            if (option.value == data.is_active) {
+                option.selected = true;
+            }
+        });
+
+        this.itemCount++;
+        this.bindRemoveButtons(data[this.idKey]);
+    },
+    remove: function(event) {
+        var element = $(Event.findElement(event, 'tr'));
+
+        if (element) {
+            $(element.readAttribute('id')+'_is_delete').value = '1';
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons: function(id) {
+        var buttons = $(this.fieldId+'_'+id+'_is_active_exceptions').select('.delete-status-exception-row');
+        for (var i = 0; i < buttons.length; i++) {
+            if (!$(buttons[i]).binded) {
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+    },
+    bindAddButton: function(id) {
+        var buttons = $(this.fieldId+'_'+id+'_is_active_exceptions').select('.add-status-exception-row');
+        for (var i = 0; i < buttons.length; i++) {
+            if (!$(buttons[i]).binded) {
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.add.bind(this));
+            }
+        }
+    }
+};
+//]]>
+</script>

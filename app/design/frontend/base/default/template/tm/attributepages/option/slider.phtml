@@ -1,0 +1,47 @@
+<?php
+    $_optionCollection = $this->getLoadedOptionCollection();
+?>
+
+<div class="attributepages-slider-content">
+<?php if (!$_optionCollection || !$_optionCollection->count()) : ?>
+    <p class="note-msg"><?php echo $this->__('There are no options matching the selection.') ?></p>
+<?php else: ?>
+    <?php
+        $_isImageMode    = ($this->getListingMode() == TM_Attributepages_Model_Entity::LISTING_MODE_IMAGE);
+        $_collectionSize = $_optionCollection->count();
+        $_width    = $this->getImageWidth();
+        $_height   = $this->getImageHeight();
+        $_sliderId = $this->getSliderId();
+    ?>
+    <a href="#" class="attributepages-slider-left" id="attributepages-slider-left-<?php echo $_sliderId ?>">&#x276f;</a>
+    <a href="#" class="attributepages-slider-right" id="attributepages-slider-right-<?php echo $_sliderId ?>">&#x276e;</a>
+    <div id="attributepages-slider-container-<?php echo $_sliderId ?>" class="attributepages-slider-wrapper attributepages-options">
+        <ul class="list-attributepages-slider attributepages-slider-<?php echo $_sliderId ?> <?php echo $_isImageMode ? 'mode-image' : 'mode-link' ?>">
+            <?php foreach ($_optionCollection as $_option):
+                $_optionTitle = $this->escapeHtml($_option->getTitle());
+            ?>
+            <li>
+                <?php if ($_isImageMode): ?>
+                    <a href="<?php echo $_option->getUrl() ?>" title="<?php echo $_optionTitle ?>" class="option-image">
+                        <img src="<?php echo $this->helper('attributepages/image')->init($_option, 'image')->resize($_width, $_height); ?>" alt="<?php echo $_optionTitle ?>" />
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo $_option->getUrl() ?>" title="<?php echo $_optionTitle ?>" class="option-title">
+                        <?php echo $_optionTitle ?>
+                    </a>
+                <?php endif; ?>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        new AttributePages.Slider(
+            "attributepages-slider-container-<?php echo $_sliderId ?>",
+            "attributepages-slider-left-<?php echo $_sliderId ?>",
+            "attributepages-slider-right-<?php echo $_sliderId ?>", {
+                shift: 'auto'
+            }
+        );
+    </script>
+<?php endif; ?>
+</div>

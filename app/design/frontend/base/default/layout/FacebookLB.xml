@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <catalog_product_view>
+        <reference name="head">
+            <block type="core/template" name="facebooklb_product_page_meta">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/head.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="facebooklb_button_script">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/button_script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_product_view>
+    <catalog_category_default>
+        <reference name="before_body_end">
+            <block type="core/template" name="facebook_category_products">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/category_products_like.phtml</template>
+                </action>
+            </block>
+            <block type="core/template" name="facebooklb_button_script">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/button_script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_default>
+
+    <catalogsearch_result_index>
+        <reference name="content">
+            <block type="core/template" name="facebook_search_result_script">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/search_script.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="facebooklb_category_button_script">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/button_script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalogsearch_result_index>
+
+    <catalog_category_layered>
+        <reference name="before_body_end">
+            <block type="core/template" name="facebookcategory">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/category_products_like.phtml</template>
+                </action>
+            </block>
+            <block type="core/template" name="facebooklb_search_button_script">
+                <action method="setTemplate" ifconfig="facebooklb/general/enabled">
+                    <template>facebooklb/button_script.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered>
+</layout>

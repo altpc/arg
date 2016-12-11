@@ -1,0 +1,84 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+
+<div class="top-toolbar-container">
+    <div class="top-toolbar">
+        <div class="quick-links">
+            <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
+            <?php echo $this->getChildHtml('topLinks') ?>
+        </div>
+        <?php echo $this->getChildHtml('store_language') ?>
+    </div>
+</div>
+<div class="header-container">
+    <div class="header">
+        <div class="logo-wrapper">
+            <?php $logo2x = Mage::helper('argento')->getLogo2xSrc(); ?>
+            <?php if ($this->getIsHomePage()):?>
+            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>"<?php echo $logo2x ? " srcset='{$this->getLogoSrc()} 1x, {$logo2x} 2x'" : '' ?> alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>"<?php echo $logo2x ? " srcset='{$this->getLogoSrc()} 1x, {$logo2x} 2x'" : '' ?> alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php endif?>
+        </div>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header_callout')->toHtml() ?>
+
+        <div class="mobile-togglers" id="mobile-togglers">
+            <?php
+                $menuId = 'nav';
+                $navpro = $this->getLayout()->getBlock('navigationpro.top');
+                if ($navpro && $navpro->getEnabled()) {
+                    $menuId = $navpro->getHtmlId();
+                }
+            ?>
+            <a href="javascript:void(0)" class="toggle-menu" data-menu="<?php echo $menuId ?>"><i class="fa fa-2x fa-bars"></i></a>
+            <a href="javascript:void(0)" class="toggle-quick-links"><i class="fa fa-2x fa-user"></i></a>
+            <a href="javascript:void(0)" class="toggle-search" data-el=""><i class="fa fa-2x fa-search"></i></a>
+            <a href="javascript:void(0)" class="toggle-cart"><i class="fa fa-2x fa-shopping-cart"></i></a>
+        </div>
+
+        <div class="header-content">
+            <?php $menu = $this->getChildHtml('topMenu') ?>
+            <?php if (!empty($menu)) : ?>
+                <?php echo $menu ?>
+                <script type="text/javascript">
+                document.observe('dom:loaded', function() {
+                    new MobileNavigation();
+                });
+                </script>
+            <?php endif; ?>
+            <div class="header-nav-after">
+                <?php echo $this->getChildHtml('topSearch') ?>
+                <?php echo $this->getChildHtml('headerCart') ?>
+            </div>
+        </div>
+    </div>
+
+    <?php echo $this->getChildHtml('topContainer'); ?>
+</div>

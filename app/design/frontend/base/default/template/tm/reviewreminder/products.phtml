@@ -1,0 +1,18 @@
+<?php $products = $this->getData('products'); ?>
+<table style="width: 100%;">
+    <?php foreach ($products as $product) : ?>
+        <tr>
+            <td style="border: 1px solid #ccc; text-align: center;">
+                <a href="<?php echo $product['url'] ?>" title="<?php echo $product['name'] ?>"><img src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>"></a>
+            </td>
+            <td style="border: 1px solid #ccc; vertical-align: top; padding: 10px;">
+                <div>
+                    <a href="<?php echo $product['url'] ?>" title="<?php echo $product['name'] ?>"><?php echo $product['name']; ?></a>
+                </div>
+                <div style="margin-top: 50px;">
+                    <a style="border-radius: 6px; color: #fff; background: #f3920b; padding: 10px; text-decoration: none;" href="<?php echo $this->getReviewLink($product['id'])?>#review-form" title="<?php echo $this->__('Write review') ?>"><?php echo $this->__('Write Your Own Review') ?></a>
+                </div>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

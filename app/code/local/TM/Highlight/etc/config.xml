@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_Highlight>
+            <version>2.6.0.1</version>
+        </TM_Highlight>
+    </modules>
+
+    <global>
+        <models>
+            <highlight>
+                <class>TM_Highlight_Model</class>
+                <resourceModel>highlight_resource_eav_mysql4</resourceModel>
+            </highlight>
+            <highlight_resource_eav_mysql4>
+                <class>TM_Highlight_Model_Resource_Eav_Mysql4</class>
+            </highlight_resource_eav_mysql4>
+        </models>
+        <blocks>
+            <highlight>
+                <class>TM_Highlight_Block</class>
+            </highlight>
+        </blocks>
+        <helpers>
+            <highlight>
+                <class>TM_Highlight_Helper</class>
+            </highlight>
+        </helpers>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <highlight>
+                        <type>singleton</type>
+                        <class>TM_Highlight_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </highlight>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+        <resources>
+            <tm_highlight_setup>
+                <setup>
+                    <module>TM_Highlight</module>
+                </setup>
+            </tm_highlight_setup>
+        </resources>
+    </global>
+
+    <frontend>
+        <translate>
+            <modules>
+                <TM_Highlight>
+                     <files>
+                          <default>TM_Highlight.csv</default>
+                     </files>
+                </TM_Highlight>
+            </modules>
+        </translate>
+        <layout>
+             <updates>
+                  <highlight>
+                        <file>tm/highlight.xml</file>
+                  </highlight>
+             </updates>
+        </layout>
+        <routers>
+            <highlight>
+                <use>standard</use>
+                <args>
+                    <module>TM_Highlight</module>
+                    <frontName>highlight</frontName>
+                </args>
+            </highlight>
+        </routers>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <TM_Highlight>
+                    <files>
+                        <default>TM_Highlight.csv</default>
+                    </files>
+                </TM_Highlight>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <default>
+        <highlight>
+            <pages>
+                <featured_title>Featured Products</featured_title>
+                <featured_url>highlight/featured.html</featured_url>
+
+                <onsale_title>Special Offers</onsale_title>
+                <onsale_url>highlight/onsale.html</onsale_url>
+
+                <new_title>New Products</new_title>
+                <new_url>highlight/new.html</new_url>
+
+                <bestsellers_title>Bestsellers</bestsellers_title>
+                <bestsellers_url>highlight/bestsellers.html</bestsellers_url>
+                <bestsellers_period>90</bestsellers_period>
+
+                <popular_title>Popular Products</popular_title>
+                <popular_url>highlight/popular.html</popular_url>
+                <popular_period>30</popular_period>
+            </pages>
+        </highlight>
+    </default>
+</config>

@@ -1,0 +1,36 @@
+<div class="box-collateral askit-search-block">
+    <h2>
+        <?php echo $this->__("Search on questions")?>
+    </h2>
+    <div>
+        <input type="text" class="input-text" value="" id="askit-search" autocomplete="off">
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+document.observe("dom:loaded", function (){
+
+//    var profiler = function () {
+//        console.log(arguments);
+//    }
+    $('askit-search').observe('keyup', function(event){
+        var query = event.element().getValue();
+//        console.log(value);
+//        if (2 > query.length) {
+//            return;
+//        }
+
+        $$('.askit-accordion-toggle .askit-question-text a').each(function(el){
+            var el2 = $(el).up('.askit-accordion-toggle');
+            $$('.askit-accordion-content').invoke('hide');
+            if (-1 != el.innerHTML.indexOf(query)){
+                el2.show();
+            } else {
+                el2.hide();
+            }
+        });
+    });
+});
+//]]>
+</script>

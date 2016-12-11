@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_Email>
+            <active>true</active>
+            <codePool>community</codePool>
+        </TM_Email>
+    </modules>
+</config>

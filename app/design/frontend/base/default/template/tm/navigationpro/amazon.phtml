@@ -1,0 +1,47 @@
+<?php
+/**
+ * Top menu for store
+ *
+ * @see TM_NavigationPro_Block_Navigation
+ */
+?>
+<?php
+    $_menu = $this->getHtml('level-top-off');
+    $_id   = $this->getHtmlId();
+    $_constraintEl = $this->getConstraintEl() ? $this->getConstraintEl() : "$('" . $_id . "')";
+?>
+
+<?php if ($_menu) : ?>
+<div class="nav-container">
+    <ul id="<?php echo $_id ?>" class="navpro navpro-inline <?php echo $this->getStyle() ?><?php echo $this->getIsResponsive() ? ' navpro-responsive' : '' ?> navpro-amazon <?php echo $this->getCssClass() ?>">
+        <li class="level0 nav-1 nav-li nav-style-dropdown first level-top parent">
+            <a href="#" class="nav-a relative-level1 level-top nav-a-with-toggler nav-a-level0">
+                <?php echo Mage::getStoreConfig('navigationpro/top/amazon_title') ?>
+            </a>
+            <span class="nav-toggler nav-toggler-level0 nav-dropdown-toggler"></span>
+            <div class="nav-dropdown level0">
+                <div class="nav-dropdown-inner level0">
+                    <div class="nav-column-wrapper nav1-cols">
+                        <div class="nav-column">
+                            <ul class="level1 nav-ul nav-ul-column"><?php echo $_menu ?></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+document.observe("dom:loaded", function() {
+    navPro("<?php echo $_id ?>", {
+        show_delay: 100,
+        hide_delay: 100,
+        dropdown_side: "<?php echo $this->getDropdownSide() ?>",
+        is_responsive: <?php echo (int)$this->getIsResponsive() ?>,
+        constraint_el: <?php echo $_constraintEl ?>
+    });
+});
+new accordion('<?php echo $_id ?>');
+</script>
+<?php endif ?>

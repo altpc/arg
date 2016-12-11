@@ -1,0 +1,11 @@
+<div class="footer-cms-container">
+    <div class="footer-cms">
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer')->toHtml(); ?>
+    </div>
+</div>
+<div class="footer-container">
+    <div class="footer">
+        <address><?php echo $this->getCopyright() ?></address>
+        <?php echo $this->getChildHtml() ?>
+    </div>
+</div>

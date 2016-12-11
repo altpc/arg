@@ -1,0 +1,12 @@
+<script type="text/javascript">
+//<![CDATA[
+
+document.observe("dom:loaded", function () {
+    if ('undefined' !== typeof Askit) {
+        Askit.setConfig(<?php echo Mage::helper('core')->jsonEncode(
+            Mage::getStoreConfig('askit')
+        )?>).init();
+    }
+});
+//]]>
+</script>

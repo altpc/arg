@@ -1,0 +1,45 @@
+<?php if (!Mage::getStoreConfig('askit/general/enabled')) return;
+    $_items = $this->getItems();
+    $questions = array();
+    foreach($_items as $_item) {
+        $questions[] = $_item;
+    }
+    $count = count($questions);
+?>
+
+<div class="box-collateral">
+    <?php if ($count > 1): ?>
+    <h2>
+        <?php  echo Mage::helper('askit')->__('Questions:'); ?>
+    </h2>
+    <?php endif; ?>
+    <div class="askit-product">
+        <?php echo $this->getPagerHtml() ?>
+        <?php if ($count): ?>
+            <div class="askit-question-list">
+                <?php foreach($questions as $question) {
+                    $questionView = $this->getChild('askit_question_view');
+                    if ($questionView) {
+                        echo $questionView->setQuestion($question)->toHTML();
+                    }
+                }?>
+                <div class="left">
+                    <?php echo $this->getAskitActionLink()?>
+                </div>
+            </div>
+        <?php else: ?>
+            <p class="askit-noquestion">
+                <?php echo $this->__('There are no product questions yet.'); ?>
+            </p>
+        <?php endif; ?>
+        <?php
+            $newQuestionForm = $this->getChild('askit_new_question_form');
+            if ($newQuestionForm) {
+                $newQuestionForm->setFormAction(
+                    $this->getNewQuestionFormAction()
+                );
+                echo $newQuestionForm->toHTML();
+            }
+        ?>
+    </div>
+</div>

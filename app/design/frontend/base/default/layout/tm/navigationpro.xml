@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/tm/navigationpro.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/tm/navigationpro.js</name></action>
+        </reference>
+        <reference name="top.menu">
+            <action method="unsetChild" ifconfig="navigationpro/top/enabled"><name>catalog.topnav</name></action>
+            <block type="navigationpro/navigation" name="navigationpro.top" template="tm/navigationpro/top.phtml">
+                <action method="addDataFromConfig"><path>navigationpro/top</path></action>
+
+                <action method="setTemplate" ifconfig="navigationpro/top/amazon"><path>tm/navigationpro/amazon.phtml</path></action>
+
+                <!--
+                OR
+                <action method="setDataFromConfig"><key>enabled</key><path>navigationpro/top/enabled</path></action>
+                <action method="setDataFromConfig"><key>menu_name</key><path>navigationpro/top/menu_name</path></action>
+                <action method="setDataFromConfig"><key>dropdown_side</key><path>navigationpro/top/dropdown_side</path></action>
+
+                OR
+                <action method="setEnabled"><enabled>1</enabled></action>
+                <action method="setMenuName"><name>name</name></action>
+                <action method="setIsResponsive"><flag>1</flag></action>
+                -->
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="navigationpro/navigation" name="navigationpro.left" template="tm/navigationpro/sidebar.phtml" before="-">
+                <action method="addDataFromConfig"><path>navigationpro/left</path></action>
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="navigationpro/navigation" name="navigationpro.right" template="tm/navigationpro/sidebar.phtml" before="-">
+                <action method="addDataFromConfig"><path>navigationpro/right</path></action>
+            </block>
+        </reference>
+    </default>
+
+</layout>

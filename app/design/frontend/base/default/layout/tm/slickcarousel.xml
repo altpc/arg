@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<layout>
+    <default>
+        <reference name="head">
+            <!-- Load Slick -->
+            <action method="addJs">
+                <script>tm/lib/slick/slick.js</script>
+                <params>defer</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/slick/slick.css</name>
+                <params>media="all"</params>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/slick/slick-theme.css</name>
+                <params>media="all"</params>
+            </action>
+            <!-- Extesion styles and scripts -->
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/tm/slickcarousel.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/tm/slickcarousel/slickcarousel.js</name>
+                <params>defer</params>
+            </action>
+        </reference>
+    </default>
+</layout>

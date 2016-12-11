@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="tm_ajaxsearch/general/enabled">
+                <type>skin_css</type>
+                <name>css/tm/ajaxsearch.css</name>
+            </action>
+            <action method="addItem" ifconfig="tm_ajaxsearch/general/enabled">
+                <type>skin_js</type>
+                <name>js/tm/ajaxsearch/xregexp-all.js</name>
+                <param>defer</param>
+            </action>
+            <action method="addItem" ifconfig="tm_ajaxsearch/general/enabled">
+                <type>skin_js</type>
+                <name>js/tm/ajaxsearch.js</name>
+                <param>defer</param>
+            </action>
+        </reference>
+        <reference name="top.search">
+            <action method="setTemplate" ifconfig="tm_ajaxsearch/general/enabled">
+                <template>tm/ajaxsearch/topsearch.phtml</template>
+            </action>
+            <block type="ajaxsearch/categoryList" name="ajaxsearch_category_filter" template="tm/ajaxsearch/category/combobox.phtml"/>
+        </reference>
+        <reference name="left">
+            <block type="core/template" name="left.search" as="leftSearch" before="-">
+                <action method="setTemplate" ifconfig="tm_ajaxsearch/general/enabled">
+                    <template>tm/ajaxsearch/leftsearch.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="core/template" name="right.search" as="rightSearch" before="-">
+                <action method="setTemplate" ifconfig="tm_ajaxsearch/general/enabled">
+                    <template>tm/ajaxsearch/rightsearch.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </default>
+
+<!--    <ajaxsearch_index_index>
+
+    </ajaxsearch_index_index>-->
+</layout>

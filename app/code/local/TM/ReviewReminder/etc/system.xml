@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<config>
+    <!-- Review reminder -->
+    <tabs>
+        <templates_master translate="label" module="tm_reviewreminder">
+            <label>Templates-master</label>
+            <sort_order>195</sort_order>
+        </templates_master>
+    </tabs>
+    <sections>
+        <tm_reviewreminder translate="label" module="tm_reviewreminder">
+            <label>Review Reminder</label>
+            <tab>templates_master</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1820</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="tm_reviewreminder">
+                    <label>General</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <emails_per_cron translate="label">
+                            <label>Number of emails to send per cron iteration</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </emails_per_cron>
+                        <default_status translate="label" module="tm_reviewreminder">
+                            <label>Default reminder status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>tm_reviewreminder/config_defaultStatus</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_status>
+                    </fields>
+                </general>
+                <email translate="label" module="tm_reviewreminder">
+                    <label>Email Settings</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <send_from translate="label">
+                            <label>Send email from</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </send_from>
+                        <email_subject translate="label">
+                            <label>Email subject</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Available variables: {customer_name}, {product_name} Example: Please rate {product_name}, {customer_name}</comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_subject>
+                        <email_template translate="label">
+                            <label>Email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_template>
+                        <send_after translate="label">
+                            <label>Send email after, days</label>
+                            <comment>0 - send immediately after order status changed</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </send_after>
+                        <allow_specific_order translate="label">
+                            <label>Process orders</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>tm_reviewreminder/config_specificOrders</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allow_specific_order>
+                        <specific_order translate="label">
+                            <label>Consider orders with status</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>60</sort_order>
+                            <source_model>tm_reviewreminder/config_orderStatus</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends><allow_specific_order>1</allow_specific_order></depends>
+                        </specific_order>
+                    </fields>
+                </email>
+                <initial_indexing translate="label" module="tm_reviewreminder">
+                    <label>Manual orders indexing</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <heading_indexing translate="label">
+                            <label>You can launch orders indexing after extension installation if you want to send emails for existing orders.</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading_indexing>
+                        <from_date_type translate="label">
+                            <label>Index orders created</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>tm_reviewreminder/config_dateFromType</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </from_date_type>
+                        <from_date translate="label">
+                            <label>Custom date</label>
+                            <comment>date in YYYY-MM-DD format</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><from_date_type>4</from_date_type></depends>
+                        </from_date>
+                        <store_view translate="label" module="tm_reviewreminder">
+                            <label>Index orders made in store(s)</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>tm_reviewreminder/config_store</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_view>
+                        <run_indexing translate="label">
+                            <label>Run</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>reviewreminder/adminhtml_system_config_form_runIndexing</frontend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </run_indexing>
+                    </fields>
+                </initial_indexing>
+            </groups>
+        </tm_reviewreminder>
+    </sections>
+</config>

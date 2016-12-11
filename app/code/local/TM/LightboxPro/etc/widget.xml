@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+    <lightboxpro_image type="lightboxpro/image">
+        <name>LightboxPro Image</name>
+        <description type="desc">Add image to store with Lightbox Pro(highslide)</description>
+        <parameters>
+            <path>
+                <type>lightboxpro/adminhtml_widget_image</type>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+            </path>
+            <title>
+                <label>Image title</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>1</required>
+            </title>
+            <thumbnailwidth>
+                <label>Thumbnail Width</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>150</value>
+            </thumbnailwidth>
+            <thumbnailheight>
+                <label>Thumbnail Height</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>150</value>
+            </thumbnailheight>
+        </parameters>
+    </lightboxpro_image>
+
+    <lightboxpro_html type="lightboxpro/html">
+        <name>LightboxPro Inner Html</name>
+        <description type="desc">Add Html to store with Lightbox Pro(highslide)</description>
+        <parameters>
+            <tooltip>
+                <label>Link name</label>
+                <type>text</type>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+            </tooltip>
+            <title>
+                <label>Popup caption</label>
+                <type>text</type>
+                <visible>1</visible>
+                <value></value>
+            </title>
+            <width>
+                <label>Popup width</label>
+                <description>Value in pixels. Please, do not add units at the end.</description>
+                <type>text</type>
+                <visible>1</visible>
+            </width>
+            <content>
+                <label>Content</label>
+                <type>textarea</type>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+            </content>
+        </parameters>
+    </lightboxpro_html>
+
+    <lightboxpro_gallery type="lightboxpro/gallery">
+        <name>LightboxPro Gallery</name>
+        <description type="desc">Add gallery images to store with Lightbox Pro(highslide)</description>
+        <parameters>
+            <data>
+                <label>Gallery</label>
+                <type>lightboxpro/adminhtml_widget_gallery</type>
+                <required>1</required>
+                <visible>1</visible>
+                <value></value>
+            </data>
+        </parameters>
+    </lightboxpro_gallery>
+
+</widgets>

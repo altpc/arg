@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_FacebookLB>
+            <active>true</active>
+            <codePool>community</codePool>
+            <tm_link><![CDATA[http://templates-master.com/magento-extensions/magento-facebook-like-button.html]]></tm_link>
+        </TM_FacebookLB>
+    </modules>
+</config>

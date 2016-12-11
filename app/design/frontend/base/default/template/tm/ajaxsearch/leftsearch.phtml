@@ -1,0 +1,35 @@
+<?php
+    if (!Mage::getStoreConfig('tm_ajaxsearch/general/enableleft')) {
+        return;
+    }
+    $actionUrl = $this->helper('catalogSearch')->getResultUrl();
+    $config = $this->helper('ajaxsearch')->getConfigAsJsonString();
+?>
+<div class="block mini-search-left">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Search') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <form id="search_mini_form-left" action="<?php echo $actionUrl;?>" method="get" data-config='<?php echo $config;?>'>
+            <ul class="form-list">
+                <li>
+                    <div class="mini-search">
+                        <?php
+                            $searchFieldText = Mage::getStoreConfig('tm_ajaxsearch/general/searchfieldtext');
+                            $queryText = Mage::helper('catalogsearch')->getEscapedQueryText();
+                            if (!empty($queryText)) {
+                                $searchFieldText = $queryText;
+                            }
+                        ?>
+                        <input id="search-left" type="text" class="input-text" name="<?php echo $this->helper('catalogSearch')->getQueryParamName() ?>" value="<?php echo $searchFieldText; ?>" />
+                        <div id="search-leftajaxico" class=""></div>
+                        <button type="button" class="button">
+                            <span><span><?php echo $this->__('Go') ?></span></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <p><a href="<?php echo $this->getUrl('catalogsearch/advanced/'); ?>"><?php echo $this->__('Advanced search') ?></a></p>
+    </div>
+</div>

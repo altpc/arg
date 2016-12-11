@@ -1,0 +1,35 @@
+<?php
+$onclick = '';
+$options = '\'\'';
+if ($this->getTarget() == 'popup') {
+    $options = '\'width=600,height=400\'';
+}
+if ($this->getTarget() != 'self') {
+    $onclick = 'onclick="return !window.open(this.href, \'easybanners'.$this->getBannerId().'\', '.$options.')"';
+}
+
+$height = $this->getHeight();
+$width  = $this->getWidth();
+?>
+
+<a class="easybanner-image-link" rel="nofollow" href="<?php echo $this->getUrl() . $this->getBannerUrl() ?>" title="<?php echo $this->getTitle() ?>" <?php echo $onclick ?>>
+<?php if(!$this->getResizeImage()): ?>
+    <?php
+    $style = '';
+    if (!empty($width)):
+        $style = 'width: ' . $width . 'px';
+    elseif (!empty($height)):
+        $style = 'height: ' . $height . 'px';
+    endif;
+    ?>
+    <img src="<?php echo $this->getImage() ?>" style="<?php echo $style ?>" alt="<?php echo $this->htmlEscape($this->getTitle()) ?>" />
+<?php else: ?>
+    <img src="<?php echo $this->resizeImage($width, $height) ?>"
+    <?php if ($this->getRetinaSupport()) : ?>
+        srcset="<?php echo $this->resizeImage($width, $height) ?> 1x, <?php echo $this->resizeImage($width * 2, $height * 2) ?> 2x"
+    <?php endif ?>
+        width="<?php echo $width ?>"<?php echo $height ? " height='$height'" : '' ?>
+        alt="<?php echo $this->htmlEscape($this->getTitle()) ?>"
+    />
+<?php endif; ?>
+</a>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <placeholders>
+        <easybanner_placeholder>
+            <block>easybanner/placeholder</block>
+            <placeholder>EASYBANNER_PLACEHOLDER</placeholder>
+            <container>TM_EasyBanner_Model_Enterprise_PageCache_Container_Placeholder</container>
+        </easybanner_placeholder>
+        <easybanner_banner>
+            <block>easybanner/banner</block>
+            <placeholder>EASYBANNER_BANNER</placeholder>
+            <container>TM_EasyBanner_Model_Enterprise_PageCache_Container_Banner</container>
+        </easybanner_banner>
+        <easybanner_widget_placeholder>
+            <block>easybanner/widget_placeholder</block>
+            <placeholder>EASYBANNER_WIDGET_PLACEHOLDER</placeholder>
+            <container>TM_EasyBanner_Model_Enterprise_PageCache_Container_Placeholder</container>
+        </easybanner_widget_placeholder>
+        <easybanner_widget_banner>
+            <block>easybanner/widget_banner</block>
+            <placeholder>EASYBANNER_WIDGET_BANNER</placeholder>
+            <container>TM_EasyBanner_Model_Enterprise_PageCache_Container_Banner</container>
+        </easybanner_widget_banner>
+    </placeholders>
+</config>

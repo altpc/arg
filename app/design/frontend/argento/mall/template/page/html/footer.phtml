@@ -1,0 +1,22 @@
+<div class="footer-cms-container">
+    <div class="footer-cms">
+        <div class="col3-set">
+            <div class="col-1">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>
+            </div>
+            <div class="col-2">
+                <?php echo $this->getChildHtml('footer.product.viewed') ?>
+            </div>
+            <div class="col-3">
+                <?php echo $this->getChildHtml('footer.seo.searchterm') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-container">
+    <div class="footer">
+        <?php echo $this->getChildHtml('footer_links') ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_contacts')->toHtml(); ?>
+        <address><?php echo $this->getCopyright() ?></address>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<?php
+    $slider = $this->getSlider();
+    if (!$slides = $slider->getSlides()) {
+        return;
+    }
+    $width  = $slider['width'];
+    $height = $slider['height'];
+?>
+<div class="easyslideslider-id" id="slider-<?php echo $slider['easyslide_id'];?>" style='position: relative; <?php echo "width:".$width."px; height:".$height."px"; ?>' data-config='<?php echo $this->getPrototypeSliderConfig()?>'>
+    <div class="scroller" style='<?php echo "width:".$width."px; height:".$height."px"; ?>'>
+        <div class="content">
+        <?php $i = 0; foreach ($slides as $slide): ?>
+            <?php $image_src = $this->getSlideImageUrl($slide['url']);?>
+            <div class="section" id="section<?php echo ++$i ?>" style="width:<?php echo $width ?>px; height:<?php echo $height ?>px; <?php echo $i>1 ? 'display: none;' : ''; ?>">
+                <a href="<?php echo $slide['target'] ?>" class="easyslide-link <?php echo $this->getSlideClassName($slide) ?>">
+                    <img src="<?php echo $image_src; ?>" alt="<?php echo $this->escapeHtml($slide['image']) ?>"/>
+                </a>
+                <?php if (!empty($slide['description'])) : ?>
+                    <div class="easyslide-description <?php echo $this->getDescriptionClassName($slide['desc_pos']); ?> <?php echo $this->getBackgroundClassName($slide['background']); ?>"><?php echo $this->filterDescription($slide['description']) ?></div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="easyslide-controls-wrapper controls-<?php echo $slider->getControlsType() ?>">
+        <div class="easyslide-controls">
+        <?php if ($slider->getControlsType() == 'number'):
+            for ($i = 0; $i < count($slides); $i++):
+                echo '<a href="#section'.($i+1).'" title="Slide '.($i+1).'" class="easyslide-num">'.($i+1).'</a>';
+            endfor;
+        else: ?>
+            <a href="#" class="easyslideprev" title="Previous"></a>
+            <a href="#" class="easyslidestop" title="Stop"></a>
+            <a href="#" class="easyslideplay" title="Play"></a>
+            <a href="#" class="easyslidenext" title="Next"></a>
+        <?php endif; ?>
+        </div>
+    </div>
+</div>

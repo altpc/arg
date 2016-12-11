@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <TM_ArgentoPure2>
+            <version>1.0.3</version>
+        </TM_ArgentoPure2>
+    </modules>
+    <default>
+        <argento>
+            <css_selector>
+                <layout-container>.top-toolbar, .header, .top-container, .main, .footer, .footer-toolbar, .footer-cms, .container</layout-container>
+
+                <header-container>.header-container, .header-container #search_mini_form.active .form-search</header-container>
+
+                <top-level-link-hover>.nav-container .navpro li a.nav-a:hover, .nav-container .navpro li .nav-sibling-title a:hover, .nav-container .navpro .over > a.level-top, .nav-container .navpro .over > div.level-top a</top-level-link-hover>
+                <top-level-link-active>.nav-container .navpro .active > a.level-top, .nav-container .navpro .active > div.level-top a, #nav li.active a.level-top:hover, #nav li.active a.level-top.over, .nav-container .navpro li.active a.level-top:hover, .nav-container .navpro li.active a.level-top.over</top-level-link-active>
+                <top-level-link-active-span>.nav-container .navpro li.active a.level-top span, .nav-container .navpro li.active div.level-top a span</top-level-link-active-span>
+
+                <button-product-view>.product-view .product-shop .btn-cart span, .amazonstyle-checkboxes .btn-cart span, button.btn-checkout span</button-product-view>
+                <button-product-view-hover>.product-view .product-shop .btn-cart:hover span, .amazonstyle-checkboxes .btn-cart:hover span, button.btn-checkout:hover span</button-product-view-hover>
+
+                <big-title>.page-title h1, .page-title h2, .hero .block-title span, .sidebar .block-title, .product-name h1, .product-collateral .h2, .product-collateral h2, .box-collateral .h2, .box-collateral h2, .cart .crosssell h2, .suggestpage-index-index h2</big-title>
+                <product-big-title>.product-collateral .h2, .product-collateral h2</product-big-title>
+                <sidebar-title>.sidebar .block-title</sidebar-title>
+
+                <tab>.easytabs li</tab>
+                <tab-text>.easytabs li .easytabs-a</tab-text>
+                <tab-hover>.easytabs li:hover</tab-hover>
+                <tab-hover-text>.easytabs li:hover .easytabs-a</tab-hover-text>
+                <tab-active>.easytabs li.active</tab-active>
+                <tab-active-text>.easytabs li.active .easytabs-a, .easytabs li.active .easytabs-a:hover</tab-active-text>
+                <tab-active-border>.easytabs li.active, .easytabs-content</tab-active-border>
+                <tab-active-text-border>.easytabs li.active .easytabs-a, .easytabs li.active .easytabs-a:hover, .easytabs-content, .easytabs-content-wrapper</tab-active-text-border>
+            </css_selector>
+        </argento>
+        <argento_pure2>
+            <layout>
+                <sticky_header>1</sticky_header>
+                <sticky_sidebar>1</sticky_sidebar>
+                <page_max-width>100%</page_max-width>
+                <layout-container_width>100%</layout-container_width>
+                <layout-container_max-width>1024px</layout-container_max-width>
+            </layout>
+            <background>
+                <body_background-color>#fff</body_background-color>
+                <body_background-image>none</body_background-image>
+                <body_background-repeat>repeat</body_background-repeat>
+                <body_background-position>0px,0px</body_background-position>
+
+                <top-toolbar-container_background-color>#000</top-toolbar-container_background-color>
+                <top-toolbar-container_background-image>none</top-toolbar-container_background-image>
+                <top-toolbar-container_background-repeat>repeat</top-toolbar-container_background-repeat>
+                <top-toolbar-container_background-position>0px,0px</top-toolbar-container_background-position>
+
+                <header-container_background-color>#fff</header-container_background-color>
+                <header-container_background-image>none</header-container_background-image>
+                <header-container_background-repeat>no-repeat</header-container_background-repeat>
+                <header-container_background-position>0px,0px</header-container_background-position>
+
+                <content-container_background-color>#fff</content-container_background-color>
+                <content-container_background-image>none</content-container_background-image>
+                <content-container_background-repeat>no-repeat</content-container_background-repeat>
+                <content-container_background-position>0px,0px</content-container_background-position>
+
+                <main-content_background-color>#fff</main-content_background-color>
+                <main-content_background-image>none</main-content_background-image>
+                <main-content_background-repeat>no-repeat</main-content_background-repeat>
+                <main-content_background-position>0px,0px</main-content_background-position>
+
+                <footer-container_background-color>#FFF</footer-container_background-color>
+                <footer-container_background-image>none</footer-container_background-image>
+                <footer-container_background-repeat>repeat</footer-container_background-repeat>
+                <footer-container_background-position>0px,0px</footer-container_background-position>
+            </background>
+            <top_navigation>
+                <top-level-link_font-family>"Noto Sans",sans-serif</top-level-link_font-family>
+                <top-level-link_font-size>15px</top-level-link_font-size>
+                <top-level-link_text-transform>uppercase</top-level-link_text-transform>
+                <top-level-link_color>#737373</top-level-link_color>
+                <top-level-link-hover_color>#000000</top-level-link-hover_color>
+                <top-level-link-active_color>#000000</top-level-link-active_color>
+
+                <low-level-link-text_font-family>Arial,Helvetica,sans-serif</low-level-link-text_font-family>
+                <low-level-link-text_font-size>13px</low-level-link-text_font-size>
+                <low-level-link-text_text-transform>none</low-level-link-text_text-transform>
+                <low-level-link_color>#737373</low-level-link_color>
+                <low-level-link-hover_color>#000000</low-level-link-hover_color>
+                <low-level-link-active_color>#000000</low-level-link-active_color>
+            </top_navigation>
+            <mobile_navigation>
+                <mobile-top-level-link_font-family>Verdana,Geneva,Arial,Helvetica,sans-serif</mobile-top-level-link_font-family>
+                <mobile-top-level-link_font-size>18px</mobile-top-level-link_font-size>
+                <mobile-top-level-link_text-transform>none</mobile-top-level-link_text-transform>
+                <mobile-top-level-link_color>#737373</mobile-top-level-link_color>
+                <mobile-top-level-link-active_color>#000</mobile-top-level-link-active_color>
+
+                <mobile-low-level-link_font-family>Verdana,Geneva,Arial,Helvetica,sans-serif</mobile-low-level-link_font-family>
+                <mobile-low-level-link_font-size>18px</mobile-low-level-link_font-size>
+                <mobile-low-level-link_text-transform>none</mobile-low-level-link_text-transform>
+                <mobile-low-level-link_background-color>#fff</mobile-low-level-link_background-color>
+                <mobile-low-level-link-hover_background-color>#FFF</mobile-low-level-link-hover_background-color>
+                <mobile-low-level-link-active_background-color>#fff</mobile-low-level-link-active_background-color>
+                <mobile-low-level-link_color>#000</mobile-low-level-link_color>
+                <mobile-low-level-link-active_color>#a5205f</mobile-low-level-link-active_color>
+            </mobile_navigation>
+            <button>
+                <button_border-color>#a5205f</button_border-color>
+                <button_background-color>transparent</button_background-color>
+                <button-hover_background-color>#a5205f</button-hover_background-color>
+                <button_color>#a5205f</button_color>
+                <button-hover_color>#ffffff</button-hover_color>
+
+                <button-alt_border-color>#000</button-alt_border-color>
+                <button-alt_background-color>transparent</button-alt_background-color>
+                <button-alt-hover_background-color>#000</button-alt-hover_background-color>
+                <button-alt_color>#000</button-alt_color>
+                <button-alt-hover_color>#ffffff</button-alt-hover_color>
+
+                <button-product-view_border-color>#a5205f</button-product-view_border-color>
+                <button-product-view_background-color>#a5205f</button-product-view_background-color>
+                <button-product-view-hover_background-color>#a5205f</button-product-view-hover_background-color>
+                <button-product-view_color>#ffffff</button-product-view_color>
+                <button-product-view-hover_color>#ffffff</button-product-view-hover_color>
+            </button>
+            <tabs>
+                <tab-text_font-family>Arial,Helvetica,Tahoma,sans-serif</tab-text_font-family>
+                <tab-text_font-size>14px</tab-text_font-size>
+                <tab-text_font-weight>bold</tab-text_font-weight>
+                <tab-text_text-transform>none</tab-text_text-transform>
+                <tab-text_background-color>#f5f5f5</tab-text_background-color>
+                <tab-text_color>#777</tab-text_color>
+                <tab-text_border-color>#f5f5f5</tab-text_border-color>
+
+                <tab-hover-text_background-color>#fbfbfb</tab-hover-text_background-color>
+                <tab-hover-text_color>#555</tab-hover-text_color>
+                <tab-hover-text_border-color>#fbfbfb</tab-hover-text_border-color>
+
+                <tab-active-text_background-color>#fff</tab-active-text_background-color>
+                <tab-active-text_color>#000</tab-active-text_color>
+                <tab-active-text-border_border-color>#ccc</tab-active-text-border_border-color>
+            </tabs>
+            <font>
+                <head_link><![CDATA[
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+]]></head_link>
+                <big-title_font-family>'Noto Sans', sans-serif;</big-title_font-family>
+                <big-title_font-size>25px</big-title_font-size>
+                <big-title_text-transform>uppercase</big-title_text-transform>
+
+                <product-big-title_font-size>16px</product-big-title_font-size>
+
+                <sidebar-title_font-size>15px</sidebar-title_font-size>
+            </font>
+        </argento_pure2>
+    </default>
+</config>

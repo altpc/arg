@@ -1,0 +1,37 @@
+<?php
+$testimonials = $this->getTestimonials();
+if (!count($testimonials)) {
+    return;
+}
+?>
+
+<div id="testimonialsList" class="block block-testimonials <?php if (!$this->getShowBlockDesign()):?>empty-design<?php endif; ?>" data-widget-config='<?php echo $this->getWidgetConfig();?>'>
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Testimonials') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <div class="testimonial-container">
+            <?php $itemId = 0; ?>
+            <?php foreach ($testimonials as $testimonial): ?>
+                <?php Mage::helper('testimonials')->escapeTetimonial($testimonial); ?>
+                <div id="testimonial_<?php echo $itemId ?>" class="content"
+                <?php if ($itemId > 0): ?> style="display: none;"<?php endif ?>>
+                    <div class="content-wrapper ratings-table">
+                        <?php if ($testimonial->getRating()): ?>
+                            <div class="rating-title"><?php echo $this->__('Rating: ') ?></div>
+                            <div class="rating-box"><div class="rating" style="width: <?php echo $testimonial->getRating() / 5 * 100 ?>%;"></div></div>
+                        <?php endif ?>
+                        <div class="message"><?php echo $testimonial->getMessage(); ?></div>
+                    </div>
+                    <div class="name"><?php echo $testimonial->getName(); ?></div>
+                    <a class="read-more" href="#"><?php echo $this->__('Read more') ?></a>
+                    <a class="read-less" href="#" style="display: none;"><?php echo $this->__('Read less') ?></a>
+                </div>
+                <?php ++$itemId; ?>
+            <?php endforeach; ?>
+        </div>
+        <div class="actions">
+            <a href="<?php echo $this->getUrl('testimonials') ?>"><?php echo $this->__('View all testimonials') ?></a>
+        </div>
+    </div>
+</div>
