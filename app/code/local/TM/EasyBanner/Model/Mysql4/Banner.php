@@ -190,4 +190,38 @@ class TM_EasyBanner_Model_Mysql4_Banner extends Mage_Core_Model_Mysql4_Abstract
     {
         return preg_match('/^[a-z0-9][a-z0-9_\/-]+(\.[a-z0-9_-]+)?$/', $object->getData('identifier'));
     }
+
+    /**
+     * Perform operations after object load
+     *
+     * @param Mage_Core_Model_Abstract $object
+     * @return TM_EasyBanner_Model_Mysql4_Banner
+     */
+    protected function _afterLoad(Mage_Core_Model_Abstract $object)
+    {
+        if ($object->getId()) {
+            // get stores assigned to deal
+            $stores = $this->lookupStoreIds($object->getId());
+            $object->setData('store_id', $stores);
+        }
+        switch ($object->getMode()) {
+            case 'image':
+                $imgSrc = Mage::getBaseUrl('media')
+                    . Mage::getStoreConfig('easybanner/general/image_folder')
+                    . '/'
+                    . $object->getImage();
+                $object->setContent(array('image' => $imgSrc));
+                break;
+            case 'html':
+                $htmlString = substr($object->getHtml(), 0, 200);
+                if (strlen($object->getHtml()) > 200) {
+                    $htmlString .= '...';
+                }
+                $object->setContent($htmlString);
+                break;
+        }
+
+        return parent::_afterLoad($object);
+    }
+
 }

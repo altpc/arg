@@ -56,7 +56,15 @@
                     <td>
                         <dl class="order-info">
                             <dt><?php echo Mage::helper('downloadable')->__('Title') ?></dt>
-                            <dd><?php echo $this->htmlEscape($_item->getPurchased()->getProductName()) ?> - <a href="<?php echo $this->getDownloadUrl($_item) ?>" title="<?php echo Mage::helper('downloadable')->__('Start Download') ?>" <?php echo $this->getIsOpenInNewWindow()?'onclick="this.target=\'_blank\'"':''; ?>><?php echo $_item->getLinkTitle() ?></a></dd>
+                            <dd>
+                                <?php echo $this->htmlEscape($_item->getPurchased()->getProductName()) ?> -
+                                <a href="<?php echo $this->getDownloadUrl($_item) ?>"
+                                    class="link-download"
+                                    title="<?php echo Mage::helper('downloadable')->__('Start Download') ?>"
+                                    <?php echo $this->getIsOpenInNewWindow()?'onclick="this.target=\'_blank\'"':''; ?>
+                                ><?php echo $_item->getLinkTitle() ?></a>
+                                <i class="fa fa-lg fa-download"></i>
+                            </dd>
                             <dt><?php echo Mage::helper('downloadable')->__('Status') ?></dt>
                             <dd><?php echo Mage::helper('downloadable')->__(ucfirst($_item->getStatus())) ?></dd>
                             <dt><?php echo Mage::helper('downloadable')->__('Remaining Downloads') ?></dt>

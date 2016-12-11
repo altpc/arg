@@ -59,7 +59,7 @@ abstract class TM_ProLabels_Block_Content_Abstract
 
         $tooltip = '';
         if ($tooltipText != '') {
-            $tooltip = sprintf('<span class="tooltip-label">%s</span>', $tooltipText);
+            $tooltip = sprintf('<span class="tooltip-label" style="display: none;">%s</span>', $tooltipText);
         }
 
         $aHref = '';

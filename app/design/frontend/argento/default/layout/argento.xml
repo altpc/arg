@@ -403,7 +403,11 @@ document.observe('bottomnavbar:init', function() {
     </tm_ajaxpro_checkout_cart_add_suggestpage>
 
     <tm_testimonials_index_new>
-        <remove name="catalog.compare.sidebar"/>
+        <reference name="left">
+            <action method="unsetChild">
+                <name>catalog.compare.sidebar</name>
+            </action>
+        </reference>
         <remove name="left.reports.product.viewed"/>
     </tm_testimonials_index_new>
 

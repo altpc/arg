@@ -782,7 +782,7 @@ class TM_ProLabels_Helper_Data extends Mage_Core_Helper_Abstract
         }
         $style = "style='width:auto;height:auto;'";
         $text = '';
-        return "<a href='{$url}' alt='{$productName}' {$style}>$text";
+        return "<a href='{$url}' title='{$productName}' {$style}>$text";
     }
 
     protected function _getProductUrl(Mage_Catalog_Model_Product $product, $imgPath, $mode, $data)

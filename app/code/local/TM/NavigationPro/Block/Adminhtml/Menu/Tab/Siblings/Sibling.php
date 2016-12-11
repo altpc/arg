@@ -82,12 +82,12 @@ class TM_NavigationPro_Block_Adminhtml_Menu_Tab_Siblings_Sibling extends Mage_Ad
             $this->setItemCount($sibling->getId());
             $sibling->setItemCount($this->getItemCount());
 
-             $textFields = array(
+            $textFields = array(
                 'content', 'dropdown_content', 'sort_order', 'dropdown_styles'
             );
             foreach ($textFields as $field) {
                 $sibling->setData(
-                    $field, $this->escapeHtml($sibling->getData($field))
+                    $field, htmlspecialchars($sibling->getData($field), ENT_COMPAT)
                 );
             }
         }

@@ -75,9 +75,10 @@ class TM_Argento_Block_Html_Head extends Mage_Core_Block_Template
      *  media/[package]/[theme]/[website]_backend.css
      *  media/[package]/[theme]/0_backend.css
      *
+     * @param string $pathType - 'url' or 'path'
      * @return string of false
      */
-    public function getBackendCss()
+    public function getBackendCss($pathType = 'url')
     {
         $design      = Mage::getDesign();
         $theme       = $design->getPackageName() . '_' . $design->getTheme('template');
@@ -94,6 +95,11 @@ class TM_Argento_Block_Html_Head extends Mage_Core_Block_Template
 
             $filePath = $css->getFilePath($_args[0], $_args[1], $_args[2]);
             if (file_exists($mediaDir . DS . $filePath)) {
+
+                if ($pathType == 'path') {
+                    return $mediaDir . DS . $filePath;
+                }
+
                 $isSecure = $this->getRequest()->isSecure();
                 $url = rtrim(Mage::getBaseUrl('media', $isSecure), '/')
                     . '/'
@@ -108,6 +114,7 @@ class TM_Argento_Block_Html_Head extends Mage_Core_Block_Template
                     array('backend_css' => $objectBackendCss)
                 );
                 return $objectBackendCss->getUrl();
+
             }
 
         }

@@ -16,6 +16,7 @@ class TM_AjaxPro_Block_Product_List extends TM_AjaxPro_Block_Product_List_Abstra
         }
         // tm_ajaxpro_catalog_product_view handle
         $block->addItem('js', 'varien/product.js')
+            ->addItem('js', 'varien/product_options.js') // mage 1.9.3 integration
             ->addItem('skin_js', 'js/bundle.js')
             ->addItem('js_css', 'calendar/calendar-win2k-1.css')
             ->addItem('js', 'calendar/calendar.js')

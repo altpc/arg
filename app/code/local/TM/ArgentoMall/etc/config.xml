@@ -10,7 +10,7 @@
             <layout>
                 <page_max-width>100%</page_max-width>
                 <layout-container_width>100%</layout-container_width>
-                <layout-container_max-width>945px</layout-container_max-width>
+                <layout-container_max-width>935px</layout-container_max-width>
             </layout>
             <background>
                 <body_background-color>#fff</body_background-color>

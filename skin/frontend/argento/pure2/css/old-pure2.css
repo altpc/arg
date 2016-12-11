@@ -1,0 +1,12 @@
+.cms-index-index .main { padding: 0; }
+.footer address { clear: both; }
+.footer-links-info { float: right; width: 50%; }
+.footer .links { float: none; width: auto; }
+.footer .links li { float: left; }
+.footer-cms .footer-phone { font-size: 2em; }
+
+@media (max-width: 768px) {
+    .footer-links-info { width: 100%; }
+    .footer-links-info,
+    .footer .links { float: none; }
+}

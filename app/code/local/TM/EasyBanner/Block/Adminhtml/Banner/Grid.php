@@ -68,64 +68,74 @@ class TM_EasyBanner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Block_Wid
     protected function _prepareColumns()
     {
         $this->addColumn('banner_id', array(
-            'header'    => Mage::helper('easybanner')->__('ID'),
-            'align'     =>'right',
-            'width'     => '50px',
+            'header'    => $this->__('ID'),
             'index'     => 'banner_id',
             'type'      => 'number'
         ));
 
         $this->addColumn('identifier', array(
-            'header'    => Mage::helper('easybanner')->__('Name'),
-            'align'     =>'left',
+            'header'    => $this->__('Name'),
             'index'     => 'identifier'
         ));
 
         $this->addColumn('display_count', array(
-            'header'    => Mage::helper('easybanner')->__('Display Count'),
-            'align'     => 'left',
-            'width'     => '130px',
+            'header'    => $this->__('Display Count'),
             'default'   => '--',
             'type'      => 'number',
             'index'     => 'display_count'
         ));
 
         $this->addColumn('clicks_count', array(
-            'header'    => Mage::helper('easybanner')->__('Clicks Count'),
-            'align'     => 'left',
-            'width'     => '130px',
+            'header'    => $this->__('Clicks Count'),
             'default'   => '--',
             'type'      => 'number',
             'index'     => 'clicks_count'
         ));
 
         $this->addColumn('placeholder', array(
-            'header'    => Mage::helper('easybanner')->__('Placeholder'),
-            'align'     => 'left',
-            'width'     => '200px',
+            'header'    => $this->__('Placeholder'),
             'default'   => '--',
             'index'     => 'placeholder',
             'sortable'  => false
         ));
 
         $this->addColumn('sort_order', array(
-            'header'    => Mage::helper('easybanner')->__('Sort order'),
-            'align'     => 'left',
-            'width'     => '200px',
+            'header'    => $this->__('Sort order'),
             'index'     => 'sort_order',
             'type'      => 'number'
         ));
 
+        if (!Mage::app()->isSingleStoreMode()) {
+            $this->addColumn('store_id', array(
+                'header'     => $this->__('Store View'),
+                'index'      => 'store_id',
+                'type'       => 'store',
+                'store_all'  => true,
+                'store_view' => true,
+                'sortable'   => false,
+                'filter_condition_callback'
+                                => array($this, '_filterStoreCondition'),
+            ));
+        }
+
         $this->addColumn('status', array(
-            'header'    => Mage::helper('easybanner')->__('Status'),
-            'align'     => 'left',
-            'width'     => '80px',
+            'header'    => $this->__('Status'),
             'index'     => 'status',
             'type'      => 'options',
             'options'   => array(
                 1 => 'Enabled',
                 0 => 'Disabled'
             )
+        ));
+
+        $this->addColumn('content', array(
+            'header'    => $this->__('Content'),
+            'index'     => 'content',
+            'width'     => '400',
+            'renderer'  => 'easybanner/adminhtml_widget_grid_column_renderer_content',
+            'image_css' => 'max-height: 50px; max-width: 400px',
+            'filter'    => false,
+            'sortable'  => false
         ));
 
         return parent::_prepareColumns();
@@ -140,4 +150,19 @@ class TM_EasyBanner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Block_Wid
     {
         return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
+
+    protected function _filterStoreCondition($collection, $column)
+    {
+        if (!$value = $column->getFilter()->getValue()) {
+            return;
+        }
+        $this->getCollection()->addStoreFilter($value);
+    }
+
+    protected function _afterLoadCollection()
+    {
+        $this->getCollection()->walk('afterLoad');
+        parent::_afterLoadCollection();
+    }
+
 }

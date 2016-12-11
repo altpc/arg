@@ -22,6 +22,15 @@ class TM_ReviewReminder_Block_Adminhtml_Page_Edit_Tab_Main
         } else {
             $isElementDisabled = true;
         }
+        $fieldset->addField('increment_id', 'note', array(
+            'label'     => Mage::helper('customer')->__('Order #'),
+            'text'      => '<a href="' .
+                $this->getUrl(
+                    'adminhtml/sales_order/view',
+                    array('order_id' => $model->getOrderId())
+                ) . '" onclick="this.target=\'blank\'">' .
+                $model->getIncrementId() . '</a>'
+        ));
         $fieldset->addField('fullname', 'label', array(
             'name'    => 'fullname',
             'label'    => Mage::helper('adminhtml')->__('Customer Name'),

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TM_SoldTogether>
-            <version>1.4.1</version>
+            <version>1.4.2</version>
             <depends>
                 <Mage_Catalog />
                 <Mage_Sales />
@@ -133,6 +133,14 @@
                     </soldtogether_observer>
                 </observers>
             </checkoutsuccess_get_mockup_blocks_array_after>
+            <adminhtml_init_system_config>
+                <observers>
+                    <soldtogether_observer>
+                        <class>soldtogether/observer</class>
+                        <method>appendCheckoutsuccessConfig</method>
+                    </soldtogether_observer>
+                </observers>
+            </adminhtml_init_system_config>
         </events>
     </adminhtml>
 

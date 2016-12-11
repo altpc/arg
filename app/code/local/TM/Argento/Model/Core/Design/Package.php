@@ -108,4 +108,49 @@ class TM_Argento_Model_Core_Design_Package extends TM_Argento_Model_Core_Design_
     //     Varien_Profiler::stop(__METHOD__);
     //     return $result;
     // }
+
+    /**
+     * (OVERRIDE PARENT METHOD - include argento backend css)
+     * Merge specified css files and return URL to the merged file on success
+     *
+     * @param $files
+     * @return string
+     */
+    public function getMergedCssUrl($files)
+    {
+
+        $backendCss = '';
+
+        $includeBackendCss = false;
+        foreach ($files as $key => $src) {
+            if (strstr($src, 'skin/frontend/argento/default/css/default.css')) {
+                $includeBackendCss = true;
+                break;
+            }
+        }
+
+        if ($includeBackendCss) {
+            // try to get backend css file
+            // get argento header block from layout
+            $layout = Mage::app()->getLayout();
+            if ($layout && $argentHead = $layout->getBlock('argento.head')) {
+                $backendCss = $argentHead->getBackendCss('path');
+            }
+        }
+
+        if ($backendCss) {
+            array_push($files, $backendCss);
+        }
+
+        // call original method
+        $originalResponse = parent::getMergedCssUrl($files);
+
+        if ($originalResponse && $backendCss) {
+            $argentHead->setCssMerged(true);
+        }
+
+        return $originalResponse;
+
+    }
+
 }

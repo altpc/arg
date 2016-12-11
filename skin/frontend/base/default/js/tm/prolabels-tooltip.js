@@ -14,6 +14,8 @@ ProLabelsTooltip.prototype = {
             tooltipMargin = '-' + labelWidth + 'px';
             tooltip.setStyle(self.styles);
             tooltip.setStyle({marginLeft: tooltipMargin});
+            tooltip.setStyle({display: ''});
+            tooltip.up('a.tt-gplus').removeAttribute('title');
         });
     },
 

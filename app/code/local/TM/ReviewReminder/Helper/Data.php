@@ -32,6 +32,12 @@ class TM_ReviewReminder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     const XML_PATH_DEFAULT_STATUS = 'tm_reviewreminder/general/default_status';
     /**
+     * Path to store config enable reminders for guests
+     *
+     * @var string
+     */
+    const XML_PATH_GUEST_ENABLE = 'tm_reviewreminder/general/send_for_guests';
+    /**
      * Path to store config process orders
      *
      * @var string
@@ -76,6 +82,16 @@ class TM_ReviewReminder_Helper_Data extends Mage_Core_Helper_Abstract
     public function isEnabled($store = null)
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_ENABLED, $store);
+    }
+    /**
+     * Checks whether reminders are enabled for guests
+     *
+     * @param integer|string|Mage_Core_Model_Store $store
+     * @return boolean
+     */
+    public function isEnabledForGuests($store = null)
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_GUEST_ENABLE, $store);
     }
     /**
      * Process only orders with selected statuses enabled
@@ -303,6 +319,7 @@ class TM_ReviewReminder_Helper_Data extends Mage_Core_Helper_Abstract
 
         $productCollection = Mage::getModel('catalog/product')
             ->getCollection()
+            ->setStore($orderDataArr['store_id'])
             ->addIdFilter($orderedProductIds)
             ->addAttributeToSelect('name')
             ->addAttributeToSelect('product_url')

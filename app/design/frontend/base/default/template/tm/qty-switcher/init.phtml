@@ -1,0 +1,21 @@
+<?php
+$config = Mage::helper('tm_qtyswitcher')->getJsonConfig();
+if (false === $config) {
+    return;
+}
+?>
+<script type="text/javascript">
+//<![CDATA[
+    // console.log(<?php echo $config ?>);
+    function initTMQtySwitcher() {
+       TMProductQtySwitcher.init(<?php echo $config ?>);
+    }
+    if ('complete' === document.readyState) {
+        initTMQtySwitcher();
+    } else if (Prototype.Browser.IE) {
+        Event.observe(window, 'load', initTMQtySwitcher);
+    } else {
+        document.observe("dom:loaded", initTMQtySwitcher);
+    }
+//]]>
+</script>

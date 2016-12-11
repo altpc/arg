@@ -16,7 +16,7 @@ endif;
 <?php if ($this->getAmazonStyle()) : ?>
     <h2><?php echo Mage::helper('soldtogether')->__('Frequently bought together') ?></h2>
     <p class="subtitle"><?php echo Mage::helper('soldtogether')->__('Customers who bought this product also commonly purchased the following combination of items.') ?></p>
-    <ul class="amazonstyle-images">
+    <ul class="amazonstyle-images products-grid--max-<?php echo $_columnCount?>-col">
         <li id="image<?php echo $currentProduct->getId() ?>" class="first">
             <img src="<?php echo $this->helper('catalog/image')->init($currentProduct, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($currentProduct, 'small_image'), null, true) ?>" />
         </li>
@@ -110,7 +110,7 @@ endif;
 
     <?php $i=0; foreach ($_productCollection as $_product): ?>
         <?php if ($i++%$_columnCount==0): ?>
-        <ul class="products-grid">
+        <ul class="products-grid products-grid--max-<?php echo $_columnCount?>-col">
         <?php endif ?>
             <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <div class="product-image-wrapper">

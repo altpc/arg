@@ -51,7 +51,7 @@ class TM_EasyBanner_Model_Mysql4_Handle_Collection extends Varien_Data_Collectio
         if (!empty($this->_filters)) {
             foreach ($this->_handles as $key => $row) {
                 foreach ($this->_filters as $filter) {
-                    if (!$this->$filter['callback']($filter['field'], $filter['value'], $row)) {
+                    if (!$this->{$filter['callback']}($filter['field'], $filter['value'], $row)) {
                         unset($this->_handles[$key]);
                     }
                 }
@@ -136,6 +136,8 @@ class TM_EasyBanner_Model_Mysql4_Handle_Collection extends Varien_Data_Collectio
     public function filterCallbackLike($field, $filterValue, $row)
     {
         //preg_quote($filterValue, '/'); - removed to allow to use regexp at user input
+        $filterValue = trim($filterValue, "'");
+        $filterValue = str_replace('\\\\_', '_', $filterValue);
         $filterValueRegex = str_replace('%', '(.*?)', $filterValue);
         return (bool)preg_match("/^{$filterValueRegex}$/i", $row[$field]);
     }

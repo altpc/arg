@@ -3,7 +3,7 @@
     <!-- AjaxPro -->
    <modules>
        <TM_AjaxPro>
-           <version>3.3.5</version>
+           <version>3.3.7</version>
        </TM_AjaxPro>
    </modules>
 
@@ -292,7 +292,7 @@
                 <enabledForm>1</enabledForm>
                 <enabledDeleteConfirm>1</enabledDeleteConfirm>
                 <useHeaderCartBlock>0</useHeaderCartBlock>
-                <blocks>top.links,headerCart,checkout.cart,cart_sidebar,minicart_head</blocks>
+                <blocks>top.links,headerCart,checkout.cart,cart_sidebar,minicart_head,ajaxcart</blocks>
                 <messageHandle>tm_ajaxpro_checkout_cart_add_with_cart_extended</messageHandle>
             </checkoutCart>
             <wishlistIndex>

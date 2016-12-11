@@ -132,7 +132,8 @@ class TM_RichSnippets_Block_Product extends Mage_Core_Block_Template
         return $this->helper('core')->currency(
             $this->helper('tax')->getPrice(
                 $this->getProduct(),
-                $price
+                $price,
+                true        // TRUE/FALSE: price with/without VAT
             ),
             true,
             false
@@ -153,7 +154,8 @@ class TM_RichSnippets_Block_Product extends Mage_Core_Block_Template
         return $this->helper('core')->currency(
             $this->helper('tax')->getPrice(
                 $this->getProduct(),
-                $price
+                $price,
+                true        // TRUE/FALSE: price with/without VAT
             ),
             false,
             false

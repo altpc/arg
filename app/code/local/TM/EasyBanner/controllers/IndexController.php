@@ -22,7 +22,12 @@ class TM_EasyBanner_IndexController extends Mage_Core_Controller_Front_Action
             } elseif (strpos($redirectUrl, 'http://') !== 0
                 && strpos($redirectUrl, 'https://') !== 0) {
 
-                $redirectUrl = Mage::getUrl($redirectUrl);
+                if (strpos($redirectUrl, '.html')) {
+                    // hotfix for seo links.
+                    $redirectUrl = Mage::getModel('core/url')->getDirectUrl($redirectUrl);
+                } else {
+                    $redirectUrl = Mage::getUrl($redirectUrl);
+                }
             }
 
             $this->getResponse()->setRedirect($redirectUrl);

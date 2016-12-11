@@ -75,6 +75,10 @@ class TM_ReviewReminder_Adminhtml_ReviewReminder_IndexController extends Mage_Ad
                 array('in' => Mage::helper('tm_reviewreminder')->specificOrderStatuses()));
         }
 
+        if (Mage::helper('tm_reviewreminder')->isEnabledForGuests() == false) {
+            $orders->addAttributeToFilter('customer_is_guest', 0);
+        }
+
         $indexedOrdersIds = Mage::getModel('tm_reviewreminder/entity')
             ->getCollection()
             ->getColumnValues('order_id');

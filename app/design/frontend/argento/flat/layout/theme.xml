@@ -138,6 +138,14 @@ enquire.register('(min-width: 769px) and (min-height: 751px), (min-width: 1250px
         </reference>
     </checkout_cart_index>
 
+    <tm_testimonials_index_new>
+        <reference name="left">
+            <action method="unsetChild">
+                <name>right.reports.product.viewed</name>
+            </action>
+        </reference>
+    </tm_testimonials_index_new>
+
     <default>
         <reference name="navigationpro.top">
             <action method="setConstraintEl"><constraint_el><![CDATA[$$('.header')[0]]]></constraint_el></action>

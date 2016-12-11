@@ -31,6 +31,14 @@
                             alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
                         />
                     </a>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li class="li-wishlist"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist" title="<?php echo $this->__('Add to Wishlist') ?>"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li class="li-compare"><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare" title="<?php echo $this->__('Add to Compare') ?>"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                        <?php endif; ?>
+                    </ul>
                     <?php echo $this->getPriceHtml($_product, true, '-related-customer') ?>
                 </div>
                 <div class="collateral-info">
@@ -40,14 +48,6 @@
                         <?php else: ?>
                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif; ?>
-                        <ul class="add-to-links">
-                            <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                                <li class="li-wishlist"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
-                            <?php endif; ?>
-                            <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
-                                <li class="li-compare"><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
-                            <?php endif; ?>
-                        </ul>
                     </div>
                 </div>
             </li>

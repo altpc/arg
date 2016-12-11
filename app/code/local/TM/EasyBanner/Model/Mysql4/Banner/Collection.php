@@ -4,7 +4,8 @@ class TM_EasyBanner_Model_Mysql4_Banner_Collection extends Mage_Core_Model_Mysql
 {
     protected $_map = array('fields' => array(
         'placeholder' => 'placeholder.name',
-        'status'      => 'main_table.status'
+        'status'      => 'main_table.status',
+        'store'       => 'store_table.store_id'
     ));
 
     protected function _construct()
@@ -110,5 +111,47 @@ class TM_EasyBanner_Model_Mysql4_Banner_Collection extends Mage_Core_Model_Mysql
         $countSelect->columns('main_table.banner_id');
 
         return $countSelect;
+    }
+
+    /**
+     * Add filter by store
+     *
+     * @param int|Mage_Core_Model_Store $store
+     * @param bool $withAdmin
+     * @return TM_EasyBanner_Model_Mysql4_Banner_Collection
+     */
+    public function addStoreFilter($store, $withAdmin = true)
+    {
+        if (!$this->getFlag('store_filter_added')) {
+            if ($store instanceof Mage_Core_Model_Store) {
+                $store = array($store->getId());
+            }
+            if (!is_array($store)) {
+                $store = array($store);
+            }
+            if ($withAdmin) {
+                $store[] = Mage_Core_Model_App::ADMIN_STORE_ID;
+            }
+            $this->addFilter('store', array('in' => $store), 'public');
+        }
+        return $this;
+    }
+    /**
+     * Join store relation table if there is store filter
+     */
+    protected function _renderFiltersBefore()
+    {
+        if ($this->getFilter('store')) {
+            $this->getSelect()->join(
+                array('store_table' => $this->getTable('easybanner/banner_store')),
+                'main_table.banner_id = store_table.banner_id',
+                array()
+            )->group('main_table.banner_id');
+            /*
+             * Allow analytic functions usage because of one field grouping
+             */
+            $this->_useAnalyticFunction = true;
+        }
+        return parent::_renderFiltersBefore();
     }
 }

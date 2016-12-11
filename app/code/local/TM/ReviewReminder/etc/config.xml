@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TM_ReviewReminder>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </TM_ReviewReminder>
     </modules>
     <global>
@@ -95,6 +95,7 @@
                 <enabled>0</enabled>
                 <emails_per_cron>10</emails_per_cron>
                 <default_status>5</default_status>
+                <send_for_guests>1</send_for_guests>
             </general>
             <email>
                 <send_from>0</send_from>

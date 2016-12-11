@@ -314,63 +314,71 @@ document.observe('dom:loaded', function() {
 </script>
 HTML
             ),
-            'footer' => array(
-                'title' => 'footer',
-                'identifier' => 'footer',
+            'footer_cms' => array(
+                'title' => 'footer_cms',
+                'identifier' => 'footer_cms',
                 'status' => 1,
                 'content' => <<<HTML
-<div class="col3-set">
-    <div class="col-1">
-        <div class="block block-information">
-            <div class="block-title"><span>Company Information</span></div>
-            <div class="block-content">
-                <ul>
-                    <li><a href="{{store url='blog'}}">Blog</a></li>
-                    <li><a href="{{store url='sales/guest/form'}}">Order Status</a></li>
-                    <li><a href="{{store url='storelocator'}}">Store Locator</a></li>
-                    <li><a href="{{store url='wishlist'}}">Wishlist</a></li>
-                    <li><a href="{{store url='privacy'}}">Privacy Policy</a></li>
-                    <li><a href="{{store url='customer/account'}}">Personal Account</a></li>
-                    <li><a href="{{store url='terms'}}">Terms of Use</a></li>
-                    <li><a href="{{store url='returns'}}">Returns &amp; Exchanges</a></li>
-                    <li><a href="{{store url='company'}}">Our Company</a></li>
-                    <li><a href="{{store url='careers'}}">Careers</a></li>
-                    <li><a href="{{store url='about'}}">About us</a></li>
-                    <li><a href="{{store url='shipping'}}">Shipping</a></li>
+<div class="footer-cms-container">
+    <div class="footer-cms">
+        <div class="block block-social">
+                <ul class="icons">
+                    <li class="twitter"><a href="twitter.com">Twitter</a></li>
+                    <li class="facebook"><a href="facebook.com">Facebook</a></li>
+                    <li class="youtube"><a href="youtube.com">YouTube</a></li>
+                    <li class="rss"><a href="rss.com">Rss</a></li>
                 </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <div class="block block-information">
+                    <div class="block-title"><span>Company Information</span></div>
+                    <div class="block-content">
+                        <ul>
+                            <li><a href="{{store url='blog'}}">Blog</a></li>
+                            <li><a href="{{store url='sales/guest/form'}}">Order Status</a></li>
+                            <li><a href="{{store url='storelocator'}}">Store Locator</a></li>
+                            <li><a href="{{store url='wishlist'}}">Wishlist</a></li>
+                            <li><a href="{{store url='privacy'}}">Privacy Policy</a></li>
+                            <li><a href="{{store url='customer/account'}}">Personal Account</a></li>
+                            <li><a href="{{store url='terms'}}">Terms of Use</a></li>
+                            <li><a href="{{store url='returns'}}">Returns &amp; Exchanges</a></li>
+                            <li><a href="{{store url='company'}}">Our Company</a></li>
+                            <li><a href="{{store url='careers'}}">Careers</a></li>
+                            <li><a href="{{store url='about'}}">About us</a></li>
+                            <li><a href="{{store url='shipping'}}">Shipping</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="block block-about">
+                    <div class="block-title"><span>Call Us</span></div>
+                    <div class="block-content">
+                        <a class="footer-phone" href="tel:1.800.555.1903">1.800.555.1903</a>
+                        <p>
+        We're available 24/7. Please note the more accurate the information you can provide us with the quicker we can respond to your query.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                {{block type="newsletter/subscribe" name="footer.newsletter" template="newsletter/subscribe.phtml"}}
             </div>
         </div>
-    </div>
-    <div class="col-2">
-        <div class="block block-about">
-            <div class="block-title"><span>Call Us</span></div>
-            <div class="block-content">
-                <a class="footer-phone" href="tel:1.800.555.1903">1.800.555.1903</a>
-                <p>
-We're available 24/7. Please note the more accurate the information you can provide us with the quicker we can respond to your query.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        {{block type="newsletter/subscribe" name="footer.newsletter" template="newsletter/subscribe.phtml"}}
     </div>
 </div>
 HTML
             ),
-            'footer_social' => array(
-                'title'      => 'Footer Social',
-                'identifier' => 'footer_social',
+            'footer_payments' => array(
+                'title'      => 'footer_payments',
+                'identifier' => 'footer_payments',
                 'status'     => 1,
                 'content'    => <<<HTML
-<div class="block block-social">
-        <ul class="icons">
-            <li class="twitter"><a href="twitter.com">Twitter</a></li>
-            <li class="facebook"><a href="facebook.com">Facebook</a></li>
-            <li class="youtube"><a href="youtube.com">YouTube</a></li>
-            <li class="rss"><a href="rss.com">Rss</a></li>
-        </ul>
-</div>
+<img class="payments" src="{{skin url='images/payments.png'}}"
+            srcset="{{skin url='images/payments.png'}} 1x, {{skin url='images/payments@2x.png'}} 2x"
+            alt="Payment methods"/>
 HTML
             ),
             'product_sidebar' => array(
@@ -446,14 +454,13 @@ HTML
                 'content_heading'   => '',
                 'is_active'         => 1,
                 'content'           => <<<HTML
-<div class="jumbotron jumbotron-slider jumbotron-image">
+<div class="row jumbotron jumbotron-slider jumbotron-image">
     <div class="container wow fadeIn">
         {{widget type="easyslide/insert" slider_id="argento_pure2"}}
     </div>
 </div>
 
-
-<div class="jumbotron">
+<div class="row jumbotron">
     <div class="container">
         <div class="block block-dotted">
             <div class="block-title"><span>The Essentials</span></div>
@@ -464,29 +471,29 @@ HTML
     </div>
 </div>
 
-<div class="jumbotron">
+<div class="row jumbotron">
     <div class="container">
-<div class="tab-container">
-    {{widget type="highlight/product_special" title="Sale" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-special" show_page_link="1" page_title="Shop Sale"}}
-    {{widget type="highlight/product_bestseller" title="Bestsellers" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-bestsellers" show_page_link="1" page_title="Shop Bestsellers"}}
-    {{widget type="highlight/product_popular" title="Popular" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-popular" show_page_link="1" page_title="Shop Popular"}}
-    {{widget type="highlight/product_attribute_yesno" attribute_code="recommended" title="Editor's Choice" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-attribute-recommended"}}
-    {{widget type="highlight/product_new" title="New arrivals" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-new" show_page_link="1" page_title="Shop New"}}
-</div>
-<script type="text/javascript">
-    new TabBuilder();
-    new IScroll($$('.tab-container .tabs-wrapper')[0], {
-        click: true,
-        tap  : true,
-        bindToWrapper: true,
-        scrollX: true,
-        scrollY: false
-    });
-</script>
+        <div class="tab-container">
+            {{widget type="highlight/product_special" title="Sale" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-special" show_page_link="1" page_title="Shop Sale" img_width="315" img_keep_frame="0"}}
+            {{widget type="highlight/product_bestseller" title="Bestsellers" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-bestsellers" show_page_link="1" page_title="Shop Bestsellers" img_width="315" img_keep_frame="0"}}
+            {{widget type="highlight/product_popular" title="Popular" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-popular" show_page_link="1" page_title="Shop Popular" img_width="315" img_keep_frame="0"}}
+            {{widget type="highlight/product_attribute_yesno" attribute_code="recommended" title="Editor's Choice" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-attribute-recommended" img_width="315" img_keep_frame="0"}}
+            {{widget type="highlight/product_new" title="New arrivals" products_count="6" column_count="3" template="tm/highlight/product/grid.phtml" class_name="highlight-new" show_page_link="1" page_title="Shop New" img_width="315" img_keep_frame="0"}}
+        </div>
+        <script type="text/javascript">
+            new TabBuilder();
+            new IScroll($$('.tab-container .tabs-wrapper')[0], {
+                click: true,
+                tap  : true,
+                bindToWrapper: true,
+                scrollX: true,
+                scrollY: false
+            });
+        </script>
     </div>
 </div>
 
-<div class="jumbotron">
+<div class="row jumbotron">
     <div class="container">
         <div class="block block-brands argento-slider wow fadeIn" data-wow-delay="0.2s">
             <div class="block-title"><span>Our Brands</span></div>
@@ -516,7 +523,7 @@ HTML
         </div>
     </div>
 </div>
-<div class="jumbotron">
+<div class="row jumbotron">
     <div class="container block-homepage-banner">
         {{widget type="easybanner/widget_placeholder" placeholder_name="argento-pure2-home"}}
     </div>

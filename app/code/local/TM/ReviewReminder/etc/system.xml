@@ -50,6 +50,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </default_status>
+                        <send_for_guests translate="label" module="tm_reviewreminder">
+                            <label>Enable reminders for guests</label>
+                            <frontend_type>select</frontend_type>
+                            <comment><![CDATA[Disable if you don't allow guests to write reviews in System > Configuration > CATALOG > Catalog > Product Reviews > Allow Guests to Write Reviews]]></comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </send_for_guests>
                     </fields>
                 </general>
                 <email translate="label" module="tm_reviewreminder">
@@ -124,7 +134,7 @@
                     <show_in_store>0</show_in_store>
                     <fields>
                         <heading_indexing translate="label">
-                            <label>You can launch orders indexing after extension installation if you want to send emails for existing orders.</label>
+                            <label><![CDATA[You can launch orders indexing after extension installation if you want to send emails for existing orders.<br><span style="color:red;">Save config before running indexing process.<span>]]></label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>

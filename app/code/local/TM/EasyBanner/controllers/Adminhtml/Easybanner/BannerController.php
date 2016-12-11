@@ -17,6 +17,9 @@ class TM_EasyBanner_Adminhtml_Easybanner_BannerController extends Mage_Adminhtml
      */
     public function indexAction()
     {
+        $this->_title($this->__('TM'))
+            ->_title($this->__('Easy Banner'))
+            ->_title($this->__('Manage Banners'));
         $this->_initAction();
         $this->_addContent($this->getLayout()->createBlock('easybanner/adminhtml_banner'));
         $this->renderLayout();
@@ -45,6 +48,12 @@ class TM_EasyBanner_Adminhtml_Easybanner_BannerController extends Mage_Adminhtml
                 $this->_redirect('*/*/');
                 return;
             }
+        }
+
+        if ($model->getId()) {
+            $this->_title($this->__('Edit Banner'));
+        } else {
+            $this->_title($this->__('New Banner'));
         }
 
         $data = Mage::getSingleton('adminhtml/session')->getPageData(true);

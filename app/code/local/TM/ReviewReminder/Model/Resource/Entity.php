@@ -22,7 +22,8 @@ class TM_ReviewReminder_Model_Resource_Entity extends Mage_Core_Model_Mysql4_Abs
                     'customer_firstname' => 'customer_firstname',
                     'customer_lastname' => 'customer_lastname',
                     'fullname' => 'CONCAT(customer_firstname, \' \', customer_lastname)',
-                    'products' => $productSelect
+                    'products' => $productSelect,
+                    'increment_id' => 'increment_id'
                 )
             )
             ->where('entity_id = ?', $id);

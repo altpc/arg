@@ -42,6 +42,11 @@ class TM_ReviewReminder_Block_Adminhtml_Page_Grid extends Mage_Adminhtml_Block_W
             'index'    => 'entity_id',
             'width'    => 50
         ));
+        $this->addColumn('increment_id', array(
+            'header'    => Mage::helper('customer')->__('Order #'),
+            'index'     => 'increment_id',
+            'width'     => 100
+        ));
         $this->addColumn('fullname', array(
             'header'   => Mage::helper('adminhtml')->__('Customer Name'),
             'index'    => 'fullname',
@@ -66,6 +71,19 @@ class TM_ReviewReminder_Block_Adminhtml_Page_Grid extends Mage_Adminhtml_Block_W
             'width'    => 150,
             'type' => 'datetime'
         ));
+
+        if (!Mage::app()->isSingleStoreMode()) {
+            $this->addColumn('store_id', array(
+                'header'        => Mage::helper('cms')->__('Store View'),
+                'index'         => 'store',
+                'type'          => 'store',
+                'store_all'     => true,
+                'store_view'    => true,
+                'sortable'      => false,
+                'filter_condition_callback'
+                                => array($this, '_filterStoreCondition')
+            ));
+        }
 
         $statuses = Mage::getSingleton('tm_reviewreminder/entity')->getAvailableStatuses();
         $statuses = array('not_sent' => Mage::helper('tm_reviewreminder')->__('Not Sent')) + $statuses;

@@ -141,7 +141,7 @@ class TM_NavigationPro_Block_Adminhtml_Menu_Tab_Columns_Column extends Mage_Admi
             );
             foreach ($textFields as $field) {
                 $column->setData(
-                    $field, $this->escapeHtml($column->getData($field))
+                    $field, htmlspecialchars($column->getData($field), ENT_COMPAT)
                 );
             }
         }

@@ -1,3 +1,4 @@
+<?php if ($this->getCssMerged()) { return; }?>
 <?php if ($css = $this->getBackendCss()) : ?>
     <link rel="stylesheet" type="text/css" href="<?php echo $css ?>" media="all" />
 <?php endif ?>

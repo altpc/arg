@@ -112,8 +112,7 @@ button.btn-cart span span:after,
 
 .promo-home-content .products-grid .item:hover,
 .box-collateral .products-grid .item:hover,
-.category-products .products-grid .item:hover { z-index: 100; box-shadow: 0 0 10px rgba(0,0,0,0.15); }
-.navpro .category-products .products-grid .item:hover { box-shadow: none; }
+.category-products .products-grid .item:hover { z-index: 100; }
 
 .sorter .view-mode .active { color: #ff7d14; }
 .pager .pages li.current,
@@ -160,11 +159,38 @@ button.btn-cart span span:after,
 .product-view .product-options-bottom .add-to-cart label { line-height: 29px; }
 
 /* Products list */
-.products-grid .collateral-info .actions { float: none; clear: right; }
-.products-grid .collateral-info .actions .availability,
-.products-grid .collateral-info .actions .btn-cart { float: right; }
-.products-grid .collateral-info .actions > p { margin: 0; }
-.products-grid .ratings { float: right; }
+.products-grid .collateral-info .actions { float: none; }
+.products-grid li.item .main-info { border: 1px solid #fff; border-bottom: none; }
+.products-grid li.item:hover .main-info { border: 1px solid #CBDEED; border-bottom: none; }
+.products-grid li.item:hover .collateral-info { border: 1px solid #CBDEED; }
+
+/* Quantity switcher listing styles */
+.products-grid .qty-increment input.qty {
+    background-color: #f6f6f6;
+    border: 1px solid #CBDEED;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+.products-grid .collateral-info .actions .qty-increment {
+    position: relative;
+    padding-right: 20px;
+}
+.products-grid .qty-increment a {
+    position: absolute;
+}
+.products-grid .qty-increment .qty-switcher-dec,
+.products-grid .qty-increment .qty-switcher-inc {
+    right: 5px;
+    padding: 0;
+    color: #CBDEED;
+}
+.products-grid .qty-increment .qty-switcher-dec {
+    bottom: 0;
+    transform: rotate(-90deg);
+}
+.products-grid .qty-increment .qty-switcher-inc {
+    top: -3px;
+    transform: rotate(-90deg);
+}
 
 /* Product and homepage tabs */
 .tab-container { margin-top: 0; }
@@ -513,7 +539,7 @@ button.ajaxpro-continue-button:hover span,
 
     .promo-home-content .products-grid .item:hover,
     .box-collateral .products-grid .item:hover,
-    .category-products .products-grid .item:hover { z-index: 100; box-shadow: 0 0 5px rgba(0,0,0,0.13); }
+    .category-products .products-grid .item:hover { z-index: 100; }
 }
 /* >>> responsive styles */
 

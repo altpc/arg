@@ -176,4 +176,27 @@ class TM_SoldTogether_Model_Observer
             );
         $observer->getBlocks()->setValue($blocks);
     }
+
+    /**
+     * append Checkout Success config section with some additional options
+     * from system.xml under `sections_depend_on` tag
+     */
+    public function appendCheckoutsuccessConfig($observer)
+    {
+        $depend = $observer->getConfig()->getNode('sections_depend_on');
+        foreach ($depend->children() as $child) {
+            $moduleName = $child->getName();
+            $module = Mage::getConfig()->getNode('modules/' . $moduleName);
+            if ($module && $module->descend('active') == 'true') {
+                $currentVersion = $module->descend('version');
+                $requiredVersion = $child->descend('version');
+                if (version_compare($currentVersion, $requiredVersion) > -1) {
+                    $observer->getConfig()->getNode('sections')->extend(
+                            $child->descend('sections')
+                        );
+                }
+            }
+        }
+    }
+
 }

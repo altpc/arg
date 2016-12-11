@@ -23,4 +23,12 @@ document.observe('dom:loaded', function() {
             Argento.Mover.restore('.header-cart-wrapper');
         }
     });
+
+    $$('#select-language').each(function(el){
+        new Chosen(el, {
+            disable_search_threshold: 10,
+            search_contains: true,
+            width: 'auto'
+        });
+    });
 });

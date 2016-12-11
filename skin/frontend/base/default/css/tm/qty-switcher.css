@@ -1,0 +1,61 @@
+a.qty-switcher-dec, a.qty-switcher-inc {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 25px;
+    height: 16px;
+    padding: 0 7px;
+    text-align: center;
+
+    /* disable select*/
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.products-grid .qty-increment a.qty-switcher-dec,
+.products-grid .qty-increment a.qty-switcher-inc {
+    vertical-align: top;
+    display: inline-block;
+    line-height: 25px;
+}
+
+a.qty-switcher-dec:hover, a.qty-switcher-inc:hover {
+    text-decoration: none;
+}
+
+.products-grid .qty-increment {
+    margin-bottom: 5px;
+    min-height: 35px;
+}
+
+.products-grid .qty-increment .qty, .add-to-cart .qty {
+    text-align: center;
+}
+
+.products-grid  .qty-increment .qty {
+    min-height: 25px;
+    vertical-align: top;
+}
+
+.products-grid  .qty-increment a.qty-switcher-dec,
+.products-grid  .qty-increment a.qty-switcher-inc {
+    height:auto;
+}
+
+.products-list .qty-increment {
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+
+.products-list .qty-increment a.qty-switcher-dec,
+.products-list .qty-increment a.qty-switcher-inc {
+    vertical-align: top;
+    display: inline-block;
+    line-height: 18px;
+}
+
+.products-list .qty-increment .qty {
+    min-height: 17px;
+    vertical-align: top;
+}

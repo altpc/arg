@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<tm_qtyswitcher_head>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>js/tm/qty-switcher/product.js</name>
+				<params>defer</params>
+			</action>
+			<action method="addItem">
+				<type>skin_css</type>
+				<name>css/tm/qty-switcher.css</name>
+			</action>
+		</reference>
+	</tm_qtyswitcher_head>
+
+	<tm_qtyswitcher_head_category>
+		<reference name="head">
+			<action method="addItem" ifconfig="tm_qtyswitcher/category/enabled">
+				<type>skin_js</type>
+				<name>js/tm/qty-switcher/category.js</name>
+				<params>defer</params>
+			</action>
+		</reference>
+	</tm_qtyswitcher_head_category>
+
+	<tm_qtyswitcher_catalog_product_view>
+		<reference name="product.info.additional">
+            <!-- <block type="core/text" name="qty-switcher.js">
+                <action method="setText">
+                    <text helper="tm_qtyswitcher/getJs"/>
+                </action>
+            </block> -->
+            <block type="core/template" name="qty-switcher.js" template="tm/qty-switcher/init.phtml" />
+		</reference>
+	</tm_qtyswitcher_catalog_product_view>
+
+	<catalog_product_view>
+		<update handle="tm_qtyswitcher_head"/>
+		<update handle="tm_qtyswitcher_catalog_product_view"/>
+	</catalog_product_view>
+
+    <catalog_category_default>
+        <update handle="tm_qtyswitcher_head"/>
+        <update handle="tm_qtyswitcher_head_category"/>
+    </catalog_category_default>
+
+    <catalog_category_layered>
+        <update handle="tm_qtyswitcher_head"/>
+        <update handle="tm_qtyswitcher_head_category"/>
+    </catalog_category_layered>
+
+    <product_list>
+		<update handle="tm_qtyswitcher_head"/>
+        <update handle="tm_qtyswitcher_head_category"/>
+    </product_list>
+
+    <tm_ajaxpro_catalog_product_view>
+    	<reference name="ajaxpro_additional">
+    		<!-- <block type="core/text" name="qty-switcher.js">
+                <action method="setText">
+                    <text helper="tm_qtyswitcher/getJs"/>
+                </action>
+            </block> -->
+            <block type="core/template" name="qty-switcher.js" template="tm/qty-switcher/init.phtml" />
+		</reference>
+    </tm_ajaxpro_catalog_product_view>
+</layout>

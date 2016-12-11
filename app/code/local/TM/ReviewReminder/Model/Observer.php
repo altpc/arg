@@ -16,6 +16,12 @@ class TM_ReviewReminder_Model_Observer
             return $this;
         }
 
+        if (Mage::helper('tm_reviewreminder')->isEnabledForGuests() == false &&
+            $order->getCustomerIsGuest() == 1)
+        {
+            return $this;
+        }
+
         if (Mage::helper('tm_reviewreminder')->allowSpecificStatuses($storeId)) {
             $orderStatus = $order->getStatus();
             $allowedStatuses = Mage::helper('tm_reviewreminder')->specificOrderStatuses($storeId);

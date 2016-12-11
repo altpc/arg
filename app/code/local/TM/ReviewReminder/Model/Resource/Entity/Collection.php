@@ -6,6 +6,8 @@ class TM_ReviewReminder_Model_Resource_Entity_Collection extends Mage_Core_Model
     {
         $this->_init('tm_reviewreminder/entity');
         $this->_map['fields']['entity_id'] = 'main_table.entity_id';
+        $this->_map['fields']['store']  = 'a.store_id';
+        $this->_map['fields']['increment_id']  = 'a.increment_id';
     }
     /**
      * Get collection size
@@ -44,7 +46,9 @@ class TM_ReviewReminder_Model_Resource_Entity_Collection extends Mage_Core_Model
         $this->join(array('a' => 'sales/order'), 'main_table.order_id = a.entity_id',
             array(
                 'customer_firstname' => 'customer_firstname',
-                'customer_lastname' => 'customer_lastname'
+                'customer_lastname' => 'customer_lastname',
+                'store' => 'store_id',
+                'increment_id' => 'increment_id'
             )
         )
         ->addExpressionFieldToSelect(
@@ -63,6 +67,33 @@ class TM_ReviewReminder_Model_Resource_Entity_Collection extends Mage_Core_Model
                     AND x.product_type != \'configurable\')',
             array('entity_id' => 'a.entity_id')
         );
+        return $this;
+    }
+
+    /**
+     * Add filter by store
+     *
+     * @param int|Mage_Core_Model_Store $store
+     * @param bool $withAdmin
+     * @return TM_ReviewReminder_Model_Resource_Entity_Collection
+     */
+    public function addStoreFilter($store, $withAdmin = true)
+    {
+        if (!$this->getFlag('store_filter_added')) {
+            if ($store instanceof Mage_Core_Model_Store) {
+                $store = array($store->getId());
+            }
+
+            if (!is_array($store)) {
+                $store = array($store);
+            }
+
+            if ($withAdmin) {
+                $store[] = Mage_Core_Model_App::ADMIN_STORE_ID;
+            }
+
+            $this->addFilter('store', array('in' => $store), 'public');
+        }
         return $this;
     }
 }

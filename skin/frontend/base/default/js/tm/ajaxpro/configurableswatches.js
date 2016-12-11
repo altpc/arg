@@ -1,5 +1,8 @@
 // configurable swatches integration
 document.observe("dom:loaded", function () {
+    if ('undefined' == typeof $j && jQuery) {
+        $j = jQuery.noConflict();
+    }
     if ('undefined' !== typeof ProductMediaManager) {
         ProductMediaManager.createZoom = ProductMediaManager.createZoom.wrap(function(original, image) {
             original(image);

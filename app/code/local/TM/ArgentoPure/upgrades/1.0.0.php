@@ -394,10 +394,10 @@ HTML
 </div>
 
 <div class="tab-container">
-    {{widget type="highlight/product_new" title="New arrivals" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-new" show_page_link="1" page_title="All new products &raquo;"}}
-    {{widget type="highlight/product_bestseller" title="Bestsellers" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-bestsellers" show_page_link="1" page_title="All bestsellers &raquo;"}}
-    {{widget type="highlight/product_attribute_yesno" attribute_code="recommended" title="Recommended products" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-attribute-recommended"}}
-    {{widget type="highlight/product_special" title="On sale" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-special" show_page_link="1" page_title="All on sale products &raquo;"}}
+    {{widget type="highlight/product_new" title="New arrivals" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-new" show_page_link="1" page_title="All new products &raquo;" img_width="200" img_height="200"}}
+    {{widget type="highlight/product_bestseller" title="Bestsellers" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-bestsellers" show_page_link="1" page_title="All bestsellers &raquo;" img_width="200" img_height="200"}}
+    {{widget type="highlight/product_attribute_yesno" attribute_code="recommended" title="Recommended products" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-attribute-recommended" img_width="200" img_height="200"}}
+    {{widget type="highlight/product_special" title="On sale" products_count="12" column_count="4" template="tm/highlight/product/grid.phtml" class_name="highlight-special" show_page_link="1" page_title="All on sale products &raquo;" img_width="200" img_height="200"}}
     <div class="block-about block-highlight">
         <div class="block-title"><span>About Us</span></div>
         <div class="block-content" style="padding: 7px 7px;">

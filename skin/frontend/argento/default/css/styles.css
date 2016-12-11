@@ -618,7 +618,7 @@ tr.summary-details-excluded { font-style:italic; }
 .products-grid .product-image { display:block; width:135px; height:135px; margin:0 0 10px; }
 .products-grid .product-name { margin:0 0 5px; font-weight:bold; font-size:13px; }
 .products-grid .product-name a {}
-.products-grid .price-box { margin:5px 0; }
+.products-grid .price-box { margin:15px 0; }
 .products-grid .availability { line-height:21px; }
 .products-grid .actions { position:absolute; bottom:12px; }
 .col2-left-layout .products-grid,
